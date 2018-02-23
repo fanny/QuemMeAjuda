@@ -36,7 +36,7 @@ fix #112
 
 #### Shotlog
 
-Exemplo:
+Exemplo: 
 
 Aluno.java: Criação de construtor para aluno
 
