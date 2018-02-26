@@ -1,7 +1,6 @@
 package model;
 
 import util.Validador;
-import util.AlunoValidador;
 
 /**
  * Representacao de um aluno
@@ -58,7 +57,7 @@ public class Aluno {
 	 */
 	public Aluno(String matricula, String nome, String telefone, String email, String codCurso) {
 		if (Validador.validaTexto(matricula) && Validador.validaTexto(nome)
-				&& (Validador.validaTexto(email)) && (AlunoValidador.)) {
+				&& Validador.validaEmail(email)) {
 			this.matricula = matricula;
 			this.nome = nome;
 			this.email = email;
