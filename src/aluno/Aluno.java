@@ -1,4 +1,4 @@
-package model;
+package aluno;
 
 import util.Validador;
 

@@ -1,8 +1,9 @@
-package model;
+package tutor;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import aluno.Aluno;
 import util.Validador;
 
 /**

@@ -1,4 +1,7 @@
-package model;
+
+
+import tutor.TutorController;
+import aluno.AlunoController;
 
 /**
  * Classe controller do sistema.

@@ -1,4 +1,4 @@
-package model;
+package aluno;
 
 import java.util.HashMap;
 import java.util.Map;

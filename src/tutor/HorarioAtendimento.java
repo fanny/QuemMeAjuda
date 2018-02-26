@@ -1,4 +1,4 @@
-package model;
+package tutor;
 
 /**
  * Representação de um horário de atendimento de um tutor
