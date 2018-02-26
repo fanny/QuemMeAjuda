@@ -1,5 +1,6 @@
 package aluno;
 
+import util.AlunoValidador;
 import util.Validador;
 
 /**
@@ -56,15 +57,13 @@ public class Aluno {
 	 *            o codigo do curso do aluno
 	 */
 	public Aluno(String matricula, String nome, String telefone, String email, String codCurso) {
-		if (Validador.validaTexto(matricula) && Validador.validaTexto(nome)
-				&& Validador.validaEmail(email)) {
+		if (AlunoValidador.validaAluno(nome, telefone, email, codCurso)) {
 			this.matricula = matricula;
 			this.nome = nome;
 			this.email = email;
+			this.telefone = telefone;
+			this.codCurso = codCurso;
 		}
-
-		this.telefone = telefone;
-		this.codCurso = codCurso;
 		this.notaAvaliacao = 5;
 	}
 
