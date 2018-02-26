@@ -12,14 +12,17 @@ import util.Validador;
  */
 public class Tutor {
 	
+
 	/**
 	 * A matéria na qual o tutor domina
 	 */
 	private String disciplina;
+	
 	/**
 	 * Indica o nível de conhecimento do tutor
 	 */
 	private int proficiencia;
+	
 	/**
 	 * Indica o quanto um tutor recebe do sistema
 	 */
@@ -36,11 +39,17 @@ public class Tutor {
 	private Set<HorarioAtendimento> horariosDeAtendimento;
 	
 	/**
+	 * A referência do aluno que o tutor é
+	 */
+	private Aluno aluno;
+	
+	
+	/**
 	 * Constutor usado para inicializar a disciplina e a proficiência do mentor
 	 * @param disciplina A matéria na qual o tutor domina
 	 * @param proficiencia Indica o nível de conhecimento do tuto
 	 */
-	public Tutor(String disciplina, int proficiencia){
+	public Tutor(String disciplina, int proficiencia, Aluno aluno){
 		if(Validador.validaTexto(disciplina) 
 				&& Validador.validaProficiencia(proficiencia)){
 			this.proficiencia = proficiencia;
@@ -49,6 +58,7 @@ public class Tutor {
 		this.salario = 0;
 		this.locaisDeAtendimento = new HashSet<>();
 		this.horariosDeAtendimento = new HashSet<>();
+		this.aluno = aluno;
 		
 	}
 
@@ -94,6 +104,34 @@ public class Tutor {
 				HorarioAtendimento(dia, horario));
 	}
 
+	public String getMatricula() {
+		return this.aluno.getMatricula();
+	}
+
+	public String getNome() {
+		return this.aluno.getNome();
+	}
+
+	public String getTelefone() {
+		return this.aluno.getTelefone();
+	}
+
+	public String getEmail() {
+		return this.aluno.getEmail();
+	}
+
+	public String getCodCurso() {
+		return this.aluno.getCodCurso();
+	}
+
+	public int getNotaAvaliacao() {
+		return this.aluno.getNotaAvaliacao();
+	}
+
+	public void setNotaAvaliacao(int notaAvaliacao) {
+		aluno.setNotaAvaliacao(notaAvaliacao);
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */
