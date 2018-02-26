@@ -7,51 +7,51 @@ import util.Validador;
 
 /**
  * Representação de um orientador de um aluno
+ * 
  * @author fanny
- *
  */
 public class Tutor {
-	
 
 	/**
 	 * A matéria na qual o tutor domina
 	 */
 	private String disciplina;
-	
+
 	/**
 	 * Indica o nível de conhecimento do tutor
 	 */
 	private int proficiencia;
-	
+
 	/**
 	 * Indica o quanto um tutor recebe do sistema
 	 */
 	private double salario;
-	
+
 	/**
 	 * Conjunto de locais de atendimento do tutor
 	 */
 	private Set<String> locaisDeAtendimento;
-	
+
 	/**
-	 * Conjunto de horários de atendimento do tutor 
+	 * Conjunto de horários de atendimento do tutor
 	 */
 	private Set<HorarioAtendimento> horariosDeAtendimento;
-	
+
 	/**
 	 * A referência do aluno que o tutor é
 	 */
 	private Aluno aluno;
-	
-	
+
 	/**
 	 * Constutor usado para inicializar a disciplina e a proficiência do mentor
-	 * @param disciplina A matéria na qual o tutor domina
-	 * @param proficiencia Indica o nível de conhecimento do tuto
+	 * 
+	 * @param disciplina
+	 *            A matéria na qual o tutor domina
+	 * @param proficiencia
+	 *            Indica o nível de conhecimento do tuto
 	 */
-	public Tutor(String disciplina, int proficiencia, Aluno aluno){
-		if(Validador.validaTexto(disciplina) 
-				&& Validador.validaProficiencia(proficiencia)){
+	public Tutor(String disciplina, int proficiencia, Aluno aluno) {
+		if (Validador.validaTexto(disciplina) && Validador.validaProficiencia(proficiencia)) {
 			this.proficiencia = proficiencia;
 			this.disciplina = disciplina;
 		}
@@ -59,7 +59,7 @@ public class Tutor {
 		this.locaisDeAtendimento = new HashSet<>();
 		this.horariosDeAtendimento = new HashSet<>();
 		this.aluno = aluno;
-		
+
 	}
 
 	public String getDisciplina() {
@@ -75,7 +75,7 @@ public class Tutor {
 	}
 
 	public void setProficiencia(int proficiencia) {
-		//TODO: provavelmente essa logica seria alterada para uma média
+		// TODO: provavelmente essa logica seria alterada para uma média
 		this.proficiencia = proficiencia;
 	}
 
@@ -86,22 +86,53 @@ public class Tutor {
 	public void setSalario(double salario) {
 		this.salario = salario;
 	}
-	
-	public void cadastrarHorario(String horario, String dia){
+
+	/**
+	 * Cadastra um novo horario de atendimento para o tutor.
+	 * 
+	 * @param horario
+	 *            Horario do atendimento
+	 * @param dia
+	 *            Dia do atendimento
+	 */
+	public void cadastrarHorario(String horario, String dia) {
 		this.horariosDeAtendimento.add(new HorarioAtendimento(dia, horario));
 	}
-	
-	public void cadastrarLocal(String local){
+
+	/**
+	 * Cadastra um novo local de atendimento para o tutor.
+	 * 
+	 * @param local
+	 *            Local do atendimento
+	 */
+	public void cadastrarLocal(String local) {
 		this.locaisDeAtendimento.add(local);
 	}
-	
-	public boolean consultaLocal(String local){
+
+	/**
+	 * Consulta se o tutor possui um determinado local de atendimento.
+	 * 
+	 * @param local
+	 *            Local de atendimento
+	 * @return um <code>boolean</boolean> que informa se o tutor possui ou nao o
+	 *         local de atendimento
+	 */
+	public boolean consultaLocal(String local) {
 		return this.locaisDeAtendimento.contains(local);
 	}
-	
-	public boolean consultaHorario(String horario, String dia){
-		return this.horariosDeAtendimento.contains(new 
-				HorarioAtendimento(dia, horario));
+
+	/**
+	 * Consulta se o tutor possui um determinado horario de atendimento.
+	 * 
+	 * @param horario
+	 *            Horario de atendimento
+	 * @param dia
+	 *            Dia de atendimento
+	 * @return um <code>boolean</boolean> que informa se o tutor possui ou nao o
+	 *         horario de atendimento
+	 */
+	public boolean consultaHorario(String horario, String dia) {
+		return this.horariosDeAtendimento.contains(new HorarioAtendimento(dia, horario));
 	}
 
 	public String getMatricula() {
@@ -131,7 +162,7 @@ public class Tutor {
 	public void setNotaAvaliacao(int notaAvaliacao) {
 		aluno.setNotaAvaliacao(notaAvaliacao);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -176,10 +207,7 @@ public class Tutor {
 	 */
 	@Override
 	public String toString() {
-		return this.disciplina +" - "+this.proficiencia + " - " + this.salario;
+		return this.disciplina + " - " + this.proficiencia + " - " + this.salario;
 	}
-	
-	
-	
 
 }

@@ -1,0 +1,86 @@
+package model;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Controller dos tutores do sistema.
+ * 
+ * @author Marcus Vinicius
+ */
+public class TutorController {
+
+	/**
+	 * Conjunto de tutores que o sistema possui. Possui como chave o email do tutor,
+	 * e como chave o objeto do tutor.
+	 */
+	private Map<String, Tutor> tutores;
+
+	/**
+	 * Construtor da classe.
+	 */
+	public TutorController() {
+		this.tutores = new HashMap<String, Tutor>();
+	}
+
+	/**
+	 * Cadastra um novo horario de atendimento para um tutor.
+	 * 
+	 * @param email
+	 *            Email do tutor
+	 * @param horario
+	 *            Horario do atendimento
+	 * @param dia
+	 *            Dia do atendimento
+	 */
+	public void cadastrarHorario(String email, String horario, String dia) {
+
+		this.tutores.get(email).cadastrarHorario(horario, dia);
+
+	}
+
+	/**
+	 * Cadastra um novo local de atendimento para um tutor.
+	 * 
+	 * @param email
+	 *            Email to tutor
+	 * @param local
+	 *            Local do atendimento
+	 */
+	public void cadastrarLocalDeAtendimento(String email, String local) {
+
+		this.tutores.get(email).cadastrarLocal(local);
+
+	}
+
+	/**
+	 * Consulta se um tutor possui um determinado horario de atendimento.
+	 * 
+	 * @param horario
+	 *            Horario de atendimento
+	 * @param dia
+	 *            Dia de atendimento
+	 * @return um <code>boolean</boolean> que informa se o tutor possui ou nao o
+	 *         horario de atendimento
+	 */
+	public boolean consultaHorario(String email, String horario, String dia) {
+		
+		return this.tutores.get(email).consultaHorario(horario, dia);
+		
+	}
+
+	/**
+	 * Consulta se um tutor possui um determinado local de atendimento.
+	 * 
+	 * @param local
+	 *            Local de atendimento
+	 * @return um <code>boolean</boolean> que informa se o tutor possui ou nao o
+	 *         local de atendimento
+	 */
+	public boolean consultaLocal(String email, String local) {
+		
+		return this.tutores.get(email).consultaLocal(local);
+		
+	}
+
+}
