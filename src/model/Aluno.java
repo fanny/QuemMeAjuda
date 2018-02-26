@@ -2,13 +2,42 @@ package model;
 
 import util.Validador;
 
+/**
+ * Representação de um aluno
+ * 
+ * @author Rayla Medeiros Araújo
+ *
+ */
 public class Aluno {
 
+	/**
+	 * A matrícula do aluno
+	 */
 	private String matricula;
+	
+	/**
+	 * O nome do aluno
+	 */
 	private String nome;
+	
+	/**
+	 * O telefone do aluno
+	 */
 	private String telefone;
+	
+	/**
+	 * O email do aluno
+	 */
 	private String email;
+	
+	/**
+	 * A avaliação do aluno
+	 */
 	private int notaAvaliacao;
+	
+	/**
+	 * O código do curso que o aluno cursa
+	 */
 	private String codCurso;
 
 	public Aluno(String matricula, String nome, String telefone, String email, String codCurso) {
