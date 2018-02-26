@@ -18,16 +18,6 @@ public class Aluno {
 		this.notaAvaliacao = 5;
 	}
 
-	public Aluno(String matricula, String nome, String email, String codCurso) {
-		this.matricula = matricula;
-		this.nome = nome;
-		this.email = email;
-		this.notaAvaliacao = notaAvaliacao;
-		this.codCurso = codCurso;
-		this.telefone = "";
-		this.notaAvaliacao = 5;
-	}
-
 	public String getMatricula() {
 		return matricula;
 	}
@@ -50,11 +40,15 @@ public class Aluno {
 
 	@Override
 	public String toString() {
-		if (telefone.isEmpty()) {
-			return this.matricula + " - " + this.nome + " - " + this.codCurso + " - " + this.email;
+		String retorno = this.matricula + " - " + this.nome + " - " + this.codCurso + " - ";
+
+		if (!telefone.isEmpty()) {
+			retorno += this.telefone + " - ";
 		}
 
-		return this.matricula + " - " + this.nome + " - " + this.codCurso + " - " + this.telefone + " - " + this.email;
+		retorno += this.email;
+
+		return retorno;
 	}
 
 	@Override
