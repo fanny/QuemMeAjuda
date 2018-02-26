@@ -3,6 +3,7 @@ package model;
 import util.Validador;
 
 public class Aluno {
+
 	private String matricula;
 	private String nome;
 	private String telefone;
@@ -11,18 +12,14 @@ public class Aluno {
 	private String codCurso;
 
 	public Aluno(String matricula, String nome, String telefone, String email, String codCurso) {
-		if(Validador.validaTexto(matricula)) {
+		if(Validador.validaTexto(matricula) && 
+				Validador.validaTexto(nome) && (Validador.validaTexto(email))) {
 			this.matricula = matricula;
-		}
-		if(Validador.validaTexto(nome)) {
 			this.nome = nome;
-		}
-		if(Validador.validaTexto(email)) {
 			this.email = email;
 		}
 		
 		this.telefone = telefone;
-		this.notaAvaliacao = notaAvaliacao;
 		this.codCurso = codCurso;
 		this.notaAvaliacao = 5;
 	}
@@ -46,6 +43,15 @@ public class Aluno {
 	public String getCodCurso() {
 		return codCurso;
 	}
+	
+	public int getNotaAvaliacao() {
+		return notaAvaliacao;
+	}
+
+	public void setNotaAvaliacao(int notaAvaliacao) {
+		this.notaAvaliacao = notaAvaliacao;
+	}
+	
 
 	@Override
 	public String toString() {
