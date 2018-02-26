@@ -1,5 +1,7 @@
 package model;
 
+import util.Validador;
+
 public class Aluno {
 	private String matricula;
 	private String nome;
@@ -9,10 +11,17 @@ public class Aluno {
 	private String codCurso;
 
 	public Aluno(String matricula, String nome, String telefone, String email, String codCurso) {
-		this.matricula = matricula;
-		this.nome = nome;
+		if(Validador.validaTexto(matricula)) {
+			this.matricula = matricula;
+		}
+		if(Validador.validaTexto(nome)) {
+			this.nome = nome;
+		}
+		if(Validador.validaTexto(email)) {
+			this.email = email;
+		}
+		
 		this.telefone = telefone;
-		this.email = email;
 		this.notaAvaliacao = notaAvaliacao;
 		this.codCurso = codCurso;
 		this.notaAvaliacao = 5;
