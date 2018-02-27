@@ -6,19 +6,27 @@ package util;
  *
  */
 public class TutorValidador {
-
 	
+	/**
+	 * Verifica se todas as informações do tutor são válidas
+	 * 
+	 * @param disciplina
+	 *            a disciplina do tutor
+	 * @param proficiencia
+	 *            a proficiencia do tutor
+	 * @return true caso todas as informações do tutor sejam válidas, false caso
+	 *         contrário
+	 */
 	public static boolean validaTutor(String disciplina, int proficiencia){
-		return validaDisciplina(disciplina) 
-				&& validaProficiencia(proficiencia);
+		return validaDisciplina(disciplina, ErroTutor.DISCIPLINA_JA_EXISTE.toString()) &&
+				validaProficiencia(proficiencia, ErroTutor.PROFICIENCIA_INVALIDA.toString());
 	}
-	
 	
 	/**
 	 * @see Validador#validaTexto(String)
 	 */
-	public static boolean validaDisciplina(String disciplina){
-		return Validador.validaTexto(disciplina);
+	public static boolean validaDisciplina(String disciplina, String mensagem){
+		return Validador.validaTexto(disciplina, mensagem);
 	}
 	
 	/**
@@ -30,9 +38,10 @@ public class TutorValidador {
 	 * @exception IllegalArgumentException
 	 *                caso não seja a faixa de valor correta
 	 */
-	public static boolean validaProficiencia(int proficiencia) {
-		if (!Validador.validaMaiorQueZero(proficiencia) || !Validador.validaMenorQue6(proficiencia)) {
-			throw new IllegalArgumentException();
+	public static boolean validaProficiencia(int proficiencia, String mensagem) {
+		if (!Validador.validaMaiorQueZero(proficiencia, 
+				mensagem) || !Validador.validaMenorQue6(proficiencia, mensagem)) {
+			throw new IllegalArgumentException(mensagem);
 		}
 		return true;
 	}
