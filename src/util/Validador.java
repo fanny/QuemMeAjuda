@@ -14,10 +14,9 @@ public class Validador {
 	 *                caso o texto seja nulo ou vazio
 	 * @return boolean que deve ser true quando o texto é válido.
 	 */
-	public static boolean validaTexto(String texto) {
+	public static boolean validaTexto(String texto, String mensagem) {
 		if (texto == null || texto.trim().isEmpty()) {
-			// TODO: DEFINIR A MENSAGEM
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(mensagem);
 		}
 		return true;
 	}
@@ -32,9 +31,9 @@ public class Validador {
 	 *             caso o valor seja negativo
 	 * @return true caso o valor seja maior que zero, false caso contrário
 	 */
-	public static boolean validaMaiorQueZero(double valor) {
+	public static boolean validaMaiorQueZero(double valor, String mensagem) {
 		if (valor <= 0.0) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(mensagem);
 		}
 		return true;
 	}
@@ -48,15 +47,15 @@ public class Validador {
 	 *             caso o valor seja maior ou igual a 6
 	 * @return true se o valor é menor que 6, false caso contrário
 	 */
-	public static boolean validaMenorQue6(double valor) {
+	public static boolean validaMenorQue6(double valor, String mensagem) {
 		if (valor >= 6.0) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(mensagem);
 		}
 		return true;
 	}
 
-	public static boolean validaEmail(String email) {
-		if (validaTexto(email)) {
+	public static boolean validaEmail(String email, String mensagem) {
+		if (validaTexto(email, mensagem)) {
 			String formaEmail = "[\\._a-zA-Z0-9]+@[a-zA-Z0-9]+(\\.[a-zA-z]+)+";
 			
 			if (!email.matches(formaEmail)) {
