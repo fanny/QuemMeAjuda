@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aluno.Aluno;
-import util.Validador;
+import util.TutorValidador;
 
 /**
  * Representação de um orientador de um aluno
@@ -52,7 +52,7 @@ public class Tutor {
 	 *            Indica o nível de conhecimento do tuto
 	 */
 	public Tutor(String disciplina, int proficiencia, Aluno aluno) {
-		if (Validador.validaTexto(disciplina) && Validador.validaProficiencia(proficiencia)) {
+		if (TutorValidador.validaTutor(disciplina, proficiencia)) {
 			this.proficiencia = proficiencia;
 			this.disciplina = disciplina;
 		}
