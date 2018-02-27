@@ -1,7 +1,6 @@
 package aluno;
 
 import util.AlunoValidador;
-import util.Validador;
 
 /**
  * Representacao de um aluno
