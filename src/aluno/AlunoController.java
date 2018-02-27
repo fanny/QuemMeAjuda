@@ -23,7 +23,7 @@ public class AlunoController {
 	}
 
 	/**
-	 * Cadastra um aluno no sistema
+	 * Cadastra um aluno no sistema.
 	 * 
 	 * @param nome
 	 *            o nome do aluno
@@ -64,6 +64,7 @@ public class AlunoController {
 	 * @return um objeto <code>Aluno</code> que representa um aluno
 	 */
 	public Aluno getAlunoPelaMatricula(String matricula) {
+
 		return this.alunos.get(matricula);
 	}
 

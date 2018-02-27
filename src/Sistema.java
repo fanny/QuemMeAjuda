@@ -14,6 +14,14 @@ public class Sistema {
 	private AlunoController alunoController;
 
 	/**
+	 * @see AlunoController#cadastrarAluno(String, String, int, String, String)
+	 */
+	public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
+
+		this.alunoController.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
+	}
+
+	/**
 	 * Torna um aluno tutor. Caso o aluno não seja um tutor, é criado um novo Tutor
 	 * e a referencia do aluno é passada para ele. Caso o aluno já seja um tutor, a
 	 * disciplina e a proficiencia na mesma é adicionada as disciplinas que ele já
@@ -36,6 +44,22 @@ public class Sistema {
 			Aluno aluno = alunoController.getAlunoPelaMatricula(matricula);
 			tutorController.cadastraTutor(disciplina, proficiencia, aluno);
 		}
+	}
+
+	/**
+	 * @see AlunoController#listarAlunos()
+	 */
+	public String listarAlunos() {
+
+		return this.alunoController.listarAlunos();
+	}
+
+	/**
+	 * @see AlunoController#listarAlunos()
+	 */
+	public String listarTutores() {
+
+		return this.tutorController.listarTutores();
 	}
 
 	/**
@@ -71,11 +95,7 @@ public class Sistema {
 	}
 
 	/**
-	 * Recupera um tutor pela sua matricula.
-	 * 
-	 * @param matricula
-	 *            Matricula do tutor
-	 * @return uma <code>string</code> que representa o tutor
+	 * @see TutorController#recuperaTutor(String)
 	 */
 	public String recuperaTutor(String matricula) {
 
@@ -91,12 +111,12 @@ public class Sistema {
 
 		return alunoController.recuperaAluno(matricula);
 	}
-	
+
 	/**
 	 * @see AlunoController#getInfoAluno(String, String)
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
-		
+
 		return alunoController.getInfoAluno(matricula, atributo);
 	}
 

@@ -43,6 +43,21 @@ public class TutorController {
 	}
 
 	/**
+	 * Lista os tutores cadastrados no sistema
+	 * 
+	 * @return String uma representação textual dos tutores cadastrados no sistema.
+	 */
+	public String listarTutores() {
+		String resultado = "";
+
+		for (Tutor tutor : this.tutores.values()) {
+			resultado += tutor.toString() + System.lineSeparator();
+		}
+
+		return resultado;
+	}
+
+	/**
 	 * Adiciona uma disciplina e sua proficiencia ao tutor.
 	 * 
 	 * @param email
@@ -129,15 +144,18 @@ public class TutorController {
 		return this.tutores.containsKey(email);
 
 	}
-	
+
 	/**
 	 * Recupera um tutor pelo seu email.
 	 * 
-	 * @param email Email do tutor
+	 * @param email
+	 *            Email do tutor
 	 * @return uma <code>String</code> que representa o tutor
 	 */
 	public String recuperaTutor(String email) {
+
 		return this.tutores.get(email).toString();
+
 	}
 
 }

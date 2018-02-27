@@ -34,7 +34,7 @@ public class Tutor {
 	 * A referência do aluno que o tutor é.
 	 */
 	private Aluno aluno;
-	
+
 	/**
 	 * Disciplinas as quais o tutor tutora e suas respectivas proficiencias.
 	 */
@@ -50,9 +50,9 @@ public class Tutor {
 	 */
 	public Tutor(String disciplina, int proficiencia, Aluno aluno) {
 		if (TutorValidador.validaTutor(disciplina, proficiencia)) {
-			
+
 			this.addDisciplina(disciplina, proficiencia);
-			
+
 		}
 		this.salario = 0;
 		this.locaisDeAtendimento = new HashSet<>();
@@ -116,9 +116,10 @@ public class Tutor {
 	public boolean consultaHorario(String horario, String dia) {
 		return this.horariosDeAtendimento.contains(new HorarioAtendimento(dia, horario));
 	}
-	
+
 	/**
-	 * Adiciona uma disciplina ao tutor 
+	 * Adiciona uma disciplina ao tutor
+	 * 
 	 * @param nome
 	 * @param proficiencia
 	 */
@@ -152,6 +153,11 @@ public class Tutor {
 
 	public void setNotaAvaliacao(int notaAvaliacao) {
 		aluno.setNotaAvaliacao(notaAvaliacao);
+	}
+
+	@Override
+	public String toString() {
+		return this.aluno.toString();
 	}
 
 	@Override
@@ -201,7 +207,5 @@ public class Tutor {
 			return false;
 		return true;
 	}
-
-	
 
 }
