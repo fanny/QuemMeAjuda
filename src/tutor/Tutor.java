@@ -152,7 +152,7 @@ public class Tutor {
 		return this.aluno.getEmail();
 	}
 
-	public String getCodCurso() {
+	public int getCodCurso() {
 		return this.aluno.getCodCurso();
 	}
 
