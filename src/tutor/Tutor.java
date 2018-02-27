@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import aluno.Aluno;
+import util.ErroTutor;
 import util.TutorValidador;
 
 /**
@@ -49,7 +50,9 @@ public class Tutor {
 	 */
 	public Tutor(String disciplina, int proficiencia, Aluno aluno) {
 		if (TutorValidador.validaTutor(disciplina, proficiencia)) {
+			
 			this.addDisciplina(disciplina, proficiencia);
+			
 		}
 		this.salario = 0;
 		this.locaisDeAtendimento = new HashSet<>();
