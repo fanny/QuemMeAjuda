@@ -4,6 +4,8 @@ public enum ErroAluno {
 	
 	EMAIL_INVALIDO("Email invalido"),
 	ALUNO_NAO_ENCONTRADO("Aluno nao encontrado"),
+	TELEFONE_INVALIDO("Telefone invalido"),
+	CODIGO_INVALIDO("Codigo de curso invalido"),
 	NOME_INVALIDO("Nome nao pode ser vazio ou nulo"),
 	ALUNO_JA_CADASTRADO("Aluno de mesma matricula ja cadastrado");
 	
