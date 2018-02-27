@@ -8,7 +8,7 @@ import util.AlunoValidador;
  * @author Rayla Medeiros Araújo
  *
  */
-public class Aluno {
+public class Aluno implements Comparable<Aluno>{
 
 	/**
 	 * A matricula do aluno
@@ -110,6 +110,14 @@ public class Aluno {
 		return retorno;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int compareTo(Aluno a) {
+		return this.nome.compareTo(a.nome);
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */
