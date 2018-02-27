@@ -1,5 +1,6 @@
 package tutor;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -50,15 +51,16 @@ public class Tutor {
 	 */
 	public Tutor(String disciplina, int proficiencia, Aluno aluno) {
 		if (TutorValidador.validaTutor(disciplina, proficiencia)) {
-
+			
+			this.disciplinas = new HashMap<>();
 			this.addDisciplina(disciplina, proficiencia);
+			
+			this.salario = 0;
+			this.locaisDeAtendimento = new HashSet<>();
+			this.horariosDeAtendimento = new HashSet<>();
+			this.aluno = aluno;
 
 		}
-		this.salario = 0;
-		this.locaisDeAtendimento = new HashSet<>();
-		this.horariosDeAtendimento = new HashSet<>();
-		this.aluno = aluno;
-
 	}
 
 	public double getSalario() {
