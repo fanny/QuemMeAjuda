@@ -38,7 +38,7 @@ public class Aluno {
 	/**
 	 * O codigo do curso que o aluno cursa
 	 */
-	private String codCurso;
+	private int codCurso;
 
 	/**
 	 * Constroi um aluno a partir de sua matricula, nome, telefone, email e codigo
@@ -55,7 +55,7 @@ public class Aluno {
 	 * @param codCurso
 	 *            o codigo do curso do aluno
 	 */
-	public Aluno(String matricula, String nome, String telefone, String email, String codCurso) {
+	public Aluno(String matricula, String nome, String telefone, String email, int codCurso) {
 		if (AlunoValidador.validaAluno(nome, telefone, email, codCurso)) {
 			this.matricula = matricula;
 			this.nome = nome;
@@ -82,7 +82,7 @@ public class Aluno {
 		return email;
 	}
 
-	public String getCodCurso() {
+	public int getCodCurso() {
 		return codCurso;
 	}
 
