@@ -82,7 +82,28 @@ public class AlunoController {
 		return resultado;
 	}
 
+	/**
+	 * Retorna um determinada informação de um aluno.
+	 * 
+	 * @param matricula
+	 *            a matricula do aluno
+	 * @param atributo
+	 *            o atributo que se deseja pegar
+	 * @return uma <code>string</code> que representa o atributo desejado
+	 */
 	public String getInfoAluno(String matricula, String atributo) {
+
+		switch (atributo) {
+		case "Nome":
+			return this.alunos.get(matricula).getNome();
+		case "Telefone":
+			return this.alunos.get(matricula).getTelefone();
+		case "Email":
+			return this.alunos.get(matricula).getEmail();
+		default:
+			break;
+		}
+
 		return "";
 	}
 

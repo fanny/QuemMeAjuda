@@ -39,14 +39,14 @@ public class Sistema {
 	}
 
 	/**
-	 * @see Sistema#cadastrarHorario(String, String, String)
+	 * @see TutorController#cadastrarHorario(String, String, String)
 	 */
 	public void cadastrarHorario(String email, String horario, String dia) {
 		tutorController.cadastrarHorario(email, horario, dia);
 	}
 
 	/**
-	 * @see Sistema#cadastrarLocalDeAtendimento(String, String)
+	 * @see TutorController#cadastrarLocalDeAtendimento(String, String)
 	 */
 	public void cadastrarLocalDeAtendimento(String email, String local) {
 		tutorController.cadastrarLocalDeAtendimento(email, local);
@@ -68,6 +68,36 @@ public class Sistema {
 
 		return this.tutorController.consultaLocal(email, local);
 
+	}
+
+	/**
+	 * Recupera um tutor pela sua matricula.
+	 * 
+	 * @param matricula
+	 *            Matricula do tutor
+	 * @return uma <code>string</code> que representa o tutor
+	 */
+	public String recuperaTutor(String matricula) {
+
+		String emailTutor = alunoController.getInfoAluno(matricula, "email");
+
+		return tutorController.recuperaTutor(emailTutor);
+	}
+
+	/**
+	 * @see AlunoController#recuperaAluno(String)
+	 */
+	public String recuperaAluno(String matricula) {
+
+		return alunoController.recuperaAluno(matricula);
+	}
+	
+	/**
+	 * @see AlunoController#getInfoAluno(String, String)
+	 */
+	public String getInfoAluno(String matricula, String atributo) {
+		
+		return alunoController.getInfoAluno(matricula, atributo);
 	}
 
 }

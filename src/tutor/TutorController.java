@@ -129,5 +129,15 @@ public class TutorController {
 		return this.tutores.containsKey(email);
 
 	}
+	
+	/**
+	 * Recupera um tutor pelo seu email.
+	 * 
+	 * @param email Email do tutor
+	 * @return uma <code>String</code> que representa o tutor
+	 */
+	public String recuperaTutor(String email) {
+		return this.tutores.get(email).toString();
+	}
 
 }

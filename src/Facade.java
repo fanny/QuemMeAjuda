@@ -8,6 +8,21 @@
 public class Facade {
 	
 	private Sistema sistema;
+	
+	/**
+	 * @see Sistema#recuperaTutor(String)
+	 */
+	public String recuperaTutor(String matricula) {
+		return sistema.recuperaTutor(matricula);
+	}
+	
+	/**
+	 * @see Sistema#recuperaAluno(String)
+	 */
+	public String recuperaAluno(String matricula) {
+		return sistema.recuperaAluno(matricula);
+	}
+
 
 	/**
 	 * @see Sistema#cadastrarHorario(String, String, String)
@@ -44,5 +59,14 @@ public class Facade {
 		return this.sistema.consultaLocal(email, local);
 		
 	}
+	
+	/**
+	 * @see Sistema#getInfoAluno(String, String)
+	 */
+	public String getInfoAluno(String matricula, String atributo) {
+		
+		return this.sistema.getInfoAluno(matricula, atributo);
+	}
+	
 
 }
