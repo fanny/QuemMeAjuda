@@ -1,6 +1,7 @@
 package tutor;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import aluno.Aluno;
@@ -12,16 +13,6 @@ import util.TutorValidador;
  * @author fanny
  */
 public class Tutor {
-
-	/**
-	 * A matéria na qual o tutor domina
-	 */
-	private String disciplina;
-
-	/**
-	 * Indica o nível de conhecimento do tutor
-	 */
-	private int proficiencia;
 
 	/**
 	 * Indica o quanto um tutor recebe do sistema
@@ -39,9 +30,14 @@ public class Tutor {
 	private Set<HorarioAtendimento> horariosDeAtendimento;
 
 	/**
-	 * A referência do aluno que o tutor é
+	 * A referência do aluno que o tutor é.
 	 */
 	private Aluno aluno;
+	
+	/**
+	 * Disciplinas as quais o tutor tutora e suas respectivas proficiencias.
+	 */
+	private Map<String, Integer> disciplinas;
 
 	/**
 	 * Constutor usado para inicializar a disciplina e a proficiência do mentor
@@ -53,31 +49,13 @@ public class Tutor {
 	 */
 	public Tutor(String disciplina, int proficiencia, Aluno aluno) {
 		if (TutorValidador.validaTutor(disciplina, proficiencia)) {
-			this.proficiencia = proficiencia;
-			this.disciplina = disciplina;
+			this.addDisciplina(disciplina, proficiencia);
 		}
 		this.salario = 0;
 		this.locaisDeAtendimento = new HashSet<>();
 		this.horariosDeAtendimento = new HashSet<>();
 		this.aluno = aluno;
 
-	}
-
-	public String getDisciplina() {
-		return disciplina;
-	}
-
-	public void setDisciplina(String disciplina) {
-		this.disciplina = disciplina;
-	}
-
-	public int getProficiencia() {
-		return proficiencia;
-	}
-
-	public void setProficiencia(int proficiencia) {
-		// TODO: provavelmente essa logica seria alterada para uma média
-		this.proficiencia = proficiencia;
 	}
 
 	public double getSalario() {
@@ -135,6 +113,15 @@ public class Tutor {
 	public boolean consultaHorario(String horario, String dia) {
 		return this.horariosDeAtendimento.contains(new HorarioAtendimento(dia, horario));
 	}
+	
+	/**
+	 * Adiciona uma disciplina ao tutor 
+	 * @param nome
+	 * @param proficiencia
+	 */
+	public void addDisciplina(String nome, Integer proficiencia) {
+		this.disciplinas.put(nome, proficiencia);
+	}
 
 	public String getMatricula() {
 		return this.aluno.getMatricula();
@@ -164,24 +151,20 @@ public class Tutor {
 		aluno.setNotaAvaliacao(notaAvaliacao);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((disciplina == null) ? 0 : disciplina.hashCode());
-		result = prime * result + proficiencia;
+		result = prime * result + ((aluno == null) ? 0 : aluno.hashCode());
+		result = prime * result + ((disciplinas == null) ? 0 : disciplinas.hashCode());
+		result = prime * result + ((horariosDeAtendimento == null) ? 0 : horariosDeAtendimento.hashCode());
+		result = prime * result + ((locaisDeAtendimento == null) ? 0 : locaisDeAtendimento.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(salario);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -191,24 +174,31 @@ public class Tutor {
 		if (getClass() != obj.getClass())
 			return false;
 		Tutor other = (Tutor) obj;
-		if (disciplina == null) {
-			if (other.disciplina != null)
+		if (aluno == null) {
+			if (other.aluno != null)
 				return false;
-		} else if (!disciplina.equals(other.disciplina))
+		} else if (!aluno.equals(other.aluno))
 			return false;
-		if (proficiencia != other.proficiencia)
+		if (disciplinas == null) {
+			if (other.disciplinas != null)
+				return false;
+		} else if (!disciplinas.equals(other.disciplinas))
+			return false;
+		if (horariosDeAtendimento == null) {
+			if (other.horariosDeAtendimento != null)
+				return false;
+		} else if (!horariosDeAtendimento.equals(other.horariosDeAtendimento))
+			return false;
+		if (locaisDeAtendimento == null) {
+			if (other.locaisDeAtendimento != null)
+				return false;
+		} else if (!locaisDeAtendimento.equals(other.locaisDeAtendimento))
 			return false;
 		if (Double.doubleToLongBits(salario) != Double.doubleToLongBits(other.salario))
 			return false;
 		return true;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String toString() {
-		return this.disciplina + " - " + this.proficiencia + " - " + this.salario;
-	}
+	
 
 }

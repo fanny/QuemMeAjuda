@@ -9,19 +9,19 @@ import java.util.Map;
  * @author Marcus Vinicius
  */
 public class AlunoController {
-	
+
 	/**
 	 * Conjunto de alunos que o sistema possui.
 	 */
 	private Map<String, Aluno> alunos;
-	
+
 	/**
 	 * Construtor da classe.
 	 */
 	public AlunoController() {
 		this.alunos = new HashMap<String, Aluno>();
 	}
-	
+
 	/**
 	 * Cadastra um aluno no sistema
 	 * 
@@ -36,14 +36,13 @@ public class AlunoController {
 	 * @param email
 	 *            o email do aluno
 	 */
-	public void cadastrarAluno(String nome, String matricula, 
-			int codigoCurso, String telefone, String email){
-		
+	public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
+
 		Aluno aluno = new Aluno(matricula, nome, telefone, email, codigoCurso);
 		this.alunos.put(matricula, aluno);
-		
+
 	}
-	
+
 	/**
 	 * Obtem a representação textual de um aluno através de sua matrícula
 	 * 
@@ -51,30 +50,40 @@ public class AlunoController {
 	 *            a matrícula do aluno
 	 * @return String a representação textual dos atributos do aluno
 	 */
-	public String recuperaAluno(String matricula){
-		
+	public String recuperaAluno(String matricula) {
+
 		return this.alunos.get(matricula).toString();
-		
+
 	}
-	
+
+	/**
+	 * Retorna um aluno de acordo com sua matricula.
+	 * 
+	 * @param matricula
+	 *            Matricula do aluno
+	 * @return um objeto <code>Aluno</code> que representa um aluno
+	 */
+	public Aluno getAlunoPelaMatricula(String matricula) {
+		return this.alunos.get(matricula);
+	}
+
 	/**
 	 * Lista os alunos cadastrados no sistema
 	 * 
-	 * @return String uma representação textual dos alunos cadastrados no
-	 *         sistema.
+	 * @return String uma representação textual dos alunos cadastrados no sistema.
 	 */
-	public String listarAlunos(){
+	public String listarAlunos() {
 		String resultado = "";
-		
-		for (Aluno aluno: this.alunos.values()){
+
+		for (Aluno aluno : this.alunos.values()) {
 			resultado += aluno.toString() + System.lineSeparator();
 		}
 
 		return resultado;
 	}
-	
-	public void getInfoAluno(String matricula, String atributo){
-		
+
+	public String getInfoAluno(String matricula, String atributo) {
+		return "";
 	}
-	
+
 }

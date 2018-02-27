@@ -3,6 +3,8 @@ package tutor;
 import java.util.HashMap;
 import java.util.Map;
 
+import aluno.Aluno;
+
 /**
  * Controller dos tutores do sistema.
  * 
@@ -21,6 +23,38 @@ public class TutorController {
 	 */
 	public TutorController() {
 		this.tutores = new HashMap<String, Tutor>();
+	}
+
+	/**
+	 * Cadastra um novo tutor no sistema.
+	 * 
+	 * @param disciplina
+	 *            Disciplina que ele dara tutoria
+	 * @param proficiencia
+	 *            Proficiencia na disciplina que ele dara tutoria
+	 * @param aluno
+	 *            Aluno que sera um tutor
+	 */
+	public void cadastraTutor(String disciplina, int proficiencia, Aluno aluno) {
+
+		Tutor tutor = new Tutor(disciplina, proficiencia, aluno);
+		this.tutores.put(aluno.getEmail(), tutor);
+
+	}
+
+	/**
+	 * Adiciona uma disciplina e sua proficiencia ao tutor.
+	 * 
+	 * @param email
+	 *            Email do tutor
+	 * @param disciplina
+	 *            Disciplina que ele dara tutoria
+	 * @param proficiencia
+	 *            Proficiencia na disciplina que ele dara tutoria
+	 */
+	public void cadastraDisciplina(String email, String disciplina, int proficiencia) {
+
+		this.tutores.get(email).addDisciplina(disciplina, proficiencia);
 	}
 
 	/**
@@ -64,9 +98,9 @@ public class TutorController {
 	 *         horario de atendimento
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
-		
+
 		return this.tutores.get(email).consultaHorario(horario, dia);
-		
+
 	}
 
 	/**
@@ -78,9 +112,22 @@ public class TutorController {
 	 *         local de atendimento
 	 */
 	public boolean consultaLocal(String email, String local) {
-		
+
 		return this.tutores.get(email).consultaLocal(local);
-		
+
+	}
+
+	/**
+	 * Veririca pelo email se um tutor esta cadastradado
+	 * 
+	 * @param email
+	 *            Email do aluno
+	 * @return um <code>boolean</code> que informa se o tutor esta cadastrado
+	 */
+	public boolean existeTutor(String email) {
+
+		return this.tutores.containsKey(email);
+
 	}
 
 }
