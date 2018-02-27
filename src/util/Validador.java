@@ -22,21 +22,6 @@ public class Validador {
 		return true;
 	}
 
-	/**
-	 * Verifica se a proficiencia está na faixa de valor correta (maior que 0 e
-	 * menor que 6)
-	 * 
-	 * @param proficiencia
-	 *            o nível de conhecimento do tutor na disciplina
-	 * @exception IllegalArgumentException
-	 *                caso não seja a faixa de valor correta
-	 */
-	public static boolean validaProficiencia(int proficiencia) {
-		if (!validaMaiorQueZero(proficiencia) || !validaMenorQue6(proficiencia)) {
-			throw new IllegalArgumentException();
-		}
-		return true;
-	}
 
 	/**
 	 * Verifica se o valor passado é maior que zero
