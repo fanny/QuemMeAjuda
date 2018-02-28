@@ -104,7 +104,7 @@ public class AlunoController {
 		String resultado = "";
 
 		for (Aluno aluno : this.alunos.values()) {
-			resultado += aluno.toString() + System.lineSeparator();
+			resultado += aluno.toString() + ",";
 		}
 
 		return resultado;

@@ -9,6 +9,10 @@ import easyaccept.EasyAccept;
 public class Facade {
 
 	private Sistema sistema;
+	
+	public Facade(){
+		this.sistema = new Sistema();
+	}
 
 	/**
 	 * @see Sistema#cadastrarAluno(String, String, int, String, String)

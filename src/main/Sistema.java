@@ -17,6 +17,11 @@ public class Sistema {
 
 	private TutorController tutorController;
 	private AlunoController alunoController;
+	
+	public Sistema(){
+		this.tutorController = new TutorController();
+		this.alunoController = new AlunoController();
+	}
 
 	/**
 	 * @see AlunoController#cadastrarAluno(String, String, int, String, String)
