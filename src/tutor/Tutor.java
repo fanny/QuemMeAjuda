@@ -79,7 +79,9 @@ public class Tutor {
 	 *            Dia do atendimento
 	 */
 	public void cadastrarHorario(String horario, String dia) {
-		this.horariosDeAtendimento.add(new HorarioAtendimento(dia, horario));
+		if(TutorValidador.validaHorarioDeAtendimento(horario, dia)){
+			this.horariosDeAtendimento.add(new HorarioAtendimento(dia, horario));
+		}
 	}
 
 	/**
@@ -89,7 +91,9 @@ public class Tutor {
 	 *            Local do atendimento
 	 */
 	public void cadastrarLocal(String local) {
-		this.locaisDeAtendimento.add(local);
+		if(TutorValidador.validaLocalAtendimento(local)){
+			this.locaisDeAtendimento.add(local);
+		}
 	}
 
 	/**
@@ -101,7 +105,11 @@ public class Tutor {
 	 *         local de atendimento
 	 */
 	public boolean consultaLocal(String local) {
-		return this.locaisDeAtendimento.contains(local);
+		boolean resultado = false;
+		if(TutorValidador.validaLocalAtendimento(local)){
+			resultado = this.locaisDeAtendimento.contains(local);
+		}
+		return resultado;
 	}
 
 	/**
@@ -115,7 +123,12 @@ public class Tutor {
 	 *         horario de atendimento
 	 */
 	public boolean consultaHorario(String horario, String dia) {
-		return this.horariosDeAtendimento.contains(new HorarioAtendimento(dia, horario));
+		boolean resultado = false;
+		if(TutorValidador.validaHorarioDeAtendimento(horario, dia)){
+			resultado =  this.horariosDeAtendimento.contains(new 
+					HorarioAtendimento(dia, horario));
+		}
+		return resultado;
 	}
 
 	/**

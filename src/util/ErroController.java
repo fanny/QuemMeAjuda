@@ -6,7 +6,11 @@ public enum ErroController {
 	CADASTRAR_HORARIO_INVALIDO("Erro no cadastrar horario: "),
 	CADASTRAR_LOCAL_INVALIDO("Erro no cadastrar local de atendimento: "),
 	BUSCA_TUTOR_INVALIDA("Erro na busca por tutor: "),
-	TORNA_TUTOR_INVALIDO("Erro na definicao de papel: ");
+	TORNA_TUTOR_INVALIDO("Erro na definicao de papel: "),
+	GET_ALUNO_MATRICULA_INVALIDO("Erro na obtenção do objeto aluno: "),
+	BUSCA_ALUNO_INVALIDA("Erro na busca por aluno: "),
+	GET_INFO_ALUNO_INVALIDA("Erro na obtencao de informacao de aluno: "),
+	CADASTRO_ALUNO_INVALIDO("Erro no cadastro de aluno: ");
 	
 	private String descricao;
 	
