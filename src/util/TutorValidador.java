@@ -1,5 +1,7 @@
 package util;
 
+import aluno.Aluno;
+
 /**
  * Classe responsável por validar as informações de um tutor
  * @author fanny
@@ -17,9 +19,17 @@ public class TutorValidador {
 	 * @return true caso todas as informações do tutor sejam válidas, false caso
 	 *         contrário
 	 */
-	public static boolean validaTutor(String disciplina, int proficiencia){
+	public static boolean validaTutor(String disciplina, int proficiencia, Aluno aluno){
 		return validaDisciplina(disciplina) &&
-				validaProficiencia(proficiencia);
+				validaProficiencia(proficiencia) && validaAluno(aluno);
+	}
+	
+	public static boolean validaAluno(Aluno aluno){
+		if(aluno == null){
+			throw new NullPointerException(ErroTutor.ALUNO_INVALIDO.toString());
+		}
+		return AlunoValidador.validaAluno(aluno.getNome(), aluno.getMatricula(), 
+				aluno.getTelefone(), aluno.getEmail(), aluno.getCodCurso());
 	}
 	
 	/**

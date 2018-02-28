@@ -7,7 +7,8 @@ public enum ErroTutor {
 	PROFICIENCIA_INVALIDA("Proficiencia invalida"),
 	LOCAL_INVALIDO("Local de atendimento invalido"),
 	DIA_ATENDIMENTO_INVALIDO("Dia invalido"),
-	HORARIO_ATENDIMENTO_INVALIDO("Horario de atendimento invalido");
+	HORARIO_ATENDIMENTO_INVALIDO("Horario de atendimento invalido"),
+	ALUNO_INVALIDO("O aluno não pode ser nulo");
 	
 	private String descricao;
 	
