@@ -1,6 +1,10 @@
 package aluno;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
@@ -43,11 +47,17 @@ public class AlunoController {
 	 */
 	public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
 		try{
-			if(AlunoValidador.validaAluno(nome, matricula, telefone, email, codigoCurso)){
+			if(AlunoValidador.validaAluno(nome, matricula, 
+							telefone, email, codigoCurso) && this.validaAlunoExistente(matricula)){
+				
 				Aluno aluno = new Aluno(matricula, nome, telefone, email, codigoCurso);
 				this.alunos.put(matricula, aluno);
+			
 			}
 		}catch(IllegalArgumentException e){
+			throw new IllegalArgumentException(ErroController.
+					CADASTRO_ALUNO_INVALIDO.toString() + e.getMessage());
+		}catch(IllegalStateException e){
 			throw new IllegalArgumentException(ErroController.
 					CADASTRO_ALUNO_INVALIDO.toString() + e.getMessage());
 		}
@@ -103,8 +113,17 @@ public class AlunoController {
 	public String listarAlunos() {
 		String resultado = "";
 
-		for (Aluno aluno : this.alunos.values()) {
-			resultado += aluno.toString() + ",";
+		List<Aluno> listaAlunos = new ArrayList<Aluno>(this.alunos.values());
+		Collections.sort(listaAlunos);	
+		
+		for (int i = 0; i < listaAlunos.size(); i++) {
+			Aluno aluno = listaAlunos.get(i);
+			
+			if(i != 0){
+				resultado += ", ";
+			}
+			
+			resultado += aluno.toString();
 		}
 
 		return resultado;
@@ -148,6 +167,18 @@ public class AlunoController {
 	private boolean existeAluno(String matricula){
 		return this.alunos.containsKey(matricula);
 	}
+	
+	private boolean validaAlunoExistente(String matricula){
+		if(AlunoValidador.validaMatricula(matricula)){
+			if(this.existeAluno(matricula)){
+				throw new IllegalStateException(ErroAluno.
+						ALUNO_JA_CADASTRADO.toString());
+			}
+		}
+		return true;
+		
+	}
+	
 	private boolean validaAluno(String matricula){
 		if(AlunoValidador.validaMatricula(matricula)){
 			if(!this.existeAluno(matricula)){
