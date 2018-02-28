@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Set;
 
 import aluno.Aluno;
-import util.ErroTutor;
 import util.TutorValidador;
 
 /**
@@ -50,8 +49,8 @@ public class Tutor {
 	 *            Indica o nível de conhecimento do tuto
 	 */
 	public Tutor(String disciplina, int proficiencia, Aluno aluno) {
-		if (TutorValidador.validaTutor(disciplina, proficiencia)) {
-			
+		if (TutorValidador.validaTutor(disciplina, proficiencia, aluno)) {
+
 			this.disciplinas = new HashMap<>();
 			this.addDisciplina(disciplina, proficiencia);
 			

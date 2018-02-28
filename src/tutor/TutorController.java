@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import aluno.Aluno;
+import util.TutorValidador;
 
 /**
  * Controller dos tutores do sistema.
@@ -36,9 +37,10 @@ public class TutorController {
 	 *            Aluno que sera um tutor
 	 */
 	public void cadastraTutor(String disciplina, int proficiencia, Aluno aluno) {
-
-		Tutor tutor = new Tutor(disciplina, proficiencia, aluno);
-		this.tutores.put(aluno.getEmail(), tutor);
+		if(TutorValidador.validaTutor(disciplina, proficiencia, aluno)){
+			Tutor tutor = new Tutor(disciplina, proficiencia, aluno);
+			this.tutores.put(aluno.getEmail(), tutor);
+		}
 
 	}
 
