@@ -2,7 +2,6 @@ package util;
 
 public enum ErroTutor {
 	
-	TUTOR_NAO_ENCONTRADO("Tutor nao encontrado"),
 	DISCIPLINA_JA_EXISTE("Ja eh tutor dessa disciplina"),
 	PROFICIENCIA_INVALIDA("Proficiencia invalida"),
 	LOCAL_INVALIDO("Local de atendimento invalido"),
