@@ -13,7 +13,7 @@ import util.TutorValidador;
  * 
  * @author fanny
  */
-public class Tutor {
+public class Tutor implements Comparable<Tutor>{
 
 	/**
 	 * Indica o quanto um tutor recebe do sistema
@@ -223,6 +223,12 @@ public class Tutor {
 		if (Double.doubleToLongBits(salario) != Double.doubleToLongBits(other.salario))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Tutor o2) {
+		// TODO Auto-generated method stub
+		return this.getNome().compareTo(o2.getNome());
 	}
 
 }

@@ -1,6 +1,9 @@
 package tutor;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
@@ -59,10 +62,20 @@ public class TutorController {
 	 * @return String uma representação textual dos tutores cadastrados no sistema.
 	 */
 	public String listarTutores() {
+		
+		List<Tutor> listaTutores = new ArrayList<Tutor>(this.tutores.values());
+		Collections.sort(listaTutores);	
+		
 		String resultado = "";
 
-		for (Tutor tutor : this.tutores.values()) {
-			resultado += tutor.toString() + System.lineSeparator();
+		for (int i = 0; i < listaTutores.size(); i++) {
+			Tutor tutor = listaTutores.get(i);
+			
+			if(i != 0){
+				resultado += ", ";
+			}
+			
+			resultado += tutor.toString();
 		}
 
 		return resultado;
@@ -227,8 +240,7 @@ public class TutorController {
 	public String recuperaTutor(String email) {
 		String resultado = "";
 		
-		if(AlunoValidador.validaEmail(email)){
-		
+		if(this.validaTutor(email)){
 			resultado = this.tutores.get(email).toString();
 		
 		}

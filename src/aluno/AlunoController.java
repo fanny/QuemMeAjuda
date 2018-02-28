@@ -11,6 +11,7 @@ import java.util.NoSuchElementException;
 import util.AlunoValidador;
 import util.ErroAluno;
 import util.ErroController;
+import util.OpcoesController;
 
 /**
  * Controller dos alunos do sistema.
@@ -142,12 +143,15 @@ public class AlunoController {
 		
 		try{
 			if(this.validaAluno(matricula)){
-				switch (atributo) {
-					case "Nome":
+				
+				OpcoesController op = OpcoesController.getEnumByString(atributo);
+				
+				switch (op) {
+					case NOME:
 						return this.alunos.get(matricula).getNome();
-					case "Telefone":
+					case TELEFONE:
 						return this.alunos.get(matricula).getTelefone();
-					case "Email":
+					case EMAIL:
 						return this.alunos.get(matricula).getEmail();
 					default:
 						break;

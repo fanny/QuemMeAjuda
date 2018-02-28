@@ -2,6 +2,7 @@ package main;
 
 import tutor.TutorController;
 import util.ErroController;
+import util.OpcoesController;
 
 import java.util.NoSuchElementException;
 
@@ -46,7 +47,9 @@ public class Sistema {
 	 */
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
 
-		String emailTutor = alunoController.getInfoAluno(matricula, "email");
+		String emailTutor = alunoController.getInfoAluno(matricula, 
+				OpcoesController.EMAIL.toString());
+		
 		try{
 			if (tutorController.existeTutor(emailTutor)) {
 				tutorController.cadastraDisciplina(emailTutor, disciplina, proficiencia);
@@ -113,7 +116,8 @@ public class Sistema {
 	 */
 	public String recuperaTutor(String matricula) {
 
-		String emailTutor = alunoController.getInfoAluno(matricula, "email");
+		String emailTutor = alunoController.getInfoAluno(matricula, OpcoesController.
+				EMAIL.toString());
 
 		return tutorController.recuperaTutor(emailTutor);
 	}
