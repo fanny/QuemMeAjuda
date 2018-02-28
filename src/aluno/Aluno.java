@@ -56,7 +56,7 @@ public class Aluno implements Comparable<Aluno>{
 	 *            o codigo do curso do aluno
 	 */
 	public Aluno(String matricula, String nome, String telefone, String email, int codCurso) {
-		if (AlunoValidador.validaAluno(nome, telefone, email, codCurso)) {
+		if (AlunoValidador.validaAluno(nome, matricula, telefone, email, codCurso)) {
 			this.matricula = matricula;
 			this.nome = nome;
 			this.email = email;
