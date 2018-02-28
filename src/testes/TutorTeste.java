@@ -82,27 +82,27 @@ public class TutorTeste {
 	
 	@Test
 	public void testCadastrarHorario() {
-		t.cadastrarHorario("Quinta", "14:00");
+		t.cadastrarHorario("14:00", "Quinta");
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarHorarioComDiaNulo() {
-		t.cadastrarHorario(null, "14:00");
+		t.cadastrarHorario("14:00", null);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarHorarioComDiaVazio() {
-		t.cadastrarHorario("  ", "14:00");
+		t.cadastrarHorario("14:00", "  ");
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarHorarioComHorarioAtendimentoNulo() {
-		t.cadastrarHorario("Quinta", null);
+		t.cadastrarHorario(null, "Quinta");
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarHorarioComHorarioAtendimentoVazio() {
-		t.cadastrarHorario("Quinta", "  ");
+		t.cadastrarHorario("  ", "Quinta");
 	}
 	
 	@Test
