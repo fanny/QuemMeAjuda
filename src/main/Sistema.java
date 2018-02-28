@@ -1,3 +1,4 @@
+package main;
 
 import tutor.TutorController;
 import aluno.Aluno;
