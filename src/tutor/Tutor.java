@@ -1,11 +1,11 @@
 package tutor;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import aluno.Aluno;
-import util.ErroTutor;
 import util.TutorValidador;
 
 /**
@@ -49,16 +49,17 @@ public class Tutor {
 	 *            Indica o nível de conhecimento do tuto
 	 */
 	public Tutor(String disciplina, int proficiencia, Aluno aluno) {
-		if (TutorValidador.validaTutor(disciplina, proficiencia)) {
+		if (TutorValidador.validaTutor(disciplina, proficiencia, aluno)) {
 
+			this.disciplinas = new HashMap<>();
 			this.addDisciplina(disciplina, proficiencia);
+			
+			this.salario = 0;
+			this.locaisDeAtendimento = new HashSet<>();
+			this.horariosDeAtendimento = new HashSet<>();
+			this.aluno = aluno;
 
 		}
-		this.salario = 0;
-		this.locaisDeAtendimento = new HashSet<>();
-		this.horariosDeAtendimento = new HashSet<>();
-		this.aluno = aluno;
-
 	}
 
 	public double getSalario() {
@@ -78,7 +79,9 @@ public class Tutor {
 	 *            Dia do atendimento
 	 */
 	public void cadastrarHorario(String horario, String dia) {
-		this.horariosDeAtendimento.add(new HorarioAtendimento(dia, horario));
+		if(TutorValidador.validaHorarioDeAtendimento(horario, dia)){
+			this.horariosDeAtendimento.add(new HorarioAtendimento(dia, horario));
+		}
 	}
 
 	/**
@@ -88,7 +91,9 @@ public class Tutor {
 	 *            Local do atendimento
 	 */
 	public void cadastrarLocal(String local) {
-		this.locaisDeAtendimento.add(local);
+		if(TutorValidador.validaLocalAtendimento(local)){
+			this.locaisDeAtendimento.add(local);
+		}
 	}
 
 	/**
@@ -100,7 +105,11 @@ public class Tutor {
 	 *         local de atendimento
 	 */
 	public boolean consultaLocal(String local) {
-		return this.locaisDeAtendimento.contains(local);
+		boolean resultado = false;
+		if(TutorValidador.validaLocalAtendimento(local)){
+			resultado = this.locaisDeAtendimento.contains(local);
+		}
+		return resultado;
 	}
 
 	/**
@@ -114,7 +123,12 @@ public class Tutor {
 	 *         horario de atendimento
 	 */
 	public boolean consultaHorario(String horario, String dia) {
-		return this.horariosDeAtendimento.contains(new HorarioAtendimento(dia, horario));
+		boolean resultado = false;
+		if(TutorValidador.validaHorarioDeAtendimento(horario, dia)){
+			resultado =  this.horariosDeAtendimento.contains(new 
+					HorarioAtendimento(dia, horario));
+		}
+		return resultado;
 	}
 
 	/**
@@ -124,7 +138,10 @@ public class Tutor {
 	 * @param proficiencia
 	 */
 	public void addDisciplina(String nome, Integer proficiencia) {
-		this.disciplinas.put(nome, proficiencia);
+		if(TutorValidador.validaDisciplina(nome) && 
+				TutorValidador.validaProficiencia(proficiencia)){
+			this.disciplinas.put(nome, proficiencia);
+		}
 	}
 
 	public String getMatricula() {

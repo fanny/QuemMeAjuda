@@ -1,5 +1,7 @@
 package util;
 
+import aluno.Aluno;
+
 /**
  * Classe responsável por validar as informações de um tutor
  * @author fanny
@@ -17,16 +19,46 @@ public class TutorValidador {
 	 * @return true caso todas as informações do tutor sejam válidas, false caso
 	 *         contrário
 	 */
-	public static boolean validaTutor(String disciplina, int proficiencia){
-		return validaDisciplina(disciplina, ErroTutor.DISCIPLINA_JA_EXISTE.toString()) &&
-				validaProficiencia(proficiencia, ErroTutor.PROFICIENCIA_INVALIDA.toString());
+	public static boolean validaTutor(String disciplina, int proficiencia, Aluno aluno){
+		return validaDisciplina(disciplina) &&
+				validaProficiencia(proficiencia) && validaAluno(aluno);
+	}
+	
+	public static boolean validaAluno(Aluno aluno){
+		if(aluno == null){
+			throw new NullPointerException(ErroTutor.ALUNO_INVALIDO.toString());
+		}
+		return AlunoValidador.validaAluno(aluno.getNome(), aluno.getMatricula(), 
+				aluno.getTelefone(), aluno.getEmail(), aluno.getCodCurso());
 	}
 	
 	/**
 	 * @see Validador#validaTexto(String)
 	 */
-	public static boolean validaDisciplina(String disciplina, String mensagem){
-		return Validador.validaTexto(disciplina, mensagem);
+	public static boolean validaDisciplina(String disciplina){
+		return Validador.validaTexto(disciplina, ErroTutor.DISCIPLINA_JA_EXISTE.toString());
+	}
+	
+	public static boolean validaLocalAtendimento(String local){
+		return Validador.validaTexto(local, ErroTutor.LOCAL_INVALIDO.toString());
+	}
+	
+	public static boolean validaHorarioDeAtendimento(String horario, String dia){
+		return validaHorario(horario) && validaDia(dia);
+	}
+	
+	public static boolean validaHorario(String horario){
+		if (Validador.validaTexto(horario, ErroTutor.HORARIO_ATENDIMENTO_INVALIDO.toString())) {
+			String formaHorario = "^([0-9]{2}:[0-9]{2})$";
+			
+			if (!horario.matches(formaHorario)) {
+				throw new IllegalArgumentException(ErroTutor.HORARIO_ATENDIMENTO_INVALIDO.toString());
+			}
+		}
+		return true;
+	}
+	public static boolean validaDia(String dia){
+		return Validador.validaTexto(dia, ErroTutor.DIA_ATENDIMENTO_INVALIDO.toString());
 	}
 	
 	/**
@@ -38,11 +70,8 @@ public class TutorValidador {
 	 * @exception IllegalArgumentException
 	 *                caso não seja a faixa de valor correta
 	 */
-	public static boolean validaProficiencia(int proficiencia, String mensagem) {
-		if (!Validador.validaMaiorQueZero(proficiencia, 
-				mensagem) || !Validador.validaMenorQue6(proficiencia, mensagem)) {
-			throw new IllegalArgumentException(mensagem);
-		}
-		return true;
+	public static boolean validaProficiencia(int proficiencia) {
+		return Validador.validaMaiorQueZero(proficiencia, 
+				ErroTutor.PROFICIENCIA_INVALIDA.toString()) && Validador.validaMenorQue6(proficiencia, ErroTutor.PROFICIENCIA_INVALIDA.toString());
 	}
 }

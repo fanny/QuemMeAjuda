@@ -59,7 +59,7 @@ public class Validador {
 			String formaEmail = "[\\._a-zA-Z0-9]+@[a-zA-Z0-9]+(\\.[a-zA-z]+)+";
 			
 			if (!email.matches(formaEmail)) {
-				throw new IllegalArgumentException("Email invalido");
+				throw new IllegalArgumentException(mensagem);
 			}
 		}
 		

@@ -15,7 +15,7 @@ public class TutorTeste {
 		t = new Tutor("Programação 1", 4, new Aluno("117110383", "Rayla", "99884-7692", "rayla.araujo@ccc.ufcg.edu.br", 1));
 	}
 	
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testTutorComDisciplinaNula() {
 		t = new Tutor(null, 4, new Aluno("117110383", "Rayla", "99884-7692", "rayla.araujo@ccc.ufcg.edu.br", 1));
 	}
@@ -82,27 +82,27 @@ public class TutorTeste {
 	
 	@Test
 	public void testCadastrarHorario() {
-		t.cadastrarHorario("Quinta", "14:00");
+		t.cadastrarHorario("14:00", "Quinta");
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarHorarioComDiaNulo() {
-		t.cadastrarHorario(null, "14:00");
+		t.cadastrarHorario("14:00", null);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarHorarioComDiaVazio() {
-		t.cadastrarHorario("  ", "14:00");
+		t.cadastrarHorario("14:00", "  ");
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarHorarioComHorarioAtendimentoNulo() {
-		t.cadastrarHorario("Quinta", null);
+		t.cadastrarHorario(null, "Quinta");
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarHorarioComHorarioAtendimentoVazio() {
-		t.cadastrarHorario("Quinta", "  ");
+		t.cadastrarHorario("  ", "Quinta");
 	}
 	
 	@Test
@@ -167,17 +167,17 @@ public class TutorTeste {
 		t.addDisciplina("Rayla", 5);
 	}
 	
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void testAddDisciplinaComNomeNulo() {
 		t.addDisciplina(null, 5);
 	}
 	
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void testAddDisciplinaComNomeVazio() {
 		t.addDisciplina("  ", 5);
 	}
 	
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void testAddDisciplinaComProficiênciaInvalida() {
 		t.addDisciplina("Rayla", -1);
 	}

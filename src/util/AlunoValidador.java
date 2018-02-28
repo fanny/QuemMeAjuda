@@ -2,8 +2,6 @@ package util;
 
 public class AlunoValidador {
 	
-	
-	
 	/**
 	 * Verifica se todas as informações do aluno são válidas
 	 * 
@@ -17,19 +15,25 @@ public class AlunoValidador {
 	 *            o código do curso do aluno
 	 * @return true se todas as informações são válidas, false, caso contrário
 	 */
-	public static boolean validaAluno(String nome, String telefone, String email, int codigoDoCurso) {
-		return (validaNome(nome, ErroAluno.NOME_INVALIDO.toString()) && 
-				validaTelefone(telefone, ErroAluno.TELEFONE_INVALIDO.toString()) && 
-				validaEmail(email, ErroAluno.EMAIL_INVALIDO.toString()) && 
-				validaCodigoDoCurso(codigoDoCurso, ErroAluno.CODIGO_INVALIDO.toString()));
+	public static boolean validaAluno(String nome, String matricula,String telefone, String email, int codigoDoCurso) {
+		return (validaMatricula(matricula) && validaNome(nome) && 
+				validaTelefone(telefone) && validaEmail(email) && 
+				validaCodigoDoCurso(codigoDoCurso));
 	}
 
-
+	/**
+	 * @see Validador#validaTexto(String, String)
+	 */
+	public static boolean validaMatricula(String matricula){
+		return Validador.validaTexto(matricula, 
+				ErroAluno.MATRICULA_INVALIDA.toString());
+	}
+	
 	/**
 	 * @see Validador#validaTexto(String)
 	 */
-	public static boolean validaNome(String nome, String mensagem) {
-		return Validador.validaTexto(nome, mensagem);
+	public static boolean validaNome(String nome) {
+		return Validador.validaTexto(nome, ErroAluno.NOME_INVALIDO.toString());
 		
 	}
 	
@@ -40,13 +44,11 @@ public class AlunoValidador {
 	 *            o telefone do aluno
 	 * @return true caso o telefone seja válido, false caso contrário
 	 */
-	public static boolean validaTelefone(String telefone, String mensagem) {
-		if (Validador.validaTexto(telefone, mensagem)) {
-			String formaTelefone = "^([0-9]{4,}-[0-9]{4})$";
+	public static boolean validaTelefone(String telefone) {
+		String formaTelefone = "^([0-9]{4,}-[0-9]{4})$";
 			
-			if (!telefone.matches(formaTelefone)) {
-				throw new IllegalArgumentException("Telefone invalido");
-			}
+		if (!telefone.matches(formaTelefone) || telefone != "") {
+			throw new IllegalArgumentException( ErroAluno.TELEFONE_INVALIDO.toString());
 		}
 		return true;
 	}
@@ -54,15 +56,15 @@ public class AlunoValidador {
 	/**
 	 * @see Validador#validaEmail(String)
 	 */
-	public static boolean validaEmail(String email, String mensagem) {
-		return Validador.validaEmail(email, mensagem);
+	public static boolean validaEmail(String email) {
+		return Validador.validaEmail(email, ErroAluno.EMAIL_INVALIDO.toString());
 	}
 
 	/**
 	 * @see Validador#validaMaiorQuezero(String)
 	 */
-	public static boolean validaCodigoDoCurso(int codigoDoCurso, String mensagem) {
-		return Validador.validaMaiorQueZero(codigoDoCurso, mensagem);	
+	public static boolean validaCodigoDoCurso(int codigoDoCurso) {
+		return Validador.validaMaiorQueZero(codigoDoCurso, ErroAluno.CODIGO_INVALIDO.toString());	
 	}
 	
 	/**
@@ -72,9 +74,9 @@ public class AlunoValidador {
 	 *            a nota de avaliação do aluno
 	 * @return true caso a nota seja válida, false caso contrário
 	 */
-	public static boolean validaNotaAvaliacao(int notaAvaliacao, String mensagem) {
-		return Validador.validaMaiorQueZero(notaAvaliacao, mensagem) && 
-				Validador.validaMenorQue6(notaAvaliacao, mensagem);
+	public static boolean validaNotaAvaliacao(int notaAvaliacao) {
+		return Validador.validaMaiorQueZero(notaAvaliacao, ErroAluno.NOTA_AVALIACAO_INVALIDA.toString()) && 
+				Validador.validaMenorQue6(notaAvaliacao, ErroAluno.NOTA_AVALIACAO_INVALIDA.toString());
 	}
 
 }
