@@ -7,9 +7,25 @@ package tutor;
  */
 public class HorarioAtendimento {
 
+	/**
+	 * O dia do atendimento
+	 */
 	private String dia;
+
+	/**
+	 * O horário do atendimento
+	 */
 	private String horario;
 
+	/**
+	 * Constrói um horário de atendimento a partir do dia e do horário do
+	 * atendimento
+	 * 
+	 * @param dia
+	 *            Dia do atendimento
+	 * @param horario
+	 *            Horário do atendimento
+	 */
 	public HorarioAtendimento(String dia, String horario) {
 		this.dia = dia;
 		this.horario = horario;
@@ -31,11 +47,17 @@ public class HorarioAtendimento {
 		this.horario = horario;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String toString() {
 		return dia + " - " + horario;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -45,6 +67,9 @@ public class HorarioAtendimento {
 		return result;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
