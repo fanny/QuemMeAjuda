@@ -40,11 +40,15 @@ public class TutorController {
 	 *            Aluno que sera um tutor
 	 */
 	public void cadastraTutor(String disciplina, int proficiencia, Aluno aluno) {
-		//TODO: verificar se o aluno existe
+		try{
 			if(TutorValidador.validaTutor(disciplina, proficiencia, aluno)){
 				Tutor tutor = new Tutor(disciplina, proficiencia, aluno);
 				this.tutores.put(aluno.getEmail(), tutor);
 			}
+		}catch(IllegalArgumentException e){
+			throw new IllegalArgumentException(ErroController.
+					TORNA_TUTOR_INVALIDO.toString() + e.getMessage());
+		}
 		
 
 	}

@@ -1,6 +1,10 @@
 package main;
 
 import tutor.TutorController;
+import util.ErroController;
+
+import java.util.NoSuchElementException;
+
 import aluno.Aluno;
 import aluno.AlunoController;
 
@@ -38,12 +42,16 @@ public class Sistema {
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
 
 		String emailTutor = alunoController.getInfoAluno(matricula, "email");
-
-		if (tutorController.existeTutor(emailTutor)) {
-			tutorController.cadastraDisciplina(emailTutor, disciplina, proficiencia);
-		} else {
-			Aluno aluno = alunoController.getAlunoPelaMatricula(matricula);
-			tutorController.cadastraTutor(disciplina, proficiencia, aluno);
+		try{
+			if (tutorController.existeTutor(emailTutor)) {
+				tutorController.cadastraDisciplina(emailTutor, disciplina, proficiencia);
+			} else {
+				Aluno aluno = alunoController.getAlunoPelaMatricula(matricula);
+				tutorController.cadastraTutor(disciplina, proficiencia, aluno);
+			}
+		}catch(NoSuchElementException e){
+			throw new NoSuchElementException(ErroController.
+					TORNA_TUTOR_INVALIDO.toString() + e.getMessage());	
 		}
 	}
 

@@ -89,17 +89,8 @@ public class AlunoController {
 	 */
 	public Aluno getAlunoPelaMatricula(String matricula) {
 		Aluno aluno = null;
-		
-		try{
-			if(this.validaAluno(matricula)) {
+		if(this.validaAluno(matricula)) {
 				aluno = this.alunos.get(matricula);
-			}
-		}catch(IllegalArgumentException e){
-			throw new IllegalArgumentException(ErroController.
-					GET_ALUNO_MATRICULA_INVALIDO.toString() + e.getMessage());
-		}catch(NoSuchElementException e){
-			throw new NoSuchElementException(ErroController.
-					GET_ALUNO_MATRICULA_INVALIDO.toString() + e.getMessage());
 		}
 		return aluno;
 	}

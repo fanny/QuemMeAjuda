@@ -138,7 +138,10 @@ public class Tutor {
 	 * @param proficiencia
 	 */
 	public void addDisciplina(String nome, Integer proficiencia) {
-		this.disciplinas.put(nome, proficiencia);
+		if(TutorValidador.validaDisciplina(nome) && 
+				TutorValidador.validaProficiencia(proficiencia)){
+			this.disciplinas.put(nome, proficiencia);
+		}
 	}
 
 	public String getMatricula() {
