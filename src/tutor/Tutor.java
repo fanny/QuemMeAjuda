@@ -6,8 +6,12 @@ import java.util.Map;
 import java.util.Set;
 
 import aluno.Aluno;
+<<<<<<< HEAD
 import util.ErroController;
 import util.TutorValidador;
+=======
+import util.tutor.TutorValidador;
+>>>>>>> 241e5903c92ce5469617e76b30c91e421f4df91f
 
 /**
  * Representação de um orientador de um aluno

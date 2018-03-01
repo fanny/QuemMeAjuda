@@ -1,5 +1,7 @@
 package tutor;
 
+import util.HorarioAtendimentoValidador;
+
 /**
  * Representação de um horário de atendimento de um tutor
  * 
@@ -28,11 +30,11 @@ public class HorarioAtendimento {
 	 */
 	public HorarioAtendimento(String dia, String horario) {
 		
-		if(true) {
-			
+		if(HorarioAtendimentoValidador.validaHorarioAtedendimento(dia, horario)) {
+						
+			this.dia = dia;
+			this.horario = horario;
 		}
-		this.dia = dia;
-		this.horario = horario;
 	}
 
 	public String getDia() {

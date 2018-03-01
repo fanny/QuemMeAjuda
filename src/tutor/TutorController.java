@@ -8,9 +8,9 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 import aluno.Aluno;
-import util.AlunoValidador;
-import util.ErroController;
-import util.TutorValidador;
+import util.aluno.AlunoValidador;
+import util.controller.ErroController;
+import util.tutor.TutorValidador;
 
 /**
  * Controller dos tutores do sistema.

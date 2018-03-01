@@ -1,11 +1,16 @@
 package main;
 
 import tutor.TutorController;
+<<<<<<< HEAD
 import util.AlunoValidador;
 import util.ErroAluno;
 import util.ErroController;
 import util.ErroTutor;
 import util.OpcoesController;
+=======
+import util.controller.ErroController;
+import util.controller.OpcoesController;
+>>>>>>> 241e5903c92ce5469617e76b30c91e421f4df91f
 
 import java.util.NoSuchElementException;
 

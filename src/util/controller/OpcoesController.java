@@ -1,4 +1,4 @@
-package util;
+package util.controller;
 
 public enum OpcoesController {
 	NOME("Nome"),

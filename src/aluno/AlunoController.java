@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
-import util.AlunoValidador;
-import util.ErroAluno;
-import util.ErroController;
-import util.OpcoesController;
+import util.aluno.AlunoValidador;
+import util.aluno.ErroAluno;
+import util.controller.ErroController;
+import util.controller.OpcoesController;
 
 /**
  * Controller dos alunos do sistema.
