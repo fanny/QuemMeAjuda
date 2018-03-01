@@ -45,12 +45,13 @@ public class AlunoValidador {
 	 * @return true caso o telefone seja válido, false caso contrário
 	 */
 	public static boolean validaTelefone(String telefone) {
-		String formaTelefone = "^([0-9]{4,}-[0-9]{4}|)$";
-		if(telefone!=""){
-			if (!telefone.matches(formaTelefone)) {
+		String formaTelefone = "^([0-9]{4,}-[0-9]{4}|)$"; 
+		if(telefone.equals("") || telefone == null){
+			throw new IllegalArgumentException( ErroAluno.TELEFONE_INVALIDO.toString());
+		
+		}else if (!telefone.matches(formaTelefone)) {
 				throw new IllegalArgumentException( ErroAluno.TELEFONE_INVALIDO.toString());
 			}
-		}
 		return true;
 	}
 
