@@ -4,9 +4,10 @@ public enum ErroTutor {
 	
 	DISCIPLINA_JA_EXISTE("Ja eh tutor dessa disciplina"),
 	PROFICIENCIA_INVALIDA("Proficiencia invalida"),
-	LOCAL_INVALIDO("Local de atendimento invalido"),
-	DIA_ATENDIMENTO_INVALIDO("Dia invalido"),
-	HORARIO_ATENDIMENTO_INVALIDO("Horario de atendimento invalido"),
+	LOCAL_INVALIDO("local nao pode ser vazio ou em branco"),
+	DIA_ATENDIMENTO_INVALIDO("dia nao pode ser vazio ou em branco"),
+	HORARIO_ATENDIMENTO_INVALIDO("horario nao pode ser vazio ou em branco"),
+	EMAIL_INVALIDO("email nao pode ser vazio ou em branco"),
 	ALUNO_INVALIDO("O aluno não pode ser nulo");
 	
 	private String descricao;
