@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import aluno.Aluno;
+import util.ErroController;
 import util.TutorValidador;
 
 /**
@@ -140,8 +141,15 @@ public class Tutor implements Comparable<Tutor>{
 	public void addDisciplina(String nome, Integer proficiencia) {
 		if(TutorValidador.validaDisciplina(nome) && 
 				TutorValidador.validaProficiencia(proficiencia)){
+			if(disciplinaExiste(nome)) {
+				throw new IllegalArgumentException(ErroController.JA_EH_TUTOR.toString());
+			}
 			this.disciplinas.put(nome, proficiencia);
 		}
+	}
+	
+	public boolean disciplinaExiste(String nome) {
+		return this.disciplinas.containsKey(nome);
 	}
 
 	public String getMatricula() {

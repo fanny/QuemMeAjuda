@@ -1,7 +1,10 @@
 package main;
 
 import tutor.TutorController;
+import util.AlunoValidador;
+import util.ErroAluno;
 import util.ErroController;
+import util.ErroTutor;
 import util.OpcoesController;
 
 import java.util.NoSuchElementException;
@@ -47,6 +50,22 @@ public class Sistema {
 	 */
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
 
+		try {
+			
+			this.alunoController.validaAluno(matricula);
+			
+		}catch(IllegalArgumentException e) {
+			
+			throw new IllegalArgumentException(ErroController.TORNA_TUTOR_INVALIDO.toString() 
+					+ ErroAluno.MATRICULA_INVALIDA.toString());
+		
+		}catch(NoSuchElementException e) {
+		
+			throw new NoSuchElementException(ErroController.TORNA_TUTOR_INVALIDO.toString()
+					+ErroController.TUTOR_NAO_ENCONTRADO.toString());
+		
+		}
+		
 		String emailTutor = alunoController.getInfoAluno(matricula, 
 				OpcoesController.EMAIL.toString());
 		
@@ -115,11 +134,29 @@ public class Sistema {
 	 * @see TutorController#recuperaTutor(String)
 	 */
 	public String recuperaTutor(String matricula) {
-
+		
+		try {
+			
+			this.alunoController.validaAluno(matricula);
+			
+		}catch(IllegalArgumentException e) {
+			
+			throw new IllegalArgumentException(ErroController.BUSCA_TUTOR_INVALIDA.toString() 
+					+ ErroAluno.MATRICULA_INVALIDA.toString());
+		
+		}catch(NoSuchElementException e) {
+		
+			throw new NoSuchElementException(ErroController.BUSCA_TUTOR_INVALIDA.toString()
+					+ErroController.TUTOR_NAO_ENCONTRADO.toString());
+		
+		}
+		
 		String emailTutor = alunoController.getInfoAluno(matricula, OpcoesController.
 				EMAIL.toString());
+		String resultado =  tutorController.recuperaTutor(emailTutor);
 
-		return tutorController.recuperaTutor(emailTutor);
+		
+		return resultado;
 	}
 
 	/**

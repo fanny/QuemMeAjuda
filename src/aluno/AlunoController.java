@@ -168,7 +168,7 @@ public class AlunoController {
 		return "";
 	}
 
-	private boolean existeAluno(String matricula){
+	public boolean existeAluno(String matricula){
 		return this.alunos.containsKey(matricula);
 	}
 	
@@ -183,7 +183,7 @@ public class AlunoController {
 		
 	}
 	
-	private boolean validaAluno(String matricula){
+	public boolean validaAluno(String matricula){
 		if(AlunoValidador.validaMatricula(matricula)){
 			if(!this.existeAluno(matricula)){
 				throw new NoSuchElementException(ErroAluno.

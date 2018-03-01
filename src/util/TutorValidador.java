@@ -65,6 +65,7 @@ public class TutorValidador {
 		return Validador.validaEmail(email, ErroTutor.EMAIL_INVALIDO.toString());
 	}
 	
+	
 	/**
 	 * Verifica se a proficiencia está na faixa de valor correta (maior que 0 e
 	 * menor que 6)

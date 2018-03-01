@@ -7,6 +7,7 @@ public enum ErroController {
 	CADASTRAR_HORARIO_INVALIDO("Erro no cadastrar horario: "),
 	CADASTRAR_LOCAL_INVALIDO("Erro no cadastrar local de atendimento: "),
 	BUSCA_TUTOR_INVALIDA("Erro na busca por tutor: "),
+	JA_EH_TUTOR("Ja eh tutor dessa disciplina"),
 	TORNA_TUTOR_INVALIDO("Erro na definicao de papel: "),
 	GET_ALUNO_MATRICULA_INVALIDO("Erro na obtenção do objeto aluno: "),
 	BUSCA_ALUNO_INVALIDA("Erro na busca por aluno: "),
