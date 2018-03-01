@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 import aluno.Aluno;
-import util.aluno.AlunoValidador;
 import util.controller.ErroController;
 import util.tutor.TutorValidador;
 
