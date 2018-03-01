@@ -27,6 +27,10 @@ public class HorarioAtendimento {
 	 *            Horário do atendimento
 	 */
 	public HorarioAtendimento(String dia, String horario) {
+		
+		if(true) {
+			
+		}
 		this.dia = dia;
 		this.horario = horario;
 	}
