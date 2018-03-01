@@ -1,6 +1,8 @@
-package util;
+package util.tutor;
 
 import aluno.Aluno;
+import util.Validador;
+import util.aluno.AlunoValidador;
 
 /**
  * Classe responsável por validar as informações de um tutor

@@ -1,4 +1,6 @@
-package util;
+package util.aluno;
+
+import util.Validador;
 
 public class AlunoValidador {
 	

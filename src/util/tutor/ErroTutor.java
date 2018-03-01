@@ -1,4 +1,4 @@
-package util;
+package util.tutor;
 
 public enum ErroTutor {
 	

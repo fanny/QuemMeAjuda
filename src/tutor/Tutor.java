@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import aluno.Aluno;
-import util.TutorValidador;
+import util.tutor.TutorValidador;
 
 /**
  * Representação de um orientador de um aluno

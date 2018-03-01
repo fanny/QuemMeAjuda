@@ -1,8 +1,8 @@
 package main;
 
 import tutor.TutorController;
-import util.ErroController;
-import util.OpcoesController;
+import util.controller.ErroController;
+import util.controller.OpcoesController;
 
 import java.util.NoSuchElementException;
 

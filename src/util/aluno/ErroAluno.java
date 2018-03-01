@@ -1,4 +1,4 @@
-package util;
+package util.aluno;
 
 public enum ErroAluno {
 	
