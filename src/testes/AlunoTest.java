@@ -54,11 +54,6 @@ public class AlunoTest {
 		Aluno alunoErrado2 = new Aluno("465869", "", "6573-4567", "viniciusgatao@hotmail.com", 2);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void CriacaoDeAlunosComTelefoneVazio() {
-		
-		Aluno alunoErrado3 = new Aluno("87879", "vinicius", "", "viniciusgatao@hotmail.com", 2);
-	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void CriacaoDeAlunosComEmailVazios() {
