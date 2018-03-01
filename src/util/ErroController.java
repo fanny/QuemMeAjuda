@@ -3,6 +3,7 @@ package util;
 public enum ErroController {
 	
 	TUTOR_NAO_ENCONTRADO("Tutor nao encontrado"),
+	TUTOR_NAO_CADASTRADO("tutor nao cadastrado"),
 	CADASTRAR_HORARIO_INVALIDO("Erro no cadastrar horario: "),
 	CADASTRAR_LOCAL_INVALIDO("Erro no cadastrar local de atendimento: "),
 	BUSCA_TUTOR_INVALIDA("Erro na busca por tutor: "),

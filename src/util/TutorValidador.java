@@ -61,6 +61,10 @@ public class TutorValidador {
 		return Validador.validaTexto(dia, ErroTutor.DIA_ATENDIMENTO_INVALIDO.toString());
 	}
 	
+	public static boolean validaEmail(String email) {
+		return Validador.validaEmail(email, ErroTutor.EMAIL_INVALIDO.toString());
+	}
+	
 	/**
 	 * Verifica se a proficiencia está na faixa de valor correta (maior que 0 e
 	 * menor que 6)
