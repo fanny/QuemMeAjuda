@@ -21,7 +21,6 @@ public class Validador {
 		return true;
 	}
 
-
 	/**
 	 * Verifica se o valor passado é maior que zero
 	 * 
@@ -54,6 +53,12 @@ public class Validador {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param email
+	 * @param mensagem
+	 * @return
+	 */
 	public static boolean validaEmail(String email, String mensagem) {
 		if (validaTexto(email, mensagem)) {
 			String formaEmail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -62,7 +67,20 @@ public class Validador {
 				throw new IllegalArgumentException(mensagem);
 			}
 		}
-		
+
+		return true;
+	}
+
+	/**
+	 * 
+	 * @param valor
+	 * @param mensagem
+	 * @return
+	 */
+	public static boolean validaMaiorOuIgualAZero(double valor, String mensagem) {
+		if (valor < 0.0) {
+			throw new IllegalArgumentException(mensagem);
+		}
 		return true;
 	}
 

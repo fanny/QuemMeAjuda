@@ -275,6 +275,11 @@ public class TutorController {
 		return tutorMatricula;
 	}
 
+	/**
+	 * 
+	 * @param disciplina
+	 * @return
+	 */
 	public String recuperaTutorParaAjuda(String disciplina) {
 
 		List<Tutor> tutoresParaAjuda = new ArrayList<>();
@@ -286,6 +291,11 @@ public class TutorController {
 		return tutorMatricula;
 	}
 
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
 	private boolean validaTutor(String email) {
 		if (TutorValidador.validaEmail(email)) {
 			if (!this.existeTutor(email)) {
@@ -313,8 +323,15 @@ public class TutorController {
 	public String retornaNivel(String email) {
 		return tutores.get(email).getNivel();
 	}
-	
+
+	/**
+	 * 
+	 * @param email
+	 * @param nota
+	 */
 	public void avaliaTutor(String email, int nota) {
-		tutores.get(email).setNotaAvaliacaoAluno(nota);
+		if (validaTutor(email) && TutorValidador.validaNotaAvaliacao(nota)) {
+			tutores.get(email).setNotaAvaliacaoAluno(nota);
+		}
 	}
 }

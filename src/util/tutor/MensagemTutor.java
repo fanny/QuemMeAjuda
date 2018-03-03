@@ -11,7 +11,8 @@ public enum MensagemTutor {
 	ALUNO_INVALIDO("O aluno não pode ser nulo"),
 	TOP("TOP"),
 	APRENDIZ("Aprendiz"),
-	TUTOR("Tutor");
+	TUTOR("Tutor"),
+	NOTA_AVALIACAO_INVALIDA("Nota de avaliacao invalida");
 	
 	private String descricao;
 	

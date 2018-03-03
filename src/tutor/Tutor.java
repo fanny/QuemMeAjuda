@@ -21,7 +21,7 @@ public class Tutor implements Comparable<Tutor> {
 	 * Nota de avaliação do tutor
 	 */
 	private double notaAvaliacao;
-	
+
 	/**
 	 * Nível do tutor
 	 */
@@ -79,9 +79,15 @@ public class Tutor implements Comparable<Tutor> {
 		return notaAvaliacao;
 	}
 
-	public void alteraNotaAvaliacao(double notaAvaliacao) {
-		this.notaAvaliacao = (this.notaAvaliacao * 5 + notaAvaliacao) / 6.0;
-		this.defineNivel();
+	/**
+	 * 
+	 * @param notaAvaliacao
+	 */
+	public void alteraNotaAvaliacao(int notaAvaliacao) {
+		if (TutorValidador.validaNotaAvaliacao(notaAvaliacao)) {
+			this.notaAvaliacao = (this.notaAvaliacao * 5 + notaAvaliacao) / 6.0;
+			this.defineNivel();
+		}
 	}
 
 	public double getSalario() {
@@ -91,7 +97,7 @@ public class Tutor implements Comparable<Tutor> {
 	public void setSalario(double salario) {
 		this.salario = salario;
 	}
-	
+
 	public String getNivel() {
 		return nivel;
 	}
@@ -171,18 +177,24 @@ public class Tutor implements Comparable<Tutor> {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	private void defineNivel() {
-		if(this.notaAvaliacao <= 3) {
+		if (this.notaAvaliacao <= 3) {
 			this.nivel = MensagemTutor.APRENDIZ.toString();
-		}
-		else if(this.notaAvaliacao <= 4.5) {
+		} else if (this.notaAvaliacao <= 4.5) {
 			this.nivel = MensagemTutor.TUTOR.toString();
-		}
-		else {
+		} else {
 			this.nivel = MensagemTutor.TOP.toString();
 		}
 	}
-	
+
+	/**
+	 * 
+	 * @param nome
+	 * @return
+	 */
 	public boolean disciplinaExiste(String nome) {
 		return this.disciplinas.containsKey(nome);
 	}
