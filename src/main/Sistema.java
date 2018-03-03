@@ -178,14 +178,15 @@ public class Sistema {
 	}
 
 	/**
-	 * @see AjudaController#cadastrarAjudaPresencial(String, String, String, String, String)
+	 * @see AjudaController#cadastrarAjudaPresencial(String, String, String, String,
+	 *      String)
 	 */
 	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
 			String localInteresse) {
 
-		String tutorMatricula = this.tutorController.recuperaTutorParaAjuda(disciplina, horario, dia, localInteresse);
-		
-		return this.ajudaController.cadastrarAjudaPresencial(tutorMatricula, disciplina, horario, dia, localInteresse);
+		Tutor tutor = this.tutorController.recuperaTutorParaAjuda(disciplina, horario, dia, localInteresse);
+
+		return this.ajudaController.cadastrarAjudaPresencial(tutor, disciplina, horario, dia, localInteresse);
 
 	}
 
@@ -193,26 +194,27 @@ public class Sistema {
 	 * @see AjudaController#cadastraAjudaOnline(String, String)
 	 */
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
-		
-		String tutorMatricula = this.tutorController.recuperaTutorParaAjuda(disciplina);
-		
-		return this.ajudaController.cadastraAjudaOnline(matrAluno, disciplina);
+
+		Tutor tutor = this.tutorController.recuperaTutorParaAjuda(disciplina);
+
+		return this.ajudaController.cadastraAjudaOnline(tutor, disciplina);
 	}
 
 	/**
 	 * @see AjudaController#pegarTutor(int)
 	 */
 	public String pegarTutor(int idAjuda) {
+
 		return this.ajudaController.pegarTutor(idAjuda);
 	}
 
 	/**
-	 * TERMINAR
+	 * @see AjudaController#getInfoAjuda(int, String)
 	 */
 	public String getInfoAjuda(int idAjuda, String atributo) {
 		return this.ajudaController.getInfoAjuda(idAjuda, atributo);
 	}
-	
+
 	/**
 	 * 
 	 * @param idAjuda

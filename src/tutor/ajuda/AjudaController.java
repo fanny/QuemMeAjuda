@@ -3,6 +3,8 @@ package tutor.ajuda;
 import java.util.HashMap;
 import java.util.Map;
 
+import tutor.Tutor;
+
 /**
  * Controller das ajudas do sistema.
  * 
@@ -38,12 +40,11 @@ public class AjudaController {
 	 *            local da ajuda
 	 * @return um <code>int</code> que representa o identificador da ajuda
 	 */
-	public int cadastrarAjudaPresencial(String tutorMatricula, String disciplina, String horario, String dia,
-			String local) {
+	public int cadastrarAjudaPresencial(Tutor tutor, String disciplina, String horario, String dia, String local) {
 
 		int id = ajudas.size() + 1;
 
-		AjudaPresencial ajudaPresencial = new AjudaPresencial(id, disciplina, tutorMatricula, horario, dia, local);
+		AjudaPresencial ajudaPresencial = new AjudaPresencial(id, disciplina, tutor, horario, dia, local);
 
 		this.ajudas.put(id, ajudaPresencial);
 
@@ -59,11 +60,11 @@ public class AjudaController {
 	 *            disiciplina tema da ajuda
 	 * @return um <code>int</code> que representa o identificador da ajuda.
 	 */
-	public int cadastraAjudaOnline(String matrAluno, String disciplina) {
+	public int cadastraAjudaOnline(Tutor tutor, String disciplina) {
 
 		int id = ajudas.size() + 1;
 
-		AjudaOnline ajudaOnline = new AjudaOnline(id, disciplina, matrAluno);
+		AjudaOnline ajudaOnline = new AjudaOnline(id, disciplina, tutor);
 
 		this.ajudas.put(id, ajudaOnline);
 
@@ -78,14 +79,41 @@ public class AjudaController {
 	 * @return uma <code>String</code> que representa a matricula do tutor
 	 */
 	public String pegarTutor(int idAjuda) {
-		return this.ajudas.get(idAjuda).getTutorMatricula();
+
+		return this.ajudas.get(idAjuda).toString();
 	}
 
 	/**
-	 * TERMINAR
+	 * Recupera um determinado atributo de uma ajuda.
+	 * 
+	 * @param idAjuda
+	 *            identificador da ajuda
+	 * @param atributo
+	 *            atributo que se deseja capturar
+	 * @return uma <code>string</code> que representa um atributo
 	 */
 	public String getInfoAjuda(int idAjuda, String atributo) {
 
-		return "";
+		switch (atributo) {
+		case "localInteresse": {
+			AjudaPresencial ajuda = (AjudaPresencial) this.ajudas.get(idAjuda);
+			return ajuda.getLocal();
+		}
+		case "horario": {
+			AjudaPresencial ajuda = (AjudaPresencial) this.ajudas.get(idAjuda);
+			return ajuda.getHorario().getHorario();
+		}
+		case "dia": {
+			AjudaPresencial ajuda = (AjudaPresencial) this.ajudas.get(idAjuda);
+			return ajuda.getHorario().getDia();
+		}
+		case "disciplina":
+			return this.ajudas.get(idAjuda).getDisciplina();
+		case "tutorMatricula":
+			return this.pegarTutor(idAjuda);
+		default:
+			return null;
+		}
+
 	}
 }

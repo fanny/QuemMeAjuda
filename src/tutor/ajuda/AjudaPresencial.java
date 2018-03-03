@@ -1,6 +1,7 @@
 package tutor.ajuda;
 
 import tutor.HorarioAtendimento;
+import tutor.Tutor;
 
 /**
  * Classe que representa uma ajuda presencial.
@@ -35,14 +36,32 @@ public class AjudaPresencial extends Ajuda {
 	 * @param local
 	 *            local em que será dada a ajuda
 	 */
-	public AjudaPresencial(Integer id, String disciplina, String tutorMatricula, String horario, String dia,
-			String local) {
+	public AjudaPresencial(Integer id, String disciplina, Tutor tutor, String horario, String dia, String local) {
 
 		this.id = id;
 		this.disciplina = disciplina;
-		this.tutorMatricula = tutorMatricula;
+		this.tutor = tutor;
 		this.horario = new HorarioAtendimento(dia, horario);
 		this.local = local;
 
+	}
+
+	public String getLocal() {
+
+		return this.local;
+	}
+
+	public HorarioAtendimento getHorario() {
+
+		return this.horario;
+	}
+
+	@Override
+	public String toString() {
+
+		String result = "Tutor - " + this.tutor.getMatricula() + ", horario - " + this.horario.getHorario() + ", dia - "
+				+ this.horario.getDia() + ", local - " + this.local + ", disciplina - " + this.disciplina;
+
+		return result;
 	}
 }

@@ -246,8 +246,8 @@ public class TutorController {
 	}
 
 	/**
-	 * Recupera um tutor que possui determinada disciplina, horario, dia e local de
-	 * atendimento.
+	 * Recupera para uma ajuda um tutor que possui determinada disciplina, horario,
+	 * dia e local de atendimento.
 	 * 
 	 * @param disciplina
 	 *            disciplina do tutor
@@ -258,7 +258,7 @@ public class TutorController {
 	 * @param localInteresse
 	 *            local de atendimento do tutor
 	 */
-	public String recuperaTutorParaAjuda(String disciplina, String horario, String dia, String localInteresse) {
+	public Tutor recuperaTutorParaAjuda(String disciplina, String horario, String dia, String localInteresse) {
 
 		List<Tutor> tutoresParaAjuda = new ArrayList<>();
 		tutoresParaAjuda.addAll(this.tutores.values());
@@ -269,26 +269,42 @@ public class TutorController {
 		tutoresParaAjuda = tutoresParaAjuda.stream().filter((Tutor t) -> t.consultaHorario(horario, dia) == true)
 				.collect(Collectors.toList());
 
-		String tutorMatricula = tutoresParaAjuda.stream().filter(t -> t.consultaLocal(localInteresse) == true)
-				.map(e -> e.getMatricula()).reduce("", String::concat);
+		tutoresParaAjuda = tutoresParaAjuda.stream().filter(t -> t.consultaLocal(localInteresse) == true)
+				.collect(Collectors.toList());
 
-		return tutorMatricula;
+		PontuacaoComparator pontuacaoComparator = new PontuacaoComparator();
+		tutoresParaAjuda.sort(pontuacaoComparator);
+
+		if (tutoresParaAjuda.size() != 0) {
+			return tutoresParaAjuda.get(0);
+		}
+
+		return null;
 	}
 
 	/**
+	 * Recupera para uma ajuda um tutor que possui determinada disciplina.
 	 * 
 	 * @param disciplina
-	 * @return
+	 *            disciplina do tutor
+	 * @return uma objeto tutor
 	 */
-	public String recuperaTutorParaAjuda(String disciplina) {
+	public Tutor recuperaTutorParaAjuda(String disciplina) {
 
 		List<Tutor> tutoresParaAjuda = new ArrayList<>();
 		tutoresParaAjuda.addAll(this.tutores.values());
 
-		String tutorMatricula = tutoresParaAjuda.stream().filter(t -> t.disciplinaExiste(disciplina) == true)
-				.map(e -> e.getMatricula()).reduce("", String::concat);
+		tutoresParaAjuda = tutoresParaAjuda.stream().filter(t -> t.disciplinaExiste(disciplina) == true)
+				.collect(Collectors.toList());
 
-		return tutorMatricula;
+		PontuacaoComparator pontuacaoComparator = new PontuacaoComparator();
+		tutoresParaAjuda.sort(pontuacaoComparator);
+
+		if (tutoresParaAjuda.size() != 0) {
+			return tutoresParaAjuda.get(0);
+		}
+
+		return null;
 	}
 
 	/**

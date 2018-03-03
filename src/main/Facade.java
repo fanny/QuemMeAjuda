@@ -142,7 +142,7 @@ public class Facade {
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
 		return sistema.pedirAjudaOnline(matrAluno, disciplina);
 	}
-	
+
 	/**
 	 * @see Sistema#pegarTutor(int)
 	 */
@@ -151,7 +151,7 @@ public class Facade {
 	}
 
 	/**
-	 * TERMINAR
+	 * @see Sistema#getInfoAjuda(int, String)
 	 */
 	public String getInfoAjuda(int idAjuda, String atributo) {
 		return sistema.getInfoAjuda(idAjuda, atributo);
