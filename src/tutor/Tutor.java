@@ -9,13 +9,22 @@ import aluno.Aluno;
 import util.controller.ErroController;
 import util.tutor.TutorValidador;
 
-
 /**
  * Representação de um orientador de um aluno
  * 
  * @author fanny
  */
-public class Tutor implements Comparable<Tutor>{
+public class Tutor implements Comparable<Tutor> {
+
+	/**
+	 * Nota de avaliação do tutor
+	 */
+	private double notaAvaliacao;
+	
+	/**
+	 * Nível do tutor
+	 */
+	private String nivel;
 
 	/**
 	 * Indica o quanto um tutor recebe do sistema
@@ -55,7 +64,8 @@ public class Tutor implements Comparable<Tutor>{
 
 			this.disciplinas = new HashMap<>();
 			this.addDisciplina(disciplina, proficiencia);
-			
+			this.notaAvaliacao = 4.0;
+			this.nivel = "Tutor";
 			this.salario = 0;
 			this.locaisDeAtendimento = new HashSet<>();
 			this.horariosDeAtendimento = new HashSet<>();
@@ -64,12 +74,25 @@ public class Tutor implements Comparable<Tutor>{
 		}
 	}
 
+	public double getNotaAvaliacao() {
+		return notaAvaliacao;
+	}
+
+	public void alteraNotaAvaliacao(double notaAvaliacao) {
+		this.notaAvaliacao = (this.notaAvaliacao * 5 + notaAvaliacao) / 6;
+		this.defineNivel();
+	}
+
 	public double getSalario() {
 		return salario;
 	}
 
 	public void setSalario(double salario) {
 		this.salario = salario;
+	}
+	
+	public String getNivel() {
+		return nivel;
 	}
 
 	/**
@@ -81,7 +104,7 @@ public class Tutor implements Comparable<Tutor>{
 	 *            Dia do atendimento
 	 */
 	public void cadastrarHorario(String horario, String dia) {
-		if(TutorValidador.validaHorarioDeAtendimento(horario, dia)){
+		if (TutorValidador.validaHorarioDeAtendimento(horario, dia)) {
 			this.horariosDeAtendimento.add(new HorarioAtendimento(dia, horario));
 		}
 	}
@@ -93,7 +116,7 @@ public class Tutor implements Comparable<Tutor>{
 	 *            Local do atendimento
 	 */
 	public void cadastrarLocal(String local) {
-		if(TutorValidador.validaLocalAtendimento(local)){
+		if (TutorValidador.validaLocalAtendimento(local)) {
 			this.locaisDeAtendimento.add(local);
 		}
 	}
@@ -108,7 +131,7 @@ public class Tutor implements Comparable<Tutor>{
 	 */
 	public boolean consultaLocal(String local) {
 		boolean resultado = false;
-		if(TutorValidador.validaLocalAtendimento(local)){
+		if (TutorValidador.validaLocalAtendimento(local)) {
 			resultado = this.locaisDeAtendimento.contains(local);
 		}
 		return resultado;
@@ -126,9 +149,8 @@ public class Tutor implements Comparable<Tutor>{
 	 */
 	public boolean consultaHorario(String horario, String dia) {
 		boolean resultado = false;
-		if(TutorValidador.validaHorarioDeAtendimento(horario, dia)){
-			resultado =  this.horariosDeAtendimento.contains(new 
-					HorarioAtendimento(dia, horario));
+		if (TutorValidador.validaHorarioDeAtendimento(horario, dia)) {
+			resultado = this.horariosDeAtendimento.contains(new HorarioAtendimento(dia, horario));
 		}
 		return resultado;
 	}
@@ -140,12 +162,23 @@ public class Tutor implements Comparable<Tutor>{
 	 * @param proficiencia
 	 */
 	public void addDisciplina(String nome, Integer proficiencia) {
-		if(TutorValidador.validaDisciplina(nome) && 
-				TutorValidador.validaProficiencia(proficiencia)){
-			if(disciplinaExiste(nome)) {
+		if (TutorValidador.validaDisciplina(nome) && TutorValidador.validaProficiencia(proficiencia)) {
+			if (disciplinaExiste(nome)) {
 				throw new IllegalArgumentException(ErroController.JA_EH_TUTOR.toString());
 			}
 			this.disciplinas.put(nome, proficiencia);
+		}
+	}
+
+	private void defineNivel() {
+		if(this.notaAvaliacao <= 3) {
+			this.nivel = "Aprendiz";
+		}
+		else if(this.notaAvaliacao <= 4.5) {
+			this.nivel = "Tutor";
+		}
+		else {
+			this.nivel = "TOP";
 		}
 	}
 	
@@ -173,11 +206,11 @@ public class Tutor implements Comparable<Tutor>{
 		return this.aluno.getCodCurso();
 	}
 
-	public int getNotaAvaliacao() {
+	public int getNotaAvaliacaoAluno() {
 		return this.aluno.getNotaAvaliacao();
 	}
 
-	public void setNotaAvaliacao(int notaAvaliacao) {
+	public void setNotaAvaliacaoAluno(int notaAvaliacao) {
 		aluno.setNotaAvaliacao(notaAvaliacao);
 	}
 

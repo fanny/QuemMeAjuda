@@ -6,7 +6,6 @@ import util.aluno.ErroAluno;
 import util.controller.ErroController;
 import util.controller.OpcoesController;
 
-
 import java.util.NoSuchElementException;
 
 import aluno.Aluno;
@@ -21,8 +20,8 @@ public class Sistema {
 
 	private TutorController tutorController;
 	private AlunoController alunoController;
-	
-	public Sistema(){
+
+	public Sistema() {
 		this.tutorController = new TutorController();
 		this.alunoController = new AlunoController();
 	}
@@ -51,34 +50,32 @@ public class Sistema {
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
 
 		try {
-			
+
 			this.alunoController.validaAluno(matricula);
-			
-		}catch(IllegalArgumentException e) {
-			
-			throw new IllegalArgumentException(ErroController.TORNA_TUTOR_INVALIDO.toString() 
-					+ ErroAluno.MATRICULA_INVALIDA.toString());
-		
-		}catch(NoSuchElementException e) {
-		
-			throw new NoSuchElementException(ErroController.TORNA_TUTOR_INVALIDO.toString()
-					+ErroController.TUTOR_NAO_ENCONTRADO.toString());
-		
+
+		} catch (IllegalArgumentException e) {
+
+			throw new IllegalArgumentException(
+					ErroController.TORNA_TUTOR_INVALIDO.toString() + ErroAluno.MATRICULA_INVALIDA.toString());
+
+		} catch (NoSuchElementException e) {
+
+			throw new NoSuchElementException(
+					ErroController.TORNA_TUTOR_INVALIDO.toString() + ErroController.TUTOR_NAO_ENCONTRADO.toString());
+
 		}
-		
-		String emailTutor = alunoController.getInfoAluno(matricula, 
-				OpcoesController.EMAIL.toString());
-		
-		try{
+
+		String emailTutor = alunoController.getInfoAluno(matricula, OpcoesController.EMAIL.toString());
+
+		try {
 			if (tutorController.existeTutor(emailTutor)) {
 				tutorController.cadastraDisciplina(emailTutor, disciplina, proficiencia);
 			} else {
 				Aluno aluno = alunoController.getAlunoPelaMatricula(matricula);
 				tutorController.cadastraTutor(disciplina, proficiencia, aluno);
 			}
-		}catch(NoSuchElementException e){
-			throw new NoSuchElementException(ErroController.
-					TORNA_TUTOR_INVALIDO.toString() + e.getMessage());	
+		} catch (NoSuchElementException e) {
+			throw new NoSuchElementException(ErroController.TORNA_TUTOR_INVALIDO.toString() + e.getMessage());
 		}
 	}
 
@@ -134,28 +131,26 @@ public class Sistema {
 	 * @see TutorController#recuperaTutor(String)
 	 */
 	public String recuperaTutor(String matricula) {
-		
-		try {
-			
-			this.alunoController.validaAluno(matricula);
-			
-		}catch(IllegalArgumentException e) {
-			
-			throw new IllegalArgumentException(ErroController.BUSCA_TUTOR_INVALIDA.toString() 
-					+ ErroAluno.MATRICULA_INVALIDA.toString());
-		
-		}catch(NoSuchElementException e) {
-		
-			throw new NoSuchElementException(ErroController.BUSCA_TUTOR_INVALIDA.toString()
-					+ErroController.TUTOR_NAO_ENCONTRADO.toString());
-		
-		}
-		
-		String emailTutor = alunoController.getInfoAluno(matricula, OpcoesController.
-				EMAIL.toString());
-		String resultado =  tutorController.recuperaTutor(emailTutor);
 
-		
+		try {
+
+			this.alunoController.validaAluno(matricula);
+
+		} catch (IllegalArgumentException e) {
+
+			throw new IllegalArgumentException(
+					ErroController.BUSCA_TUTOR_INVALIDA.toString() + ErroAluno.MATRICULA_INVALIDA.toString());
+
+		} catch (NoSuchElementException e) {
+
+			throw new NoSuchElementException(
+					ErroController.BUSCA_TUTOR_INVALIDA.toString() + ErroController.TUTOR_NAO_ENCONTRADO.toString());
+
+		}
+
+		String emailTutor = alunoController.getInfoAluno(matricula, OpcoesController.EMAIL.toString());
+		String resultado = tutorController.recuperaTutor(emailTutor);
+
 		return resultado;
 	}
 
@@ -173,6 +168,30 @@ public class Sistema {
 	public String getInfoAluno(String matricula, String atributo) {
 
 		return alunoController.getInfoAluno(matricula, atributo);
+	}
+	
+	/**
+	 * 
+	 * @param idAjuda
+	 * @param nota
+	 * @return
+	 */
+	public String avaliaTutor (int idAjuda, int nota) {
+		return "";
+	}
+
+	/**
+	 * @see TutorController#retornaNotaAvaliacao(String)
+	 */
+	public double pegaNota(String matriculaTutor) {
+		return tutorController.retornaNotaAvaliacao(getInfoAluno(matriculaTutor, "email"));
+	}
+
+	/**
+	 * @see TutorController#retornaNivel(String)
+	 */
+	public String pegaNivel(String matriculaTutor) {
+		return tutorController.retornaNivel(getInfoAluno(matriculaTutor, "email"));
 	}
 
 }

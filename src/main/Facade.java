@@ -105,4 +105,25 @@ public class Facade {
 
 		return this.sistema.getInfoAluno(matricula, atributo);
 	}
+	
+	/**
+	 * @see Sistema#avaliaTutor(int, int)
+	 */
+	public String avaliarTutor (int idAjuda, int nota) {
+		return sistema.avaliaTutor(idAjuda, nota);
+	}
+
+	/**
+	 * @see Sistema#pegaNota(String)
+	 */
+	public double pegarNota(String matriculaTutor) {
+		return sistema.pegaNota(matriculaTutor);
+	}
+
+	/**
+	 * @see Sistema#pegaNivel(String)
+	 */
+	public String pegarNivel(String matriculaTutor) {
+		return sistema.pegaNivel(matriculaTutor);
+	}
 }

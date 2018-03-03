@@ -270,4 +270,21 @@ public class TutorController {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
+	public double retornaNotaAvaliacao(String email) {
+		return tutores.get(email).getNotaAvaliacao();
+	}
+	
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
+	public String retornaNivel(String email) {
+		return tutores.get(email).getNivel();
+	}
 }
