@@ -6,6 +6,7 @@ import org.junit.*;
 
 import aluno.Aluno;
 import tutor.Tutor;
+import util.tutor.MensagemTutor;
 
 public class TutorTeste {
 	Tutor t;
@@ -181,4 +182,56 @@ public class TutorTeste {
 	public void testAddDisciplinaComProficiênciaInvalida() {
 		t.addDisciplina("Rayla", -1);
 	}
+	
+	@Test
+	public void testAvaliaTutor(){
+		t.alteraNotaAvaliacao(5);
+		//O 4 se deve ao fato de que é a primeira invocação
+		double resultadoEsperado = ((4 * 5) + 5)/ 6.0;
+		assertEquals(resultadoEsperado, t.getNotaAvaliacao(), 0);
+	}
+	
+	@Test
+	public void testAvaliaNivelTutor(){
+		t.alteraNotaAvaliacao(5);
+		assertEquals(MensagemTutor.TUTOR.toString(), t.getNivel());
+	}
+	
+	@Test
+	public void testAvaliaNivelTutorAprendiz(){
+		//Só assim para a média ficar inferiro a 3
+		t.alteraNotaAvaliacao(1);
+		t.alteraNotaAvaliacao(1);
+		t.alteraNotaAvaliacao(1);
+		assertEquals(MensagemTutor.APRENDIZ.toString(), t.getNivel());
+	}
+	
+	@Test
+	public void testAvaliaNivelTutorTop(){
+		//Só assim para a média ficar superio a 4.5
+		t.alteraNotaAvaliacao(5);
+		t.alteraNotaAvaliacao(5);
+		t.alteraNotaAvaliacao(5);
+		t.alteraNotaAvaliacao(5);
+		assertEquals(MensagemTutor.TOP.toString(), t.getNivel());
+	}
+
+	
+	
+	/**
+	 * Esse testo é usado para verificar se quando 
+	 * a avaliação é feita mais d euma vez ele naõ retorna
+	 * o valor da primeira
+	 */
+	@Test
+	public void testAvaliaTutorSegundaVez(){
+		t.alteraNotaAvaliacao(5);
+		double resultadoAnterior = t.getNotaAvaliacao();
+		t.alteraNotaAvaliacao(6);
+		double resultadoEsperado = ((resultadoAnterior * 5) + 6)/6.0;
+		assertEquals(resultadoEsperado, t.getNotaAvaliacao(), 0);
+	}
+	
+	
+	
 }
