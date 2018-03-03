@@ -1,4 +1,5 @@
 package main;
+
 import easyaccept.EasyAccept;
 
 /**
@@ -9,8 +10,8 @@ import easyaccept.EasyAccept;
 public class Facade {
 
 	private Sistema sistema;
-	
-	public Facade(){
+
+	public Facade() {
 		this.sistema = new Sistema();
 	}
 
@@ -105,11 +106,11 @@ public class Facade {
 
 		return this.sistema.getInfoAluno(matricula, atributo);
 	}
-	
+
 	/**
 	 * @see Sistema#avaliaTutor(int, int)
 	 */
-	public String avaliarTutor (int idAjuda, int nota) {
+	public String avaliarTutor(int idAjuda, int nota) {
 		return sistema.avaliaTutor(idAjuda, nota);
 	}
 
@@ -125,5 +126,34 @@ public class Facade {
 	 */
 	public String pegarNivel(String matriculaTutor) {
 		return sistema.pegaNivel(matriculaTutor);
+	}
+
+	/**
+	 * TERMINAR
+	 */
+	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
+			String localInteresse) {
+		return sistema.pedirAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse);
+	}
+
+	/**
+	 * TERMINAR
+	 */
+	public int pedirAjudaOnline(String matrAluno, String disciplina) {
+		return sistema.pedirAjudaOnline(matrAluno, disciplina);
+	}
+	
+	/**
+	 * @see Sistema#pegarTutor(int)
+	 */
+	public String pegarTutor(int idAjuda) {
+		return sistema.pegarTutor(idAjuda);
+	}
+
+	/**
+	 * TERMINAR
+	 */
+	public String getInfoAjuda(int idAjuda, String atributo) {
+		return sistema.getInfoAjuda(idAjuda, atributo);
 	}
 }

@@ -1,11 +1,13 @@
 package tutor;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 import aluno.Aluno;
 import util.controller.ErroController;
@@ -42,16 +44,14 @@ public class TutorController {
 	 *            Aluno que sera um tutor
 	 */
 	public void cadastraTutor(String disciplina, int proficiencia, Aluno aluno) {
-		try{
-			if(TutorValidador.validaTutor(disciplina, proficiencia, aluno)){
+		try {
+			if (TutorValidador.validaTutor(disciplina, proficiencia, aluno)) {
 				Tutor tutor = new Tutor(disciplina, proficiencia, aluno);
 				this.tutores.put(aluno.getEmail(), tutor);
 			}
-		}catch(IllegalArgumentException e){
-			throw new IllegalArgumentException(ErroController.
-					TORNA_TUTOR_INVALIDO.toString() + e.getMessage());
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(ErroController.TORNA_TUTOR_INVALIDO.toString() + e.getMessage());
 		}
-		
 
 	}
 
@@ -61,19 +61,19 @@ public class TutorController {
 	 * @return String uma representação textual dos tutores cadastrados no sistema.
 	 */
 	public String listarTutores() {
-		
+
 		List<Tutor> listaTutores = new ArrayList<Tutor>(this.tutores.values());
-		Collections.sort(listaTutores);	
-		
+		Collections.sort(listaTutores);
+
 		String resultado = "";
 
 		for (int i = 0; i < listaTutores.size(); i++) {
 			Tutor tutor = listaTutores.get(i);
-			
-			if(i != 0){
+
+			if (i != 0) {
 				resultado += ", ";
 			}
-			
+
 			resultado += tutor.toString();
 		}
 
@@ -91,21 +91,17 @@ public class TutorController {
 	 *            Proficiencia na disciplina que ele dara tutoria
 	 */
 	public void cadastraDisciplina(String email, String disciplina, int proficiencia) {
-		try{
-			if(this.validaTutor(email) && 
-					TutorValidador.validaDisciplina(disciplina) &&
-					TutorValidador.validaProficiencia(proficiencia)){
-				
+		try {
+			if (this.validaTutor(email) && TutorValidador.validaDisciplina(disciplina)
+					&& TutorValidador.validaProficiencia(proficiencia)) {
+
 				this.tutores.get(email).addDisciplina(disciplina, proficiencia);
-				
-				
+
 			}
-		}catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException(ErroController.
-					TORNA_TUTOR_INVALIDO.toString() + e.getMessage());
-		}catch (NoSuchElementException e) {
-			throw new NoSuchElementException(ErroController.
-					TORNA_TUTOR_INVALIDO.toString() + e.getMessage());
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(ErroController.TORNA_TUTOR_INVALIDO.toString() + e.getMessage());
+		} catch (NoSuchElementException e) {
+			throw new NoSuchElementException(ErroController.TORNA_TUTOR_INVALIDO.toString() + e.getMessage());
 		}
 	}
 
@@ -120,19 +116,16 @@ public class TutorController {
 	 *            Dia do atendimento
 	 */
 	public void cadastrarHorario(String email, String horario, String dia) {
-		try{
-			if(this.validaTutor(email) &&
-					TutorValidador.validaHorarioDeAtendimento(horario, dia)){
-				
+		try {
+			if (this.validaTutor(email) && TutorValidador.validaHorarioDeAtendimento(horario, dia)) {
+
 				this.tutores.get(email).cadastrarHorario(horario, dia);
-			
+
 			}
-		}catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException(ErroController.
-					CADASTRAR_HORARIO_INVALIDO.toString() + e.getMessage());
-		}catch (NoSuchElementException e) {
-			throw new NoSuchElementException(ErroController.
-					CADASTRAR_HORARIO_INVALIDO.toString() + e.getMessage());
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(ErroController.CADASTRAR_HORARIO_INVALIDO.toString() + e.getMessage());
+		} catch (NoSuchElementException e) {
+			throw new NoSuchElementException(ErroController.CADASTRAR_HORARIO_INVALIDO.toString() + e.getMessage());
 		}
 
 	}
@@ -146,19 +139,16 @@ public class TutorController {
 	 *            Local do atendimento
 	 */
 	public void cadastrarLocalDeAtendimento(String email, String local) {
-		try{
-			if(this.validaTutor(email) &&
-					TutorValidador.validaLocalAtendimento(local)){
-				
+		try {
+			if (this.validaTutor(email) && TutorValidador.validaLocalAtendimento(local)) {
+
 				this.tutores.get(email).cadastrarLocal(local);
-			
+
 			}
-		}catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException(ErroController.
-					CADASTRAR_LOCAL_INVALIDO.toString() + e.getMessage());
-		}catch (NoSuchElementException e) {
-			throw new NoSuchElementException(ErroController.
-					CADASTRAR_LOCAL_INVALIDO.toString() + e.getMessage());
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(ErroController.CADASTRAR_LOCAL_INVALIDO.toString() + e.getMessage());
+		} catch (NoSuchElementException e) {
+			throw new NoSuchElementException(ErroController.CADASTRAR_LOCAL_INVALIDO.toString() + e.getMessage());
 		}
 
 	}
@@ -174,23 +164,21 @@ public class TutorController {
 	 *         horario de atendimento
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
-		
+
 		boolean resultado = false;
 
-		try{
-			if(!this.existeTutor(email)) {
+		try {
+			if (!this.existeTutor(email)) {
 				resultado = false;
-			}else if(TutorValidador.validaHorarioDeAtendimento(horario, dia)){
-			
+			} else if (TutorValidador.validaHorarioDeAtendimento(horario, dia)) {
+
 				resultado = this.tutores.get(email).consultaHorario(horario, dia);
-			
+
 			}
-		}catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException(ErroController.
-					CADASTRAR_HORARIO_INVALIDO.toString() + e.getMessage());
-		}catch (NoSuchElementException e) {
-			throw new NoSuchElementException(ErroController.
-					CADASTRAR_HORARIO_INVALIDO.toString() + e.getMessage());
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(ErroController.CADASTRAR_HORARIO_INVALIDO.toString() + e.getMessage());
+		} catch (NoSuchElementException e) {
+			throw new NoSuchElementException(ErroController.CADASTRAR_HORARIO_INVALIDO.toString() + e.getMessage());
 		}
 		return resultado;
 
@@ -205,25 +193,23 @@ public class TutorController {
 	 *         local de atendimento
 	 */
 	public boolean consultaLocal(String email, String local) {
-		
+
 		boolean resultado = false;
 		try {
-			
-			if(!this.existeTutor(email)) {
+
+			if (!this.existeTutor(email)) {
 				resultado = false;
-			}else if(TutorValidador.validaLocalAtendimento(local)){
-				
+			} else if (TutorValidador.validaLocalAtendimento(local)) {
+
 				resultado = this.tutores.get(email).consultaLocal(local);
-				
+
 			}
-		}catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException(ErroController.
-					CADASTRAR_HORARIO_INVALIDO.toString() + e.getMessage());
-		}catch (NoSuchElementException e) {
-			throw new NoSuchElementException(ErroController.
-					CADASTRAR_HORARIO_INVALIDO.toString() + e.getMessage());
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(ErroController.CADASTRAR_HORARIO_INVALIDO.toString() + e.getMessage());
+		} catch (NoSuchElementException e) {
+			throw new NoSuchElementException(ErroController.CADASTRAR_HORARIO_INVALIDO.toString() + e.getMessage());
 		}
-		
+
 		return resultado;
 
 	}
@@ -250,22 +236,51 @@ public class TutorController {
 	 */
 	public String recuperaTutor(String email) {
 		String resultado = "";
-		
-		if(this.validaTutor(email)){
+
+		if (this.validaTutor(email)) {
 			resultado = this.tutores.get(email).toString();
-		
+
 		}
-	
+
 		return resultado;
 	}
-	
-	private boolean validaTutor(String email){
-		if(TutorValidador.validaEmail(email)){
-			if(!this.existeTutor(email)){
-				throw new NoSuchElementException(ErroController.
-						TUTOR_NAO_CADASTRADO.toString());
+
+	/**
+	 * Recupera um tutor que possui determinada disciplina, horario, dia e local de
+	 * atendimento.
+	 * 
+	 * @param disciplina
+	 *            disciplina do tutor
+	 * @param horario
+	 *            horario do tutor
+	 * @param dia
+	 *            dia de atendimento do tutor
+	 * @param localInteresse
+	 *            local de atendimento do tutor
+	 */
+	public void recuperaTutorParaAjuda(String disciplina, String horario, String dia, String localInteresse) {
+
+		List<Tutor> tutoresOrdenados = new ArrayList<>();
+		tutoresOrdenados.addAll(this.tutores.values());
+
+		tutoresOrdenados = tutoresOrdenados.stream().filter((Tutor t) -> t.disciplinaExiste(disciplina) == true)
+				.collect(Collectors.toList());
+
+		tutoresOrdenados = tutoresOrdenados.stream().filter((Tutor t) -> t.consultaHorario(horario, dia) == true)
+				.collect(Collectors.toList());
+
+		String matricula2 = tutoresOrdenados.stream().filter(t -> t.consultaLocal(localInteresse) == true)
+				.map(e -> e.toString()).reduce("", String::concat);
+
+		System.out.println(matricula2);
+	}
+
+	private boolean validaTutor(String email) {
+		if (TutorValidador.validaEmail(email)) {
+			if (!this.existeTutor(email)) {
+				throw new NoSuchElementException(ErroController.TUTOR_NAO_CADASTRADO.toString());
 			}
-			
+
 		}
 		return true;
 	}
@@ -278,7 +293,7 @@ public class TutorController {
 	public double retornaNotaAvaliacao(String email) {
 		return tutores.get(email).getNotaAvaliacao();
 	}
-	
+
 	/**
 	 * 
 	 * @param email

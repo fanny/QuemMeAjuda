@@ -1,11 +1,14 @@
 package main;
 
+import tutor.AjudaController;
+import tutor.Tutor;
 import tutor.TutorController;
 
 import util.aluno.ErroAluno;
 import util.controller.ErroController;
 import util.controller.OpcoesController;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import aluno.Aluno;
@@ -20,10 +23,12 @@ public class Sistema {
 
 	private TutorController tutorController;
 	private AlunoController alunoController;
+	private AjudaController ajudaController;
 
 	public Sistema() {
 		this.tutorController = new TutorController();
 		this.alunoController = new AlunoController();
+		this.ajudaController = new AjudaController();
 	}
 
 	/**
@@ -169,14 +174,14 @@ public class Sistema {
 
 		return alunoController.getInfoAluno(matricula, atributo);
 	}
-	
+
 	/**
 	 * 
 	 * @param idAjuda
 	 * @param nota
 	 * @return
 	 */
-	public String avaliaTutor (int idAjuda, int nota) {
+	public String avaliaTutor(int idAjuda, int nota) {
 		return "";
 	}
 
@@ -192,6 +197,44 @@ public class Sistema {
 	 */
 	public String pegaNivel(String matriculaTutor) {
 		return tutorController.retornaNivel(getInfoAluno(matriculaTutor, "email"));
+	}
+
+	/**
+	 * TERMINAR
+	 */
+	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
+			String localInteresse) {
+		
+		this.tutorController.recuperaTutorParaAjuda(disciplina, horario, dia, localInteresse);
+
+		return 1;
+	}
+
+	/**
+	 * TERMINAR
+	 */
+	public int pedirAjudaOnline(String matrAluno, String disciplina) {
+		this.ajudaController.cadastraAjudaOnline(matrAluno, disciplina);
+		return 1;
+	}
+
+	/**
+	 * Recupera o tutor de uma ajuda.
+	 * 
+	 * @param idAjuda
+	 *            identificador da ajuda
+	 * @return uma <code>string</code> que representa a matricula do tutor
+	 */
+	public String pegarTutor(int idAjuda) {
+		return this.ajudaController.pegarTutor(idAjuda);
+
+	}
+
+	/**
+	 * TERMINAR
+	 */
+	public String getInfoAjuda(int idAjuda, String atributo) {
+		return this.ajudaController.getInfoAjuda(idAjuda, atributo);
 	}
 
 }
