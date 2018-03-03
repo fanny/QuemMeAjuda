@@ -7,6 +7,7 @@ import java.util.Set;
 
 import aluno.Aluno;
 import util.controller.ErroController;
+import util.tutor.MensagemTutor;
 import util.tutor.TutorValidador;
 
 /**
@@ -172,13 +173,13 @@ public class Tutor implements Comparable<Tutor> {
 
 	private void defineNivel() {
 		if(this.notaAvaliacao <= 3) {
-			this.nivel = "Aprendiz";
+			this.nivel = MensagemTutor.APRENDIZ.toString();
 		}
 		else if(this.notaAvaliacao <= 4.5) {
-			this.nivel = "Tutor";
+			this.nivel = MensagemTutor.TUTOR.toString();
 		}
 		else {
-			this.nivel = "TOP";
+			this.nivel = MensagemTutor.TOP.toString();
 		}
 	}
 	
