@@ -1,5 +1,6 @@
 package tutor;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -9,8 +10,19 @@ import java.util.Map;
  */
 public class AjudaController {
 
+	/**
+	 * Map que representa as ajudas cadastradas no sistema. Possui como chave o
+	 * identificador da ajuda, e como valor um objeto que representa a ajuda.
+	 */
 	private Map<Integer, Ajuda> ajudas;
-	
+
+	/**
+	 * Construtor da classe.
+	 */
+	public AjudaController() {
+		this.ajudas = new HashMap<>();
+	}
+
 	/**
 	 * Cadastra um pedido de ajuda presencial
 	 * 
@@ -35,8 +47,10 @@ public class AjudaController {
 	/**
 	 * Registra um pedido de ajuda online.
 	 * 
-	 * @param matrAluno matricula di tutor da ajuda
-	 * @param disciplina disiciplina tema da ajuda
+	 * @param matrAluno
+	 *            matricula di tutor da ajuda
+	 * @param disciplina
+	 *            disiciplina tema da ajuda
 	 * @return um <code>int</code> que representa o identificador da ajuda.
 	 */
 	public int cadastraAjudaOnline(String matrAluno, String disciplina) {

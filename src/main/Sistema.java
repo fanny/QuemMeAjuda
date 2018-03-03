@@ -227,7 +227,6 @@ public class Sistema {
 	 */
 	public String pegarTutor(int idAjuda) {
 		return this.ajudaController.pegarTutor(idAjuda);
-
 	}
 
 	/**
