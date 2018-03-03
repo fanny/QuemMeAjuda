@@ -313,4 +313,8 @@ public class TutorController {
 	public String retornaNivel(String email) {
 		return tutores.get(email).getNivel();
 	}
+	
+	public void avaliaTutor(String email, int nota) {
+		tutores.get(email).setNotaAvaliacaoAluno(nota);
+	}
 }

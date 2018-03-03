@@ -178,30 +178,6 @@ public class Sistema {
 	}
 
 	/**
-	 * 
-	 * @param idAjuda
-	 * @param nota
-	 * @return
-	 */
-	public String avaliaTutor(int idAjuda, int nota) {
-		return "";
-	}
-
-	/**
-	 * @see TutorController#retornaNotaAvaliacao(String)
-	 */
-	public double pegaNota(String matriculaTutor) {
-		return tutorController.retornaNotaAvaliacao(getInfoAluno(matriculaTutor, "email"));
-	}
-
-	/**
-	 * @see TutorController#retornaNivel(String)
-	 */
-	public String pegaNivel(String matriculaTutor) {
-		return tutorController.retornaNivel(getInfoAluno(matriculaTutor, "email"));
-	}
-
-	/**
 	 * @see AjudaController#cadastrarAjudaPresencial(String, String, String, String, String)
 	 */
 	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
@@ -235,6 +211,33 @@ public class Sistema {
 	 */
 	public String getInfoAjuda(int idAjuda, String atributo) {
 		return this.ajudaController.getInfoAjuda(idAjuda, atributo);
+	}
+	
+	/**
+	 * 
+	 * @param idAjuda
+	 * @param nota
+	 * @return
+	 */
+	public String avaliaTutor(int idAjuda, int nota) {
+		String matriculaTutor = ajudaController.pegarTutor(idAjuda);
+		String emailTutor = getInfoAluno(matriculaTutor, "email");
+		tutorController.avaliaTutor(emailTutor, nota);
+		return "";
+	}
+
+	/**
+	 * @see TutorController#retornaNotaAvaliacao(String)
+	 */
+	public double pegaNota(String matriculaTutor) {
+		return tutorController.retornaNotaAvaliacao(getInfoAluno(matriculaTutor, "email"));
+	}
+
+	/**
+	 * @see TutorController#retornaNivel(String)
+	 */
+	public String pegaNivel(String matriculaTutor) {
+		return tutorController.retornaNivel(getInfoAluno(matriculaTutor, "email"));
 	}
 
 }
