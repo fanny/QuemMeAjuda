@@ -1,4 +1,4 @@
-package tutor;
+package tutor.ajuda;
 
 /**
  * Classe que representa uma ajuda online.

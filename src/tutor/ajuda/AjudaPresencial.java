@@ -1,4 +1,6 @@
-package tutor;
+package tutor.ajuda;
+
+import tutor.HorarioAtendimento;
 
 /**
  * Classe que representa uma ajuda presencial.

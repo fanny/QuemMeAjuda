@@ -1,4 +1,4 @@
-package tutor;
+package tutor.ajuda;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,9 +1,8 @@
 package main;
 
-import tutor.AjudaController;
 import tutor.Tutor;
 import tutor.TutorController;
-
+import tutor.ajuda.AjudaController;
 import util.aluno.ErroAluno;
 import util.controller.ErroController;
 import util.controller.OpcoesController;
