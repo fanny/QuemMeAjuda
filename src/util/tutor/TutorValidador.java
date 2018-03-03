@@ -28,7 +28,7 @@ public class TutorValidador {
 	
 	public static boolean validaAluno(Aluno aluno){
 		if(aluno == null){
-			throw new NullPointerException(ErroTutor.ALUNO_INVALIDO.toString());
+			throw new NullPointerException(MensagemTutor.ALUNO_INVALIDO.toString());
 		}
 		return AlunoValidador.validaAluno(aluno.getNome(), aluno.getMatricula(), 
 				aluno.getTelefone(), aluno.getEmail(), aluno.getCodCurso());
@@ -38,11 +38,11 @@ public class TutorValidador {
 	 * @see Validador#validaTexto(String)
 	 */
 	public static boolean validaDisciplina(String disciplina){
-		return Validador.validaTexto(disciplina, ErroTutor.DISCIPLINA_JA_EXISTE.toString());
+		return Validador.validaTexto(disciplina, MensagemTutor.DISCIPLINA_JA_EXISTE.toString());
 	}
 	
 	public static boolean validaLocalAtendimento(String local){
-		return Validador.validaTexto(local, ErroTutor.LOCAL_INVALIDO.toString());
+		return Validador.validaTexto(local, MensagemTutor.LOCAL_INVALIDO.toString());
 	}
 	
 	public static boolean validaHorarioDeAtendimento(String horario, String dia){
@@ -50,21 +50,21 @@ public class TutorValidador {
 	}
 	
 	public static boolean validaHorario(String horario){
-		if (Validador.validaTexto(horario, ErroTutor.HORARIO_ATENDIMENTO_INVALIDO.toString())) {
+		if (Validador.validaTexto(horario, MensagemTutor.HORARIO_ATENDIMENTO_INVALIDO.toString())) {
 			String formaHorario = "^([0-9]{2}:[0-9]{2})$";
 			
 			if (!horario.matches(formaHorario)) {
-				throw new IllegalArgumentException(ErroTutor.HORARIO_ATENDIMENTO_INVALIDO.toString());
+				throw new IllegalArgumentException(MensagemTutor.HORARIO_ATENDIMENTO_INVALIDO.toString());
 			}
 		}
 		return true;
 	}
 	public static boolean validaDia(String dia){
-		return Validador.validaTexto(dia, ErroTutor.DIA_ATENDIMENTO_INVALIDO.toString());
+		return Validador.validaTexto(dia, MensagemTutor.DIA_ATENDIMENTO_INVALIDO.toString());
 	}
 	
 	public static boolean validaEmail(String email) {
-		return Validador.validaEmail(email, ErroTutor.EMAIL_INVALIDO.toString());
+		return Validador.validaEmail(email, MensagemTutor.EMAIL_INVALIDO.toString());
 	}
 	
 	
@@ -79,6 +79,6 @@ public class TutorValidador {
 	 */
 	public static boolean validaProficiencia(int proficiencia) {
 		return Validador.validaMaiorQueZero(proficiencia, 
-				ErroTutor.PROFICIENCIA_INVALIDA.toString()) && Validador.validaMenorQue6(proficiencia, ErroTutor.PROFICIENCIA_INVALIDA.toString());
+				MensagemTutor.PROFICIENCIA_INVALIDA.toString()) && Validador.validaMenorQue6(proficiencia, MensagemTutor.PROFICIENCIA_INVALIDA.toString());
 	}
 }
