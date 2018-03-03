@@ -258,21 +258,32 @@ public class TutorController {
 	 * @param localInteresse
 	 *            local de atendimento do tutor
 	 */
-	public void recuperaTutorParaAjuda(String disciplina, String horario, String dia, String localInteresse) {
+	public String recuperaTutorParaAjuda(String disciplina, String horario, String dia, String localInteresse) {
 
-		List<Tutor> tutoresOrdenados = new ArrayList<>();
-		tutoresOrdenados.addAll(this.tutores.values());
+		List<Tutor> tutoresParaAjuda = new ArrayList<>();
+		tutoresParaAjuda.addAll(this.tutores.values());
 
-		tutoresOrdenados = tutoresOrdenados.stream().filter((Tutor t) -> t.disciplinaExiste(disciplina) == true)
+		tutoresParaAjuda = tutoresParaAjuda.stream().filter((Tutor t) -> t.disciplinaExiste(disciplina) == true)
 				.collect(Collectors.toList());
 
-		tutoresOrdenados = tutoresOrdenados.stream().filter((Tutor t) -> t.consultaHorario(horario, dia) == true)
+		tutoresParaAjuda = tutoresParaAjuda.stream().filter((Tutor t) -> t.consultaHorario(horario, dia) == true)
 				.collect(Collectors.toList());
 
-		String matricula2 = tutoresOrdenados.stream().filter(t -> t.consultaLocal(localInteresse) == true)
-				.map(e -> e.toString()).reduce("", String::concat);
+		String tutorMatricula = tutoresParaAjuda.stream().filter(t -> t.consultaLocal(localInteresse) == true)
+				.map(e -> e.getMatricula()).reduce("", String::concat);
 
-		System.out.println(matricula2);
+		return tutorMatricula;
+	}
+
+	public String recuperaTutorParaAjuda(String disciplina) {
+
+		List<Tutor> tutoresParaAjuda = new ArrayList<>();
+		tutoresParaAjuda.addAll(this.tutores.values());
+
+		String tutorMatricula = tutoresParaAjuda.stream().filter(t -> t.disciplinaExiste(disciplina) == true)
+				.map(e -> e.getMatricula()).reduce("", String::concat);
+
+		return tutorMatricula;
 	}
 
 	private boolean validaTutor(String email) {

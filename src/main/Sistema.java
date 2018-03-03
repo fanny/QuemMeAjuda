@@ -24,6 +24,9 @@ public class Sistema {
 	private AlunoController alunoController;
 	private AjudaController ajudaController;
 
+	/**
+	 * Construtor da classe
+	 */
 	public Sistema() {
 		this.tutorController = new TutorController();
 		this.alunoController = new AlunoController();
@@ -199,30 +202,29 @@ public class Sistema {
 	}
 
 	/**
-	 * TERMINAR
+	 * @see AjudaController#cadastrarAjudaPresencial(String, String, String, String, String)
 	 */
 	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
 			String localInteresse) {
-		
-		this.tutorController.recuperaTutorParaAjuda(disciplina, horario, dia, localInteresse);
 
-		return 1;
+		String tutorMatricula = this.tutorController.recuperaTutorParaAjuda(disciplina, horario, dia, localInteresse);
+		
+		return this.ajudaController.cadastrarAjudaPresencial(tutorMatricula, disciplina, horario, dia, localInteresse);
+
 	}
 
 	/**
-	 * TERMINAR
+	 * @see AjudaController#cadastraAjudaOnline(String, String)
 	 */
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
-		this.ajudaController.cadastraAjudaOnline(matrAluno, disciplina);
-		return 1;
+		
+		String tutorMatricula = this.tutorController.recuperaTutorParaAjuda(disciplina);
+		
+		return this.ajudaController.cadastraAjudaOnline(matrAluno, disciplina);
 	}
 
 	/**
-	 * Recupera o tutor de uma ajuda.
-	 * 
-	 * @param idAjuda
-	 *            identificador da ajuda
-	 * @return uma <code>string</code> que representa a matricula do tutor
+	 * @see AjudaController#pegarTutor(int)
 	 */
 	public String pegarTutor(int idAjuda) {
 		return this.ajudaController.pegarTutor(idAjuda);

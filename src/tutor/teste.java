@@ -24,7 +24,7 @@ public class teste {
 		sistema.cadastrarHorario("VelhaDosGatos@hotmail.com", "13:00", "Segunda");
 		sistema.cadastrarLocalDeAtendimento("VelhaDosGatos@hotmail.com", "Escola");
 		
-		sistema.pedirAjudaPresencial("655484", "Poo", "13:00", "Segunda", "Escola");
+		sistema.pedirAjudaPresencial("1234519", "Poo", "13:00", "Segunda", "Escola");
 	}
 
 }

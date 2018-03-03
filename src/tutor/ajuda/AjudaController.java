@@ -24,20 +24,26 @@ public class AjudaController {
 	}
 
 	/**
-	 * Cadastra um pedido de ajuda presencial
+	 * Registra um pedido de ajuda presencial
 	 * 
-	 * @param matrAluno
+	 * @param tutorMatricula
+	 *            matricula do tutor que dará a ajuda
 	 * @param disciplina
+	 *            disciplina tema da ajuda
 	 * @param horario
+	 *            horario da ajuda
 	 * @param dia
+	 *            dia da ajuda
 	 * @param local
-	 * @return
+	 *            local da ajuda
+	 * @return um <code>int</code> que representa o identificador da ajuda
 	 */
-	public int cadastrarAjudaPresencial(String matrAluno, String disciplina, String horario, String dia, String local) {
+	public int cadastrarAjudaPresencial(String tutorMatricula, String disciplina, String horario, String dia,
+			String local) {
 
 		int id = ajudas.size() + 1;
 
-		AjudaPresencial ajudaPresencial = new AjudaPresencial(id, disciplina, matrAluno, horario, dia, local);
+		AjudaPresencial ajudaPresencial = new AjudaPresencial(id, disciplina, tutorMatricula, horario, dia, local);
 
 		this.ajudas.put(id, ajudaPresencial);
 
@@ -59,11 +65,13 @@ public class AjudaController {
 
 		AjudaOnline ajudaOnline = new AjudaOnline(id, disciplina, matrAluno);
 
+		this.ajudas.put(id, ajudaOnline);
+
 		return id;
 	}
 
 	/**
-	 * Pega a matricula do tutor de uma determinada ajuda.
+	 * Recupera a matricula do tutor de uma determinada ajuda.
 	 * 
 	 * @param idAjuda
 	 *            identificador da ajuda

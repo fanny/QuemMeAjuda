@@ -129,7 +129,7 @@ public class Facade {
 	}
 
 	/**
-	 * TERMINAR
+	 * @see Sistema#pedirAjudaPresencial(String, String, String, String, String)
 	 */
 	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
 			String localInteresse) {
@@ -137,7 +137,7 @@ public class Facade {
 	}
 
 	/**
-	 * TERMINAR
+	 * @see Sistema#pedirAjudaOnline(String, String)
 	 */
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
 		return sistema.pedirAjudaOnline(matrAluno, disciplina);
