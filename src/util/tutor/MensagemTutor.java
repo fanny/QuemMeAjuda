@@ -1,6 +1,6 @@
 package util.tutor;
 
-public enum ErroTutor {
+public enum MensagemTutor {
 	
 	DISCIPLINA_JA_EXISTE("Ja eh tutor dessa disciplina"),
 	PROFICIENCIA_INVALIDA("Proficiencia invalida"),
@@ -8,7 +8,10 @@ public enum ErroTutor {
 	DIA_ATENDIMENTO_INVALIDO("dia nao pode ser vazio ou em branco"),
 	HORARIO_ATENDIMENTO_INVALIDO("horario nao pode ser vazio ou em branco"),
 	EMAIL_INVALIDO("email nao pode ser vazio ou em branco"),
-	ALUNO_INVALIDO("O aluno não pode ser nulo");
+	ALUNO_INVALIDO("O aluno não pode ser nulo"),
+	TOP("TOP"),
+	APRENDIZ("Aprendiz"),
+	TUTOR("Tutor");
 	
 	private String descricao;
 	
@@ -16,7 +19,7 @@ public enum ErroTutor {
 	 * Inicializa os valores de cada enum
 	 * @param descricao o valor do enum
 	 */
-	private ErroTutor(String descricao){
+	private MensagemTutor(String descricao){
 		this.descricao = descricao;
 	}
 	
