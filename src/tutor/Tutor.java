@@ -80,7 +80,7 @@ public class Tutor implements Comparable<Tutor> {
 	}
 
 	public void alteraNotaAvaliacao(double notaAvaliacao) {
-		this.notaAvaliacao = (this.notaAvaliacao * 5 + notaAvaliacao) / 6;
+		this.notaAvaliacao = (this.notaAvaliacao * 5 + notaAvaliacao) / 6.0;
 		this.defineNivel();
 	}
 
