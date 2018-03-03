@@ -74,15 +74,11 @@ public class Sistema {
 
 		String emailTutor = alunoController.getInfoAluno(matricula, OpcoesController.EMAIL.toString());
 
-		try {
-			if (tutorController.existeTutor(emailTutor)) {
-				tutorController.cadastraDisciplina(emailTutor, disciplina, proficiencia);
-			} else {
-				Aluno aluno = alunoController.getAlunoPelaMatricula(matricula);
-				tutorController.cadastraTutor(disciplina, proficiencia, aluno);
-			}
-		} catch (NoSuchElementException e) {
-			throw new NoSuchElementException(ErroController.TORNA_TUTOR_INVALIDO.toString() + e.getMessage());
+		if (tutorController.existeTutor(emailTutor)) {
+			tutorController.cadastraDisciplina(emailTutor, disciplina, proficiencia);
+		} else {
+			Aluno aluno = alunoController.getAlunoPelaMatricula(matricula);
+			tutorController.cadastraTutor(disciplina, proficiencia, aluno);
 		}
 	}
 
