@@ -22,6 +22,22 @@ public class Validador {
 	}
 
 	/**
+	 * Verifica se o valor passado é maior ou igual que zero
+	 * 
+	 * @param valor
+	 *            o valor a ser validado
+	 * @throws IllegalArgumentException
+	 *             caso o valor seja negativo
+	 * @return true caso o valor seja maior que zero, false caso contrário
+	 */
+	public static boolean validaMaiorIgualZero(double valor, String mensagem) {
+		if (valor <= 0.0) {
+			throw new IllegalArgumentException(mensagem);
+		}
+		return true;
+	}
+	
+	/**
 	 * Verifica se o valor passado é maior que zero
 	 * 
 	 * @param valor
@@ -30,8 +46,8 @@ public class Validador {
 	 *             caso o valor seja negativo
 	 * @return true caso o valor seja maior que zero, false caso contrário
 	 */
-	public static boolean validaMaiorQueZero(double valor, String mensagem) {
-		if (valor <= 0.0) {
+	public static boolean validaMenorQueZero(double valor, String mensagem) {
+		if (valor < 0.0) {
 			throw new IllegalArgumentException(mensagem);
 		}
 		return true;

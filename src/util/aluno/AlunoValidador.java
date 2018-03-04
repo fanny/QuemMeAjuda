@@ -68,7 +68,7 @@ public class AlunoValidador {
 	 * @see Validador#validaMaiorQuezero(String)
 	 */
 	public static boolean validaCodigoDoCurso(int codigoDoCurso) {
-		return Validador.validaMaiorQueZero(codigoDoCurso, ErroAluno.CODIGO_INVALIDO.toString());	
+		return Validador.validaMaiorIgualZero(codigoDoCurso, ErroAluno.CODIGO_INVALIDO.toString());	
 	}
 	
 	/**
@@ -79,7 +79,7 @@ public class AlunoValidador {
 	 * @return true caso a nota seja válida, false caso contrário
 	 */
 	public static boolean validaNotaAvaliacao(int notaAvaliacao) {
-		return Validador.validaMaiorQueZero(notaAvaliacao, ErroAluno.NOTA_AVALIACAO_INVALIDA.toString()) && 
+		return Validador.validaMaiorIgualZero(notaAvaliacao, ErroAluno.NOTA_AVALIACAO_INVALIDA.toString()) && 
 				Validador.validaMenorQue6(notaAvaliacao, ErroAluno.NOTA_AVALIACAO_INVALIDA.toString());
 	}
 

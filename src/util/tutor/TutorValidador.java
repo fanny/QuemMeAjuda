@@ -109,20 +109,14 @@ public class TutorValidador {
 	 *                caso não seja a faixa de valor correta
 	 */
 	public static boolean validaProficiencia(int proficiencia) {
-		return Validador.validaMaiorQueZero(proficiencia, MensagemTutor.PROFICIENCIA_INVALIDA.toString())
+		return Validador.validaMaiorIgualZero(proficiencia, MensagemTutor.PROFICIENCIA_INVALIDA.toString())
 				&& Validador.validaMenorQue6(proficiencia, MensagemTutor.PROFICIENCIA_INVALIDA.toString());
 	}
-
-	/**
-	 * Verifica se a nota da avaliação é maior ou igual a 0
-	 * 
-	 * @param nota
-	 *            Nota da avaliação
-	 * 
-	 * @exception IllegalArgumentException
-	 *                caso não obdeça a condição estabelecida
-	 */
-	public static boolean validaNotaAvaliacao(int nota) {
-		return Validador.validaMaiorOuIgualAZero(nota, MensagemTutor.NOTA_AVALIACAO_INVALIDA.toString());
+	
+	public static boolean validaNotaAvaliacao(int notaAvaliacao){
+		return Validador.validaMenorQueZero(notaAvaliacao, 
+				MensagemTutor.NOTA_AVALIACAO_INVALIDA.toString()) && 
+				Validador.validaMenorQue6(notaAvaliacao, MensagemTutor.
+						NOTA_AVALIACAO_INVALIDA.toString());
 	}
 }
