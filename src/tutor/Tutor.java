@@ -66,7 +66,7 @@ public class Tutor implements Comparable<Tutor> {
 			this.disciplinas = new HashMap<>();
 			this.addDisciplina(disciplina, proficiencia);
 			this.notaAvaliacao = 4.0;
-			this.nivel = "Tutor";
+			this.nivel = MensagemTutor.TUTOR.toString();
 			this.salario = 0;
 			this.locaisDeAtendimento = new HashSet<>();
 			this.horariosDeAtendimento = new HashSet<>();

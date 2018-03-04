@@ -4,6 +4,7 @@ public enum MensagemTutor {
 	
 	DISCIPLINA_JA_EXISTE("Ja eh tutor dessa disciplina"),
 	PROFICIENCIA_INVALIDA("Proficiencia invalida"),
+	DISCIPLINA_INVALIDA("disciplina nao pode ser vazio ou em branco"),
 	LOCAL_INVALIDO("local nao pode ser vazio ou em branco"),
 	DIA_ATENDIMENTO_INVALIDO("dia nao pode ser vazio ou em branco"),
 	HORARIO_ATENDIMENTO_INVALIDO("horario nao pode ser vazio ou em branco"),

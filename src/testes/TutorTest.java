@@ -9,7 +9,7 @@ import tutor.Tutor;
 import util.tutor.MensagemTutor;
 
 public class TutorTest {
-	Tutor t;
+	private Tutor t;
 
 	@Before
 	public void testTutor() {

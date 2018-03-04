@@ -5,7 +5,8 @@ import org.junit.*;
 import tutor.HorarioAtendimento;
 
 public class HorarioAtendimentoTeste {
-	HorarioAtendimento hr;
+	
+	private HorarioAtendimento hr;
 
 	@Before
 	public void testHorarioAtendimento() {

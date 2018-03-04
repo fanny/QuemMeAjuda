@@ -2,6 +2,7 @@ package tutor.ajuda;
 
 import tutor.HorarioAtendimento;
 import tutor.Tutor;
+import util.tutor.TutorValidador;
 
 /**
  * Classe que representa uma ajuda presencial.
@@ -37,12 +38,14 @@ public class AjudaPresencial extends Ajuda {
 	 *            local em que será dada a ajuda
 	 */
 	public AjudaPresencial(Integer id, String disciplina, Tutor tutor, String horario, String dia, String local) {
-
-		this.id = id;
-		this.disciplina = disciplina;
-		this.tutor = tutor;
-		this.horario = new HorarioAtendimento(dia, horario);
-		this.local = local;
+		super(id, disciplina, tutor);
+		if(TutorValidador.validaHorarioDeAtendimento(horario, dia) && 
+				TutorValidador.validaLocalAtendimento(local)){
+			
+			this.horario = new HorarioAtendimento(dia, horario);
+			this.local = local;
+			
+		}
 
 	}
 

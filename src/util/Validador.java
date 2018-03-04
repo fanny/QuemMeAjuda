@@ -1,5 +1,7 @@
 package util;
 
+import util.controller.ErroController;
+
 public class Validador {
 
 	/**
@@ -96,6 +98,13 @@ public class Validador {
 	public static boolean validaMaiorOuIgualAZero(double valor, String mensagem) {
 		if (valor < 0.0) {
 			throw new IllegalArgumentException(mensagem);
+		}
+		return true;
+	}
+	
+	public static boolean validaObjeto(Object object, String mensagem){
+		if(object == null){
+			throw new NullPointerException(mensagem);
 		}
 		return true;
 	}

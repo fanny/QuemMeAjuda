@@ -21,15 +21,13 @@ public class AjudaOnline extends Ajuda {
 	 */
 	public AjudaOnline(Integer id, String disciplina, Tutor tutor) {
 
-		this.id = id;
-		this.disciplina = disciplina;
-		this.tutor = tutor;
+		super(id, disciplina, tutor);
 
 	}
 
 	@Override
 	public String toString() {
-		String result = "Tutor - " + this.tutor.getMatricula() + ", disciplina- " + this.disciplina;
+		String result = "Tutor - " + this.tutor.getMatricula() + ", disciplina - " + this.disciplina;
 
 		return result;
 	}

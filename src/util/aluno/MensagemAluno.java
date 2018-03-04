@@ -1,6 +1,6 @@
 package util.aluno;
 
-public enum ErroAluno {
+public enum MensagemAluno {
 	
 	EMAIL_INVALIDO("Email invalido"),
 	ALUNO_NAO_ENCONTRADO("Aluno nao encontrado"),
@@ -17,7 +17,7 @@ public enum ErroAluno {
 	 * Inicializa os valores de cada enum
 	 * @param descricao o valor do enum
 	 */
-	private ErroAluno(String descricao){
+	private MensagemAluno(String descricao){
 		this.descricao = descricao;
 	}
 	

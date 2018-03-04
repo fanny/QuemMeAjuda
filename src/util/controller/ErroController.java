@@ -12,7 +12,9 @@ public enum ErroController {
 	GET_ALUNO_MATRICULA_INVALIDO("Erro na obtenção do objeto aluno: "),
 	BUSCA_ALUNO_INVALIDA("Erro na busca por aluno: "),
 	GET_INFO_ALUNO_INVALIDA("Erro na obtencao de informacao de aluno: "),
-	CADASTRO_ALUNO_INVALIDO("Erro no cadastro de aluno: ");
+	CADASTRO_ALUNO_INVALIDO("Erro no cadastro de aluno: "),
+	ID_INVALIDO("id nao pode menor que zero"),
+	OBJETO_NULO("O objeto não pode ser nulo");
 	
 	private String descricao;
 	

@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 import util.aluno.AlunoValidador;
-import util.aluno.ErroAluno;
+import util.aluno.MensagemAluno;
 import util.controller.ErroController;
 import util.controller.OpcoesController;
 
@@ -174,7 +174,7 @@ public class AlunoController {
 	private boolean validaAlunoExistente(String matricula){
 		if(AlunoValidador.validaMatricula(matricula)){
 			if(this.existeAluno(matricula)){
-				throw new IllegalStateException(ErroAluno.
+				throw new IllegalStateException(MensagemAluno.
 						ALUNO_JA_CADASTRADO.toString());
 			}
 		}
@@ -185,7 +185,7 @@ public class AlunoController {
 	public boolean validaAluno(String matricula){
 		if(AlunoValidador.validaMatricula(matricula)){
 			if(!this.existeAluno(matricula)){
-				throw new NoSuchElementException(ErroAluno.
+				throw new NoSuchElementException(MensagemAluno.
 						ALUNO_NAO_ENCONTRADO.toString());
 			}
 		}

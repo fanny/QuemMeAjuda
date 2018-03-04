@@ -3,11 +3,9 @@ package main;
 import tutor.Tutor;
 import tutor.TutorController;
 import tutor.ajuda.AjudaController;
-import util.aluno.ErroAluno;
+import util.aluno.MensagemAluno;
 import util.controller.ErroController;
 import util.controller.OpcoesController;
-
-import java.util.List;
 import java.util.NoSuchElementException;
 
 import aluno.Aluno;
@@ -63,7 +61,7 @@ public class Sistema {
 		} catch (IllegalArgumentException e) {
 
 			throw new IllegalArgumentException(
-					ErroController.TORNA_TUTOR_INVALIDO.toString() + ErroAluno.MATRICULA_INVALIDA.toString());
+					ErroController.TORNA_TUTOR_INVALIDO.toString() + MensagemAluno.MATRICULA_INVALIDA.toString());
 
 		} catch (NoSuchElementException e) {
 
@@ -142,7 +140,8 @@ public class Sistema {
 		} catch (IllegalArgumentException e) {
 
 			throw new IllegalArgumentException(
-					ErroController.BUSCA_TUTOR_INVALIDA.toString() + ErroAluno.MATRICULA_INVALIDA.toString());
+					ErroController.BUSCA_TUTOR_INVALIDA.toString() + MensagemAluno.
+						MATRICULA_INVALIDA.toString());
 
 		} catch (NoSuchElementException e) {
 
@@ -219,7 +218,8 @@ public class Sistema {
 	 */
 	public String avaliaTutor(int idAjuda, int nota) {
 		String matriculaTutor = ajudaController.pegarTutor(idAjuda);
-		String emailTutor = getInfoAluno(matriculaTutor, "email");
+		String emailTutor = getInfoAluno(matriculaTutor, 
+				OpcoesController.EMAIL.toString());
 		tutorController.avaliaTutor(emailTutor, nota);
 		return "";
 	}
@@ -228,14 +228,16 @@ public class Sistema {
 	 * @see TutorController#retornaNotaAvaliacao(String)
 	 */
 	public double pegaNota(String matriculaTutor) {
-		return tutorController.retornaNotaAvaliacao(getInfoAluno(matriculaTutor, "email"));
+		return tutorController.retornaNotaAvaliacao(getInfoAluno(matriculaTutor, 
+				OpcoesController.EMAIL.toString()));
 	}
 
 	/**
 	 * @see TutorController#retornaNivel(String)
 	 */
 	public String pegaNivel(String matriculaTutor) {
-		return tutorController.retornaNivel(getInfoAluno(matriculaTutor, "email"));
+		return tutorController.retornaNivel(getInfoAluno(matriculaTutor, 
+				OpcoesController.EMAIL.toString()));
 	}
 
 }

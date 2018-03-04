@@ -28,14 +28,14 @@ public class AlunoValidador {
 	 */
 	public static boolean validaMatricula(String matricula){
 		return Validador.validaTexto(matricula, 
-				ErroAluno.MATRICULA_INVALIDA.toString());
+				MensagemAluno.MATRICULA_INVALIDA.toString());
 	}
 	
 	/**
 	 * @see Validador#validaTexto(String)
 	 */
 	public static boolean validaNome(String nome) {
-		return Validador.validaTexto(nome, ErroAluno.NOME_INVALIDO.toString());
+		return Validador.validaTexto(nome, MensagemAluno.NOME_INVALIDO.toString());
 		
 	}
 	
@@ -50,9 +50,9 @@ public class AlunoValidador {
 		String formaTelefone = "^([0-9]{4,}-[0-9]{4}|)$"; 
 		
 		if (telefone == null) {
-			throw new IllegalArgumentException(ErroAluno.TELEFONE_INVALIDO.toString());
+			throw new IllegalArgumentException(MensagemAluno.TELEFONE_INVALIDO.toString());
 		}else if(!telefone.equals("") && !telefone.matches(formaTelefone)) {
-			throw new IllegalArgumentException(ErroAluno.TELEFONE_INVALIDO.toString());
+			throw new IllegalArgumentException(MensagemAluno.TELEFONE_INVALIDO.toString());
 		}
 		return true;
 	}
@@ -61,14 +61,14 @@ public class AlunoValidador {
 	 * @see Validador#validaEmail(String)
 	 */
 	public static boolean validaEmail(String email) {
-		return Validador.validaEmail(email, ErroAluno.EMAIL_INVALIDO.toString());
+		return Validador.validaEmail(email, MensagemAluno.EMAIL_INVALIDO.toString());
 	}
 
 	/**
 	 * @see Validador#validaMaiorQuezero(String)
 	 */
 	public static boolean validaCodigoDoCurso(int codigoDoCurso) {
-		return Validador.validaMaiorIgualZero(codigoDoCurso, ErroAluno.CODIGO_INVALIDO.toString());	
+		return Validador.validaMaiorIgualZero(codigoDoCurso, MensagemAluno.CODIGO_INVALIDO.toString());	
 	}
 	
 	/**
@@ -79,8 +79,8 @@ public class AlunoValidador {
 	 * @return true caso a nota seja válida, false caso contrário
 	 */
 	public static boolean validaNotaAvaliacao(int notaAvaliacao) {
-		return Validador.validaMaiorIgualZero(notaAvaliacao, ErroAluno.NOTA_AVALIACAO_INVALIDA.toString()) && 
-				Validador.validaMenorQue6(notaAvaliacao, ErroAluno.NOTA_AVALIACAO_INVALIDA.toString());
+		return Validador.validaMaiorIgualZero(notaAvaliacao, MensagemAluno.NOTA_AVALIACAO_INVALIDA.toString()) && 
+				Validador.validaMenorQue6(notaAvaliacao, MensagemAluno.NOTA_AVALIACAO_INVALIDA.toString());
 	}
 
 }
