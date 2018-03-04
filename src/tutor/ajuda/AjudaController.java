@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import tutor.Tutor;
+import util.controller.ErroController;
 
 /**
  * Controller das ajudas do sistema.
@@ -42,13 +43,20 @@ public class AjudaController {
 	 */
 	public int cadastrarAjudaPresencial(Tutor tutor, String disciplina, String horario, String dia, String local) {
 
-		int id = ajudas.size() + 1;
+		try {
 
-		AjudaPresencial ajudaPresencial = new AjudaPresencial(id, disciplina, tutor, horario, dia, local);
+			int id = ajudas.size() + 1;
 
-		this.ajudas.put(id, ajudaPresencial);
+			AjudaPresencial ajudaPresencial = new AjudaPresencial(id, disciplina, tutor, horario, dia, local);
+			this.ajudas.put(id, ajudaPresencial);
 
-		return id;
+			return id;
+
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(
+					ErroController.PEDIDO_DE_AJUDA_PRESENCIAL_INVALIDA.toString() + e.getMessage());
+		}
+
 	}
 
 	/**
@@ -62,13 +70,21 @@ public class AjudaController {
 	 */
 	public int cadastraAjudaOnline(Tutor tutor, String disciplina) {
 
-		int id = ajudas.size() + 1;
+		try {
 
-		AjudaOnline ajudaOnline = new AjudaOnline(id, disciplina, tutor);
+			int id = ajudas.size() + 1;
 
-		this.ajudas.put(id, ajudaOnline);
+			AjudaOnline ajudaOnline = new AjudaOnline(id, disciplina, tutor);
 
-		return id;
+			this.ajudas.put(id, ajudaOnline);
+
+			return id;
+
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(
+					ErroController.PEDIDO_DE_AJUDA_ONLINE_INVALIDA.toString() + e.getMessage());
+		}
+
 	}
 
 	/**
@@ -115,7 +131,7 @@ public class AjudaController {
 			return null;
 		}
 	}
-	
+
 	public String pegarMatriculaTutor(int idAjuda) {
 		return this.ajudas.get(idAjuda).getTutor().getMatricula();
 	}

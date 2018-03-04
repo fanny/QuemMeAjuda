@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import aluno.Aluno;
 import util.controller.ErroController;
+import util.tutor.MensagemTutor;
 import util.tutor.TutorValidador;
 
 /**
@@ -257,7 +258,7 @@ public class TutorController {
 	 * @param localInteresse
 	 *            local de atendimento do tutor
 	 */
-	public Tutor recuperaTutorParaAjuda(String disciplina, String horario, String dia, String localInteresse) {
+	public Tutor recuperaTutorParaAjudaPresencial(String disciplina, String horario, String dia, String localInteresse) {
 
 		List<Tutor> tutoresParaAjuda = new ArrayList<>();
 		tutoresParaAjuda.addAll(this.tutores.values());
@@ -288,19 +289,29 @@ public class TutorController {
 	 *            disciplina do tutor
 	 * @return uma objeto tutor
 	 */
-	public Tutor recuperaTutorParaAjuda(String disciplina) {
+	public Tutor recuperaTutorParaAjudaOnline(String disciplina) {
 
-		List<Tutor> tutoresParaAjuda = new ArrayList<>();
-		tutoresParaAjuda.addAll(this.tutores.values());
+		try {
+			if (TutorValidador.validaDisciplina(disciplina)) {
 
-		tutoresParaAjuda = tutoresParaAjuda.stream().filter(t -> t.disciplinaExiste(disciplina) == true)
-				.collect(Collectors.toList());
+				List<Tutor> tutoresParaAjuda = new ArrayList<>();
+				tutoresParaAjuda.addAll(this.tutores.values());
 
-		PontuacaoComparator pontuacaoComparator = new PontuacaoComparator();
-		tutoresParaAjuda.sort(pontuacaoComparator);
+				tutoresParaAjuda = tutoresParaAjuda.stream()
+						.filter(t -> t.disciplinaExiste(disciplina) == true)
+						.collect(Collectors.toList());
 
-		if (tutoresParaAjuda.size() != 0) {
-			return tutoresParaAjuda.get(0);
+				PontuacaoComparator pontuacaoComparator = new PontuacaoComparator();
+				tutoresParaAjuda.sort(pontuacaoComparator);
+
+				if (tutoresParaAjuda.size() != 0) {
+					return tutoresParaAjuda.get(0);
+				}
+
+			}
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(
+					ErroController.PEDIDO_DE_AJUDA_ONLINE_INVALIDA.toString() + e.getMessage());
 		}
 
 		return null;

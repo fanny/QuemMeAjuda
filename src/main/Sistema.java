@@ -3,6 +3,8 @@ package main;
 import tutor.Tutor;
 import tutor.TutorController;
 import tutor.ajuda.AjudaController;
+import util.ajuda.AjudaValidator;
+import util.ajuda.MensagemAjuda;
 import util.aluno.MensagemAluno;
 import util.controller.ErroController;
 import util.controller.OpcoesController;
@@ -140,8 +142,7 @@ public class Sistema {
 		} catch (IllegalArgumentException e) {
 
 			throw new IllegalArgumentException(
-					ErroController.BUSCA_TUTOR_INVALIDA.toString() + MensagemAluno.
-						MATRICULA_INVALIDA.toString());
+					ErroController.BUSCA_TUTOR_INVALIDA.toString() + MensagemAluno.MATRICULA_INVALIDA.toString());
 
 		} catch (NoSuchElementException e) {
 
@@ -179,9 +180,19 @@ public class Sistema {
 	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
 			String localInteresse) {
 
-		Tutor tutor = this.tutorController.recuperaTutorParaAjuda(disciplina, horario, dia, localInteresse);
+		try {
+			if (AjudaValidator.validaAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse)) {
+				Tutor tutor = this.tutorController.recuperaTutorParaAjudaPresencial(disciplina, horario, dia,
+						localInteresse);
 
-		return this.ajudaController.cadastrarAjudaPresencial(tutor, disciplina, horario, dia, localInteresse);
+				return this.ajudaController.cadastrarAjudaPresencial(tutor, disciplina, horario, dia, localInteresse);
+			}
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(
+					ErroController.PEDIDO_DE_AJUDA_PRESENCIAL_INVALIDA.toString() + e.getMessage());
+		}
+
+		return 0;
 
 	}
 
@@ -190,9 +201,20 @@ public class Sistema {
 	 */
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
 
-		Tutor tutor = this.tutorController.recuperaTutorParaAjuda(disciplina);
+		try {
+			if (AjudaValidator.validaAjudaOnline(matrAluno, disciplina)) {
 
-		return this.ajudaController.cadastraAjudaOnline(tutor, disciplina);
+				Tutor tutor = this.tutorController.recuperaTutorParaAjudaOnline(disciplina);
+
+				return this.ajudaController.cadastraAjudaOnline(tutor, disciplina);
+			}
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(
+					ErroController.PEDIDO_DE_AJUDA_ONLINE_INVALIDA.toString() + e.getMessage());
+		}
+
+		return 0;
+
 	}
 
 	/**
@@ -218,8 +240,7 @@ public class Sistema {
 	 */
 	public String avaliaTutor(int idAjuda, int nota) {
 		String matriculaTutor = ajudaController.pegarMatriculaTutor(idAjuda);
-		String emailTutor = getInfoAluno(matriculaTutor, 
-				OpcoesController.EMAIL.toString());
+		String emailTutor = getInfoAluno(matriculaTutor, OpcoesController.EMAIL.toString());
 		tutorController.avaliaTutor(emailTutor, nota);
 		return "";
 	}
@@ -228,16 +249,14 @@ public class Sistema {
 	 * @see TutorController#retornaNotaAvaliacao(String)
 	 */
 	public double pegaNota(String matriculaTutor) {
-		return tutorController.retornaNotaAvaliacao(getInfoAluno(matriculaTutor, 
-				OpcoesController.EMAIL.toString()));
+		return tutorController.retornaNotaAvaliacao(getInfoAluno(matriculaTutor, OpcoesController.EMAIL.toString()));
 	}
 
 	/**
 	 * @see TutorController#retornaNivel(String)
 	 */
 	public String pegaNivel(String matriculaTutor) {
-		return tutorController.retornaNivel(getInfoAluno(matriculaTutor, 
-				OpcoesController.EMAIL.toString()));
+		return tutorController.retornaNivel(getInfoAluno(matriculaTutor, OpcoesController.EMAIL.toString()));
 	}
 
 }
