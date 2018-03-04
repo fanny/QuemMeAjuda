@@ -101,8 +101,22 @@ public class AjudaController {
 	 * @return uma <code>String</code> que representa a matricula do tutor
 	 */
 	public String pegarTutor(int idAjuda) {
-
-		return this.ajudas.get(idAjuda).toString();
+		
+		try {
+			
+			if (this.validaAjuda(idAjuda)){
+				
+				return this.ajudas.get(idAjuda).toString();	
+				
+			}
+			
+		}catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(ErroController.PEGAR_TUTOR_INVALIDO.toString() + e.getMessage());
+		}catch (NoSuchElementException e) {
+			throw new NoSuchElementException(ErroController.PEGAR_TUTOR_INVALIDO.toString() + e.getMessage());
+		}
+		
+		return "";
 	}
 
 	/**
