@@ -217,7 +217,7 @@ public class Sistema {
 	 * @return
 	 */
 	public String avaliaTutor(int idAjuda, int nota) {
-		String matriculaTutor = ajudaController.pegarTutor(idAjuda);
+		String matriculaTutor = ajudaController.pegarMatriculaTutor(idAjuda);
 		String emailTutor = getInfoAluno(matriculaTutor, 
 				OpcoesController.EMAIL.toString());
 		tutorController.avaliaTutor(emailTutor, nota);

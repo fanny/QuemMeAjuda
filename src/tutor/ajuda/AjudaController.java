@@ -114,6 +114,9 @@ public class AjudaController {
 		default:
 			return null;
 		}
-
+	}
+	
+	public String pegarMatriculaTutor(int idAjuda) {
+		return this.ajudas.get(idAjuda).getTutor().getMatricula();
 	}
 }
