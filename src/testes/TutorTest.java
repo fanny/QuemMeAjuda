@@ -8,7 +8,7 @@ import aluno.Aluno;
 import tutor.Tutor;
 import util.tutor.MensagemTutor;
 
-public class TutorTeste {
+public class TutorTest {
 	Tutor t;
 
 	@Before
@@ -191,6 +191,24 @@ public class TutorTeste {
 		assertEquals(resultadoEsperado, t.getNotaAvaliacao(), 0);
 	}
 	
+	@Test(expected = IllegalArgumentException.class)
+	public void testAvaliaTutorNegativo(){
+		t.alteraNotaAvaliacao(-5);
+	}
+	
+	@Test
+	public void testAvaliaTutorZero(){
+		t.alteraNotaAvaliacao(0);
+		double resultadoEsperado = (4*5)/6.0;
+		assertEquals(resultadoEsperado, t.getNotaAvaliacao(), 0);
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testAvaliaTutorMaiorQue5(){
+		t.alteraNotaAvaliacao(6);
+	}
+	
 	@Test
 	public void testAvaliaNivelTutor(){
 		t.alteraNotaAvaliacao(5);
@@ -227,8 +245,8 @@ public class TutorTeste {
 	public void testAvaliaTutorSegundaVez(){
 		t.alteraNotaAvaliacao(5);
 		double resultadoAnterior = t.getNotaAvaliacao();
-		t.alteraNotaAvaliacao(6);
-		double resultadoEsperado = ((resultadoAnterior * 5) + 6)/6.0;
+		t.alteraNotaAvaliacao(5);
+		double resultadoEsperado = ((resultadoAnterior * 5) + 5)/6.0;
 		assertEquals(resultadoEsperado, t.getNotaAvaliacao(), 0);
 	}
 	
