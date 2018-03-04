@@ -7,7 +7,7 @@ public class PontuacaoComparator implements Comparator<Tutor>{
 	@Override
 	public int compare(Tutor tutor1, Tutor tutor2) {
 		
-		int result = (int) tutor1.getNotaAvaliacao() - tutor2.getNotaAvaliacaoAluno();
+		int result = tutor1.getNotaAvaliacao().compareTo(tutor2.getNotaAvaliacao());
 		
 		return result * (-1);
 	}

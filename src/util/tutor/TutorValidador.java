@@ -112,11 +112,11 @@ public class TutorValidador {
 		return Validador.validaMaiorIgualZero(proficiencia, MensagemTutor.PROFICIENCIA_INVALIDA.toString())
 				&& Validador.validaMenorQue6(proficiencia, MensagemTutor.PROFICIENCIA_INVALIDA.toString());
 	}
-	
-	public static boolean validaNotaAvaliacao(int notaAvaliacao){
-		return Validador.validaMenorQueZero(notaAvaliacao, 
-				MensagemTutor.NOTA_AVALIACAO_INVALIDA.toString()) && 
-				Validador.validaMenorQue6(notaAvaliacao, MensagemTutor.
-						NOTA_AVALIACAO_INVALIDA.toString());
+
+	public static boolean validaNotaAvaliacao(int notaAvaliacao) {
+		return Validador.validaMaiorOuIgualAZero(notaAvaliacao,
+				MensagemTutor.NOTA_NAO_PODE_SER_MENOR_QUE_ZERO.toString())
+				&& Validador.validaMenorQueCinco(notaAvaliacao,
+						MensagemTutor.NOTA_NAO_PODE_SER_MAIOR_QUE_CINCO.toString());
 	}
 }

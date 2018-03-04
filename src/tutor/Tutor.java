@@ -75,8 +75,8 @@ public class Tutor implements Comparable<Tutor> {
 		}
 	}
 
-	public double getNotaAvaliacao() {
-		return notaAvaliacao;
+	public String getNotaAvaliacao() {
+		return String.format("%.2f", this.notaAvaliacao);
 	}
 
 	/**

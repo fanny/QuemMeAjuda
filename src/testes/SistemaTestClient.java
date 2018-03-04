@@ -21,7 +21,8 @@ public class SistemaTestClient {
 				"resources/acceptance_test/us2_test.txt",
 				"resources/acceptance_test/us3_test.txt",
 				"resources/acceptance_test/us4_test.txt",
-				"resources/acceptance_test/us5_test.txt"};
+				"resources/acceptance_test/us5_test.txt",
+				"resources/acceptance_test/us6_test.txt"};
 		EasyAccept.main(args);
 	}
 }

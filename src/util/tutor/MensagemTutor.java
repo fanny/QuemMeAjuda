@@ -13,7 +13,11 @@ public enum MensagemTutor {
 	TOP("TOP"),
 	APRENDIZ("Aprendiz"),
 	TUTOR("Tutor"),
-	NOTA_AVALIACAO_INVALIDA("Nota de avaliacao invalida");
+	AJUDA_JA_AVALIADA("Ajuda ja avaliada"),
+	ID_NAO_ENCONTRADO("id nao encontrado"),
+	NOTA_NAO_PODE_SER_MENOR_QUE_ZERO("nota nao pode ser menor que 0"),
+	NOTA_NAO_PODE_SER_MAIOR_QUE_CINCO("nota nao pode ser maior que 5"),
+	AJUDA_NAO_ATRIBUIDA_A_TUTOR("Ajuda nao atribuida a tutor");
 	
 	private String descricao;
 	

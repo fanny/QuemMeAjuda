@@ -102,6 +102,13 @@ public class Validador {
 		return true;
 	}
 	
+	public static boolean validaMenorQueCinco(double valor, String mensagem) {
+		if (valor > 5.0) {
+			throw new IllegalArgumentException(mensagem);
+		}
+		return true;
+	}
+	
 	public static boolean validaObjeto(Object object, String mensagem){
 		if(object == null){
 			throw new NullPointerException(mensagem);

@@ -326,7 +326,7 @@ public class TutorController {
 	 * @param email
 	 * @return
 	 */
-	public double retornaNotaAvaliacao(String email) {
+	public String retornaNotaAvaliacao(String email) {
 		return tutores.get(email).getNotaAvaliacao();
 	}
 
@@ -344,9 +344,9 @@ public class TutorController {
 	 * @param email
 	 * @param nota
 	 */
-	public void avaliaTutor(String email, int nota) {
+	public void avaliaTutor(String email, int nota) {		
 		if (validaTutor(email) && TutorValidador.validaNotaAvaliacao(nota)) {
-			tutores.get(email).setNotaAvaliacaoAluno(nota);
+			tutores.get(email).alteraNotaAvaliacao(nota);
 		}
 	}
 }

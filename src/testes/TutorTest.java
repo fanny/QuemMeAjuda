@@ -187,8 +187,8 @@ public class TutorTest {
 	public void testAvaliaTutor(){
 		t.alteraNotaAvaliacao(5);
 		//O 4 se deve ao fato de que é a primeira invocação
-		double resultadoEsperado = ((4 * 5) + 5)/ 6.0;
-		assertEquals(resultadoEsperado, t.getNotaAvaliacao(), 0);
+		String resultadoEsperado = String.format("%.2f", ((4 * 5) + 5)/ 6.0);
+		assertEquals(resultadoEsperado, t.getNotaAvaliacao());
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -199,8 +199,8 @@ public class TutorTest {
 	@Test
 	public void testAvaliaTutorZero(){
 		t.alteraNotaAvaliacao(0);
-		double resultadoEsperado = (4*5)/6.0;
-		assertEquals(resultadoEsperado, t.getNotaAvaliacao(), 0);
+		String resultadoEsperado = String.format("%.2f", (4 * 5) / 6.0);
+		assertEquals(resultadoEsperado, t.getNotaAvaliacao());
 		
 	}
 	
@@ -237,19 +237,25 @@ public class TutorTest {
 	
 	
 	/**
-	 * Esse testo é usado para verificar se quando 
+	 * Esse teste é usado para verificar se quando 
 	 * a avaliação é feita mais d euma vez ele naõ retorna
 	 * o valor da primeira
 	 */
 	@Test
 	public void testAvaliaTutorSegundaVez(){
 		t.alteraNotaAvaliacao(5);
-		double resultadoAnterior = t.getNotaAvaliacao();
 		t.alteraNotaAvaliacao(5);
-		double resultadoEsperado = ((resultadoAnterior * 5) + 5)/6.0;
-		assertEquals(resultadoEsperado, t.getNotaAvaliacao(), 0);
+		String resultadoEsperado = String.format("%.2f", 4.31);
+		assertEquals(resultadoEsperado, t.getNotaAvaliacao());
 	}
 	
+	@Test(expected = IllegalArgumentException.class)
+	public void testAvaliaTutorComNotaNegativa(){
+		t.alteraNotaAvaliacao(-1);
+	}
 	
-	
+	@Test(expected = IllegalArgumentException.class)
+	public void testAvaliaTutorComNotaMaiorQueCinco(){
+		t.alteraNotaAvaliacao(6);
+	}
 }
