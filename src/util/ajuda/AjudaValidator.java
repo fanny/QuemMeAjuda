@@ -106,4 +106,12 @@ public class AjudaValidator {
 	public static boolean validaMatriculaAluno(String matricula) {
 		return Validador.validaTexto(matricula, MensagemAjuda.MATRICULA_ALUNO_INVALIDA.toString());
 	}
+	
+	public static boolean validaIdAjuda(int idAjuda) {
+		return Validador.validaMenorQueZero(idAjuda, MensagemAjuda.ID_INVALIDO.toString());
+	}
+	
+	public static boolean validaAtributo(String atributo) {
+		return Validador.validaTexto(atributo, MensagemAjuda.ATRIBUTO_INVALIDO.toString());
+	}
 }

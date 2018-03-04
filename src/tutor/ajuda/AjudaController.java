@@ -2,9 +2,15 @@ package tutor.ajuda;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import tutor.Tutor;
+import util.ajuda.AjudaValidator;
+import util.ajuda.MensagemAjuda;
+import util.aluno.AlunoValidador;
+import util.aluno.MensagemAluno;
 import util.controller.ErroController;
+import util.controller.OpcoesController;
 
 /**
  * Controller das ajudas do sistema.
@@ -110,29 +116,93 @@ public class AjudaController {
 	 */
 	public String getInfoAjuda(int idAjuda, String atributo) {
 
-		switch (atributo) {
-		case "localInteresse": {
-			AjudaPresencial ajuda = (AjudaPresencial) this.ajudas.get(idAjuda);
-			return ajuda.getLocal();
+		try {
+
+			if (this.validaAjuda(idAjuda) && this.validaAtributo(atributo)) {
+
+				OpcoesController op = OpcoesController.getEnumByString(atributo);
+
+				switch (atributo) {
+				case "localInteresse": {
+					AjudaPresencial ajuda = (AjudaPresencial) this.ajudas.get(idAjuda);
+					return ajuda.getLocal();
+				}
+				case "horario": {
+					AjudaPresencial ajuda = (AjudaPresencial) this.ajudas.get(idAjuda);
+					return ajuda.getHorario().getHorario();
+				}
+				case "dia": {
+					AjudaPresencial ajuda = (AjudaPresencial) this.ajudas.get(idAjuda);
+					return ajuda.getHorario().getDia();
+				}
+				case "disciplina":
+					return this.ajudas.get(idAjuda).getDisciplina();
+				case "tutorMatricula":
+					return this.pegarTutor(idAjuda);
+				default:
+					throw new IllegalArgumentException("atributo nao encontrado");
+				}
+			}
+
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(ErroController.GET_INFO_AJUDA_INVALIDA.toString() + e.getMessage());
+		} catch (NoSuchElementException e) {
+			throw new NoSuchElementException(ErroController.GET_INFO_AJUDA_INVALIDA.toString() + e.getMessage());
 		}
-		case "horario": {
-			AjudaPresencial ajuda = (AjudaPresencial) this.ajudas.get(idAjuda);
-			return ajuda.getHorario().getHorario();
-		}
-		case "dia": {
-			AjudaPresencial ajuda = (AjudaPresencial) this.ajudas.get(idAjuda);
-			return ajuda.getHorario().getDia();
-		}
-		case "disciplina":
-			return this.ajudas.get(idAjuda).getDisciplina();
-		case "tutorMatricula":
-			return this.pegarTutor(idAjuda);
-		default:
-			return null;
-		}
+
+		return "";
+
 	}
 
+	/**
+	 * Retorna a matricula de um tutor de uma ajuda.
+	 * 
+	 * @param idAjuda
+	 *            identificador da ajuda
+	 * @return uma <code>string</code> que representa a matricula do tutor
+	 */
 	public String pegarMatriculaTutor(int idAjuda) {
 		return this.ajudas.get(idAjuda).getTutor().getMatricula();
+	}
+
+	/**
+	 * Verifica se uma ajuda existe.
+	 * 
+	 * @param idAjuda
+	 *            identificador da ajuda
+	 * @return um <code>boolean</code> que informa se a ajuda existe ou nao
+	 */
+	public boolean existeAjuda(int idAjuda) {
+		return this.ajudas.containsKey(idAjuda);
+	}
+
+	/**
+	 * Valida o id de uma ajuda, verificando se existe e se nao é vazio.
+	 * 
+	 * @param idAjuda
+	 *            identificador da ajuda
+	 * @return um <code>boolean</code> que informa se a ajuda eh valida ou não
+	 */
+	public boolean validaAjuda(int idAjuda) {
+		if (AjudaValidator.validaIdAjuda(idAjuda)) {
+			if (!this.existeAjuda(idAjuda)) {
+				throw new NoSuchElementException(MensagemAjuda.ID_NAO_ENCONTRADO.toString());
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Valida um atributo.
+	 * 
+	 * @param atributo
+	 *            nome do atributo
+	 * @return um <code>boolean</code> que informa se o atributo eh valido ou não
+	 */
+	public boolean validaAtributo(String atributo) {
+		if (!AjudaValidator.validaAtributo(atributo)) {
+			throw new IllegalArgumentException(MensagemAjuda.ATRIBUTO_INVALIDO.toString());
+		}
+		return true;
 	}
 }

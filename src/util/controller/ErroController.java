@@ -16,7 +16,9 @@ public enum ErroController {
 	ID_INVALIDO("id nao pode menor que zero"),
 	OBJETO_NULO("O objeto não pode ser nulo"),
 	PEDIDO_DE_AJUDA_PRESENCIAL_INVALIDA("Erro no pedido de ajuda presencial: "),
-	PEDIDO_DE_AJUDA_ONLINE_INVALIDA("Erro no pedido de ajuda online: ");
+	PEDIDO_DE_AJUDA_ONLINE_INVALIDA("Erro no pedido de ajuda online: "),
+	ID_NAO_ENCONTRADO("id nao encontrado"),
+	GET_INFO_AJUDA_INVALIDA("Erro ao tentar recuperar info da ajuda : ");
 	
 	
 	private String descricao;

@@ -6,7 +6,10 @@ public enum MensagemAjuda {
 	LOCAL_INVALIDO("local de interesse nao pode ser vazio ou em branco"),
 	DIA_ATENDIMENTO_INVALIDO("dia nao pode ser vazio ou em branco"),
 	HORARIO_ATENDIMENTO_INVALIDO("horario nao pode ser vazio ou em branco"),
-	MATRICULA_ALUNO_INVALIDA("matricula de aluno nao pode ser vazio ou em branco");
+	MATRICULA_ALUNO_INVALIDA("matricula de aluno nao pode ser vazio ou em branco"),
+	ID_NAO_ENCONTRADO("id nao encontrado "),
+	ID_INVALIDO("id nao pode menor que zero "),
+	ATRIBUTO_INVALIDO("atributo nao pode ser vazio ou em branco");
 	
 	private String descricao;
 	
