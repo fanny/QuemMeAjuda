@@ -19,7 +19,7 @@ expect "15:00" getInfoAjuda idAjuda=1 atributo="horario"
 expect "seg" getInfoAjuda idAjuda=1 atributo="dia"
 expect "LCC3" getInfoAjuda idAjuda=1 atributo="localInteresse"
 
-expect "Tutor - 115212345, disciplina- ATAL" pegarTutor idAjuda=7
+expect "Tutor - 115212345, disciplina - ATAL" pegarTutor idAjuda=7
 expect "Tutor - 115260904, horario - 15:00, dia - seg, local - LCC3, disciplina - Programacao 2" pegarTutor idAjuda=1
 
 
