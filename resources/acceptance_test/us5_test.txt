@@ -41,4 +41,4 @@ expectError "Erro na avaliacao de tutor: Ajuda ja avaliada" avaliarTutor idAjuda
 expectError "Erro na avaliacao de tutor: id nao encontrado " avaliarTutor idAjuda=999 nota=5
 expectError "Erro na avaliacao de tutor: nota nao pode ser menor que 0" avaliarTutor idAjuda=20 nota=-1
 expectError "Erro na avaliacao de tutor: nota nao pode ser maior que 5" avaliarTutor idAjuda=20 nota=9
-expectError "Erro na avaliacao de tutor: Ajuda nao atribuida a tutor" avaliarTutor idAjuda=21 nota=5
+expectError "Erro na avaliacao de tutor: Ajuda nao atribuida a tutor" avaliarTutor idAjuda=12 nota=5
