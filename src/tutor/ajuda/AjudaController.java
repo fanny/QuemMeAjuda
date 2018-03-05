@@ -94,28 +94,29 @@ public class AjudaController {
 	}
 
 	/**
-	 * Recupera a matricula do tutor de uma determinada ajuda.
+	 * Recupera as informações de um tutor de uma determinada ajuda.
 	 * 
 	 * @param idAjuda
 	 *            identificador da ajuda
-	 * @return uma <code>String</code> que representa a matricula do tutor
+	 * @return uma <code>String</code> que representa as informações do tutor de uma
+	 *         ajuda
 	 */
 	public String pegarTutor(int idAjuda) {
-		
+
 		try {
-			
-			if (this.validaAjuda(idAjuda)){
-				
-				return this.ajudas.get(idAjuda).toString();	
-				
+
+			if (this.validaAjuda(idAjuda)) {
+
+				return this.ajudas.get(idAjuda).toString();
+
 			}
-			
-		}catch (IllegalArgumentException e) {
+
+		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException(ErroController.PEGAR_TUTOR_INVALIDO.toString() + e.getMessage());
-		}catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			throw new NoSuchElementException(ErroController.PEGAR_TUTOR_INVALIDO.toString() + e.getMessage());
 		}
-		
+
 		return "";
 	}
 
