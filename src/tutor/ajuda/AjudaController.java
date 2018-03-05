@@ -1,8 +1,10 @@
 package tutor.ajuda;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 import tutor.Tutor;
 import util.ajuda.AjudaValidator;
@@ -24,12 +26,18 @@ public class AjudaController {
 	 * identificador da ajuda, e como valor um objeto que representa a ajuda.
 	 */
 	private Map<Integer, Ajuda> ajudas;
+	
+	/**
+	 * 
+	 */
+	private Set<Integer> ajudasAvaliadas;
 
 	/**
 	 * Construtor da classe.
 	 */
 	public AjudaController() {
 		this.ajudas = new HashMap<>();
+		ajudasAvaliadas = new HashSet<>();
 	}
 
 	/**
@@ -189,6 +197,14 @@ public class AjudaController {
 	 */
 	public boolean existeAjuda(int idAjuda) {
 		return this.ajudas.containsKey(idAjuda);
+	}
+	
+	public void setAjudasAvaliadas(int idAjuda) {
+		if(ajudasAvaliadas.contains(idAjuda)) {
+			throw new IllegalArgumentException(MensagemAjuda.AJUDA_JA_AVALIADA.toString());
+		}
+		
+		this.ajudasAvaliadas.add(idAjuda);
 	}
 
 	/**

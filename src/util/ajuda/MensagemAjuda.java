@@ -9,7 +9,8 @@ public enum MensagemAjuda {
 	MATRICULA_ALUNO_INVALIDA("matricula de aluno nao pode ser vazio ou em branco"),
 	ID_NAO_ENCONTRADO("id nao encontrado "),
 	ID_INVALIDO("id nao pode menor que zero "),
-	ATRIBUTO_INVALIDO("atributo nao pode ser vazio ou em branco");
+	ATRIBUTO_INVALIDO("atributo nao pode ser vazio ou em branco"),
+	AJUDA_JA_AVALIADA("Ajuda ja avaliada");
 	
 	private String descricao;
 	

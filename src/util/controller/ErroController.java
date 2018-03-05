@@ -19,7 +19,8 @@ public enum ErroController {
 	PEDIDO_DE_AJUDA_ONLINE_INVALIDA("Erro no pedido de ajuda online: "),
 	ID_NAO_ENCONTRADO("id nao encontrado"),
 	GET_INFO_AJUDA_INVALIDA("Erro ao tentar recuperar info da ajuda : "),
-	PEGAR_TUTOR_INVALIDO("Erro ao tentar recuperar tutor : ");
+	PEGAR_TUTOR_INVALIDO("Erro ao tentar recuperar tutor : "),
+	ERRO_AVALIACAO_TUTOR("Erro na avaliacao de tutor: ");
 	
 	
 	private String descricao;

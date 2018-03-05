@@ -1,7 +1,5 @@
 package main;
 
-import easyaccept.EasyAccept;
-
 /**
  * Classe Facade do sistema.
  * 
