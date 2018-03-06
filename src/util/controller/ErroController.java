@@ -20,13 +20,9 @@ public enum ErroController {
 	ID_NAO_ENCONTRADO("id nao encontrado"),
 	GET_INFO_AJUDA_INVALIDA("Erro ao tentar recuperar info da ajuda : "),
 	PEGAR_TUTOR_INVALIDO("Erro ao tentar recuperar tutor : "),
-<<<<<<< HEAD
-	DOACAO_INVALIDA("Erro na doacao para tutor: ");
-=======
+	DOACAO_INVALIDA("Erro na doacao para tutor: "),
 	ERRO_AVALIACAO_TUTOR("Erro na avaliacao de tutor: ");
-	
->>>>>>> 869d5b6e7946bfafa3e2f182c3ff273475bd62bf
-	
+
 	private String descricao;
 	
 	/**
