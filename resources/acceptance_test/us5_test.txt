@@ -17,7 +17,7 @@ expect "4,00" pegarNota matriculaTutor="115212345"
 pedirAjudaPresencial matrAluno="116209078" disciplina="Programacao 2" horario="15:00" dia="seg" localInteresse="LCC3"
 pegarTutor idAjuda=8
 avaliarTutor idAjuda=8 nota=5
-expect "4,30" pegarNota matriculaTutor="115260904"
+expect "4,31" pegarNota matriculaTutor="115260904"
 
 pedirAjudaPresencial matrAluno="116209078" disciplina="Programacao 2" horario="15:00" dia="seg" localInteresse="LCC3"
 pegarTutor idAjuda=9
