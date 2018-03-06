@@ -338,8 +338,9 @@ public class TutorController {
 	}
 
 	/**
+	 * Retorna a nota geral da avaliação de determinado tutor
 	 * 
-	 * @param email
+	 * @param email o email do tutor
 	 * @return
 	 */
 	public String retornaNotaAvaliacao(String email) {
@@ -347,8 +348,9 @@ public class TutorController {
 	}
 
 	/**
+	 * Retorna o nível de determinado tutor
 	 * 
-	 * @param email
+	 * @param email o email do tutor
 	 * @return
 	 */
 	public String retornaNivel(String email) {
@@ -356,9 +358,10 @@ public class TutorController {
 	}
 
 	/**
+	 * Avalia a ajuda de um determinado tutor
 	 * 
-	 * @param email
-	 * @param nota
+	 * @param email o email do tutor a ser avaliado
+	 * @param nota a nota da avaliação
 	 */
 	public void avaliaTutor(String email, int nota) {		
 		if (validaTutor(email) && TutorValidador.validaNotaAvaliacao(nota)) {
@@ -377,11 +380,6 @@ public class TutorController {
 		TutorValidador.validaDoacao(totalCentavos);
 	}
 	
-	/**
-	 * 
-	 * @param emailTutor
-	 * @param totalCentavos
-	 */
 	public void doar(String emailTutor, int totalCentavos) {
 		
 		this.tutores.get(emailTutor).receberDoacao(totalCentavos);
@@ -423,6 +421,10 @@ public class TutorController {
 		return this.tutores.get(emailTutor).getDoacao();
 	}
 	
+	/**
+	 * 
+	 * @param ordem o 
+	 */
 	public void configuraOrdem(String ordem) {
 		switch (ordem) {
 		case "matricula":
@@ -437,6 +439,5 @@ public class TutorController {
 		default:
 			throw new IllegalArgumentException("Erro ao alterar ordem: Ordem invalida");
 		}
-
 	}
 }

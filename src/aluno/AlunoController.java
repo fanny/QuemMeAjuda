@@ -2,6 +2,7 @@ package aluno;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,12 +24,15 @@ public class AlunoController {
 	 * Conjunto de alunos que o sistema possui.
 	 */
 	private Map<String, Aluno> alunos;
+	
+	private Comparator<Aluno> ordem;
 
 	/**
 	 * Construtor da classe.
 	 */
 	public AlunoController() {
 		this.alunos = new HashMap<String, Aluno>();
+		this.ordem = new NomeComparator();
 	}
 
 	/**
@@ -114,7 +118,7 @@ public class AlunoController {
 		String resultado = "";
 
 		List<Aluno> listaAlunos = new ArrayList<Aluno>(this.alunos.values());
-		Collections.sort(listaAlunos);	
+		Collections.sort(listaAlunos, this.ordem);	
 		
 		for (int i = 0; i < listaAlunos.size(); i++) {
 			Aluno aluno = listaAlunos.get(i);
@@ -208,6 +212,25 @@ public class AlunoController {
 			}
 		}
 		return true;
-		
+	}
+	
+	/**
+	 * 
+	 * @param ordem o 
+	 */
+	public void configuraOrdem(String ordem) {
+		switch (ordem) {
+		case "matricula":
+			this.ordem = new MatriculaComparator();
+			break;
+		case "nome":
+			this.ordem = new NomeComparator();
+			break;
+		case "email":
+			this.ordem = new EmailComparator();
+			break;
+		default:
+			throw new IllegalArgumentException("Erro ao alterar ordem: Ordem invalida");
+		}
 	}
 }
