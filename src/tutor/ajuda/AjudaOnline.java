@@ -27,7 +27,7 @@ public class AjudaOnline extends Ajuda {
 
 	@Override
 	public String toString() {
-		String result = "Tutor - " + this.tutor.getMatricula() + ", disciplina- " + this.disciplina;
+		String result = "Tutor - " + this.tutor.getMatricula() + ", disciplina - " + this.disciplina;
 
 		return result;
 	}

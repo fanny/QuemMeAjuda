@@ -4,10 +4,11 @@ import tutor.Tutor;
 import tutor.TutorController;
 import tutor.ajuda.AjudaController;
 import util.ajuda.AjudaValidator;
-import util.ajuda.MensagemAjuda;
 import util.aluno.MensagemAluno;
 import util.controller.ErroController;
 import util.controller.OpcoesController;
+import util.tutor.TutorValidador;
+
 import java.util.NoSuchElementException;
 
 import aluno.Aluno;
@@ -241,9 +242,21 @@ public class Sistema {
 	 * @return
 	 */
 	public String avaliaTutor(int idAjuda, int nota) {
-		String matriculaTutor = ajudaController.pegarMatriculaTutor(idAjuda);
-		String emailTutor = getInfoAluno(matriculaTutor, OpcoesController.EMAIL.toString());
-		tutorController.avaliaTutor(emailTutor, nota);
+		try{
+			TutorValidador.validaNotaAvaliacao(nota);
+			ajudaController.validaAjuda(idAjuda);
+			String matriculaTutor = ajudaController.pegarMatriculaTutor(idAjuda);
+			String emailTutor = getInfoAluno(matriculaTutor, OpcoesController.EMAIL.toString());
+			tutorController.avaliaTutor(emailTutor, nota);
+			ajudaController.setAjudasAvaliadas(idAjuda);
+		}catch(IllegalArgumentException iae) {
+			throw new IllegalArgumentException(
+					ErroController.ERRO_AVALIACAO_TUTOR.toString() + iae.getMessage());
+		}catch(NoSuchElementException nsee) {
+			throw new NoSuchElementException(
+					ErroController.ERRO_AVALIACAO_TUTOR.toString() + nsee.getMessage());
+		}
+
 		return "";
 	}
 

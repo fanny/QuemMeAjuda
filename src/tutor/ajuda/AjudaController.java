@@ -1,8 +1,10 @@
 package tutor.ajuda;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 import tutor.Tutor;
 import util.ajuda.AjudaValidator;
@@ -24,12 +26,18 @@ public class AjudaController {
 	 * identificador da ajuda, e como valor um objeto que representa a ajuda.
 	 */
 	private Map<Integer, Ajuda> ajudas;
+	
+	/**
+	 * 
+	 */
+	private Set<Integer> ajudasAvaliadas;
 
 	/**
 	 * Construtor da classe.
 	 */
 	public AjudaController() {
 		this.ajudas = new HashMap<>();
+		ajudasAvaliadas = new HashSet<>();
 	}
 
 	/**
@@ -94,28 +102,29 @@ public class AjudaController {
 	}
 
 	/**
-	 * Recupera a matricula do tutor de uma determinada ajuda.
+	 * Recupera as informações de um tutor de uma determinada ajuda.
 	 * 
 	 * @param idAjuda
 	 *            identificador da ajuda
-	 * @return uma <code>String</code> que representa a matricula do tutor
+	 * @return uma <code>String</code> que representa as informações do tutor de uma
+	 *         ajuda
 	 */
 	public String pegarTutor(int idAjuda) {
-		
+
 		try {
-			
-			if (this.validaAjuda(idAjuda)){
-				
-				return this.ajudas.get(idAjuda).toString();	
-				
+
+			if (this.validaAjuda(idAjuda)) {
+
+				return this.ajudas.get(idAjuda).toString();
+
 			}
-			
-		}catch (IllegalArgumentException e) {
+
+		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException(ErroController.PEGAR_TUTOR_INVALIDO.toString() + e.getMessage());
-		}catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			throw new NoSuchElementException(ErroController.PEGAR_TUTOR_INVALIDO.toString() + e.getMessage());
 		}
-		
+
 		return "";
 	}
 
@@ -188,6 +197,14 @@ public class AjudaController {
 	 */
 	public boolean existeAjuda(int idAjuda) {
 		return this.ajudas.containsKey(idAjuda);
+	}
+	
+	public void setAjudasAvaliadas(int idAjuda) {
+		if(ajudasAvaliadas.contains(idAjuda)) {
+			throw new IllegalArgumentException(MensagemAjuda.AJUDA_JA_AVALIADA.toString());
+		}
+		
+		this.ajudasAvaliadas.add(idAjuda);
 	}
 
 	/**

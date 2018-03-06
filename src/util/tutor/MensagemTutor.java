@@ -13,7 +13,6 @@ public enum MensagemTutor {
 	TOP("TOP"),
 	APRENDIZ("Aprendiz"),
 	TUTOR("Tutor"),
-	AJUDA_JA_AVALIADA("Ajuda ja avaliada"),
 	ID_NAO_ENCONTRADO("id nao encontrado"),
 	NOTA_NAO_PODE_SER_MENOR_QUE_ZERO("nota nao pode ser menor que 0"),
 	NOTA_NAO_PODE_SER_MAIOR_QUE_CINCO("nota nao pode ser maior que 5"),
