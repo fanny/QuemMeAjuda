@@ -9,8 +9,6 @@ import java.util.Set;
 import tutor.Tutor;
 import util.ajuda.AjudaValidator;
 import util.ajuda.MensagemAjuda;
-import util.aluno.AlunoValidador;
-import util.aluno.MensagemAluno;
 import util.controller.ErroController;
 import util.controller.OpcoesController;
 

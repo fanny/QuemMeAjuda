@@ -1,11 +1,7 @@
 package tutor.ajuda;
 
 import tutor.Tutor;
-import util.Validador;
 import util.ajuda.AjudaValidator;
-import util.controller.ErroController;
-import util.tutor.MensagemTutor;
-import util.tutor.TutorValidador;
 
 /**
  * Classe que representa uma ajuda.

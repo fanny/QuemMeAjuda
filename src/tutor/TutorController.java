@@ -2,6 +2,7 @@ package tutor;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,6 @@ import java.util.stream.Collectors;
 
 import aluno.Aluno;
 import util.controller.ErroController;
-import util.tutor.MensagemTutor;
 import util.tutor.TaxaDoacaoValores;
 import util.tutor.TutorValidador;
 
@@ -27,11 +27,14 @@ public class TutorController {
 	 */
 	private Map<String, Tutor> tutores;
 
+	private Comparator<Tutor> ordem;
+	
 	/**
 	 * Construtor da classe.
 	 */
 	public TutorController() {
 		this.tutores = new HashMap<String, Tutor>();
+		this.ordem = new NomeComparator();
 	}
 
 	/**
@@ -64,7 +67,8 @@ public class TutorController {
 	public String listarTutores() {
 
 		List<Tutor> listaTutores = new ArrayList<Tutor>(this.tutores.values());
-		Collections.sort(listaTutores);
+		
+		Collections.sort(listaTutores, this.ordem);
 
 		String resultado = "";
 
@@ -417,5 +421,22 @@ public class TutorController {
 		}
 		
 		return this.tutores.get(emailTutor).getDoacao();
+	}
+	
+	public void configuraOrdem(String ordem) {
+		switch (ordem) {
+		case "matricula":
+			this.ordem = new MatriculaComparator();
+			break;
+		case "nome":
+			this.ordem = new NomeComparator();
+			break;
+		case "email":
+			this.ordem = new EmailComparator();
+			break;
+		default:
+			throw new IllegalArgumentException("Erro ao alterar ordem: Ordem invalida");
+		}
+
 	}
 }

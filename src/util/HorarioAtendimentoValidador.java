@@ -1,7 +1,5 @@
 package util;
 
-import tutor.HorarioAtendimento;
-
 public class HorarioAtendimentoValidador {
 
 	public static boolean validaHorarioAtedendimento(String dia, String horario) {

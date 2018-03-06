@@ -3,7 +3,6 @@ package tutor.ajuda;
 import tutor.HorarioAtendimento;
 import tutor.Tutor;
 import util.ajuda.AjudaValidator;
-import util.tutor.TutorValidador;
 
 /**
  * Classe que representa uma ajuda presencial.

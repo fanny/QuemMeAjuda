@@ -317,6 +317,6 @@ public class Sistema {
 	}
 	
 	public void configuraOrdem(String atributo) {
-		
+		tutorController.configuraOrdem(atributo);
 	}
 }
