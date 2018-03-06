@@ -13,7 +13,7 @@ public class AjudaOnlineTest {
 	private AjudaOnline ajudaOnline;
 
 	@Test
-	public void testCadatroAjudaOnline() {
+	public void testCadastroAjudaOnline() {
 		ajudaOnline = new AjudaOnline(1, "POO", new Tutor("POO", 5, new Aluno("87575", "rayla", "9883-3456",
 				"fannyJoke@hotmail.com", 2)));
 		String resultadoEsperado = "Tutor - 87575, disciplina - POO";
@@ -21,21 +21,27 @@ public class AjudaOnlineTest {
 	}
 
 	@Test(expected=IllegalArgumentException.class)
-	public void testCadatroAjudaOnlineTutorIdNegativo() {
+	public void testCadastroAjudaOnlineTutorIdNegativo() {
 		ajudaOnline = new AjudaOnline(-1, "POO", new Tutor("POO", 5, new Aluno("87575", "rayla", "9883-3456",
 				"fannyJoke@hotmail.com", 2)));
 	}
 
 	@Test(expected=IllegalArgumentException.class)
-	public void testCadatroAjudaOnlineTutorDisciplinaNula() {
+	public void testCadastroAjudaOnlineTutorDisciplinaNula() {
 		ajudaOnline = new AjudaOnline(1, null,new Tutor("POO", 5, new Aluno("87575", "rayla", "9883-3456",
 				"fannyJoke@hotmail.com", 2)));
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testCadatroAjudaOnlineTutorDisciplinaVazia() {
+	public void testCadastroAjudaOnlineTutorDisciplinaVazia() {
 		ajudaOnline = new AjudaOnline(1, "",new Tutor("POO", 5, new Aluno("87575", "rayla", "9883-3456",
 				"fannyJoke@hotmail.com", 2)));
+	}
+	
+	
+	@Test(expected=NullPointerException.class)
+	public void testCadastroAjudaOnlineTutorNulo() {
+		ajudaOnline = new AjudaOnline(1, "Cálculo II", null);
 	}
 
 }

@@ -2,6 +2,7 @@ package tutor.ajuda;
 
 import tutor.HorarioAtendimento;
 import tutor.Tutor;
+import util.ajuda.AjudaValidator;
 import util.tutor.TutorValidador;
 
 /**
@@ -39,8 +40,10 @@ public class AjudaPresencial extends Ajuda {
 	 */
 	public AjudaPresencial(Integer id, String disciplina, Tutor tutor, String horario, String dia, String local) {
 		super(id, disciplina, tutor);
-		if(TutorValidador.validaHorarioDeAtendimento(horario, dia) && 
-				TutorValidador.validaLocalAtendimento(local)){
+		
+		if(AjudaValidator.validaHorario(horario) &&
+				AjudaValidator.validaDia(dia) &&
+				AjudaValidator.validaLocal(local)){
 			
 			this.horario = new HorarioAtendimento(dia, horario);
 			this.local = local;

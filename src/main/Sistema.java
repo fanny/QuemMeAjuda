@@ -184,9 +184,9 @@ public class Sistema {
 			String localInteresse) {
 
 		try {
-			if (AjudaValidator.validaAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse)) {
 				Tutor tutor = this.tutorController.recuperaTutorParaAjudaPresencial(disciplina, horario, dia,
 						localInteresse);
+			if (AjudaValidator.validaAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse, tutor)) {
 
 				return this.ajudaController.cadastrarAjudaPresencial(tutor, disciplina, horario, dia, localInteresse);
 			}

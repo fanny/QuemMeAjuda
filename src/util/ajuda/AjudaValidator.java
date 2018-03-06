@@ -1,7 +1,8 @@
 package util.ajuda;
 
+import tutor.Tutor;
 import util.Validador;
-import util.tutor.MensagemTutor;
+import util.controller.ErroController;
 
 public class AjudaValidator {
 
@@ -20,12 +21,19 @@ public class AjudaValidator {
 	 *         valido ou não
 	 */
 	public static boolean validaAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
-			String local) {
-		return (validaMatriculaAluno(matrAluno) && validaDisciplina(disciplina)
-				&& validaHorarioDeAtendimento(horario, dia) && validaLocal(local));
+			String localInteresse, Tutor tutor) {
+		return (validaMatriculaAluno(matrAluno) && validaDisciplina(disciplina) && 
+				validaHorario(horario) && validaDia(dia) && validaLocal(localInteresse) &&
+				validaTutor(tutor));
 
 	}
+	
+	
 
+	public static boolean validaTutor(Tutor tutor) {
+		return Validador.validaObjeto(tutor, ErroController.OBJETO_NULO.toString());
+	}
+	
 	/**
 	 * Valida as informações de um pedido de ajuda online.
 	 * 
@@ -108,7 +116,7 @@ public class AjudaValidator {
 	}
 	
 	public static boolean validaIdAjuda(int idAjuda) {
-		return Validador.validaMenorQueZero(idAjuda, MensagemAjuda.ID_INVALIDO.toString());
+		return Validador.validaMaiorIgualZero(idAjuda, MensagemAjuda.ID_INVALIDO.toString());
 	}
 	
 	public static boolean validaAtributo(String atributo) {
