@@ -168,18 +168,20 @@ public class AlunoController {
 	}
 
 	/**
-	 * 
-	 * @param matricula
-	 * @return
+	 * Verifica se existe um aluno com a matrícula passada
+	 * @param matricula a matrícula do aluno
+	 * @return boolean true, caso a matrícula exista, 
+	 * 	false, caso contrário.
 	 */
 	public boolean existeAluno(String matricula){
 		return this.alunos.containsKey(matricula);
 	}
 	
 	/**
-	 * 
-	 * @param matricula
-	 * @return
+	 * Verifica se a matrícula do aluno não foi cadastrada no sistema.
+	 * @param matricula a matricula do aluno
+	 * @return boolean true, caso o aluno não tenha sido cadastrado
+	 * @throws IllegalStateException caso o aluno já tenha sido cadastrado
 	 */
 	private boolean validaAlunoExistente(String matricula){
 		if(AlunoValidador.validaMatricula(matricula)){
@@ -193,9 +195,10 @@ public class AlunoController {
 	}
 	
 	/**
-	 * 
-	 * @param matricula
-	 * @return
+	 * Verifica se o aluno da matricula passada foi cadastrado no sistema
+	 * @param matricula a matricula do aluno
+	 * @return true caso a matricula sido cadastrada
+	 * @throws NoSuchElementException caso a matrícula não tenha sido cadastrada.
 	 */
 	public boolean validaAluno(String matricula){
 		if(AlunoValidador.validaMatricula(matricula)){
