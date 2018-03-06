@@ -338,8 +338,8 @@ public class TutorController {
 	 * @param email
 	 * @return
 	 */
-	public double retornaNotaAvaliacao(String email) {
-		return tutores.get(email).getNotaAvaliacao();
+	public String retornaNotaAvaliacao(String email) {
+		return String.format("%.2f", tutores.get(email).getNotaAvaliacao());
 	}
 
 	/**

@@ -115,7 +115,7 @@ public class Facade {
 	/**
 	 * @see Sistema#pegaNota(String)
 	 */
-	public double pegarNota(String matriculaTutor) {
+	public String pegarNota(String matriculaTutor) {
 		return sistema.pegaNota(matriculaTutor);
 	}
 
