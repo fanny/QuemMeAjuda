@@ -172,4 +172,11 @@ public class Facade {
 	public int totalDinheiroSistema() {
 		return sistema.totalDinheiroSistema();
 	}
+	
+	/**
+	 * @see Sistema#configuraOrdem(String)
+	 */
+	public void configurarOrdem(String atributo) {
+		sistema.configuraOrdem(atributo);
+	}
 }

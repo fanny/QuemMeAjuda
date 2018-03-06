@@ -167,10 +167,20 @@ public class AlunoController {
 		return "";
 	}
 
+	/**
+	 * 
+	 * @param matricula
+	 * @return
+	 */
 	public boolean existeAluno(String matricula){
 		return this.alunos.containsKey(matricula);
 	}
 	
+	/**
+	 * 
+	 * @param matricula
+	 * @return
+	 */
 	private boolean validaAlunoExistente(String matricula){
 		if(AlunoValidador.validaMatricula(matricula)){
 			if(this.existeAluno(matricula)){
@@ -182,6 +192,11 @@ public class AlunoController {
 		
 	}
 	
+	/**
+	 * 
+	 * @param matricula
+	 * @return
+	 */
 	public boolean validaAluno(String matricula){
 		if(AlunoValidador.validaMatricula(matricula)){
 			if(!this.existeAluno(matricula)){

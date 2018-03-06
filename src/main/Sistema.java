@@ -315,4 +315,8 @@ public class Sistema {
 	public int totalDinheiroSistema() {
 		return this.doacoes;
 	}
+	
+	public void configuraOrdem(String atributo) {
+		
+	}
 }
