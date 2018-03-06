@@ -1,7 +1,5 @@
 package util;
 
-import util.controller.ErroController;
-
 public class Validador {
 
 	/**

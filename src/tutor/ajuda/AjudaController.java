@@ -58,7 +58,6 @@ public class AjudaController {
 	public int cadastrarAjudaPresencial(Tutor tutor, String disciplina, String horario, String dia, String local) {
 
 		try {
-
 			int id = ajudas.size() + 1;
 
 			AjudaPresencial ajudaPresencial = new AjudaPresencial(id, disciplina, tutor, horario, dia, local);

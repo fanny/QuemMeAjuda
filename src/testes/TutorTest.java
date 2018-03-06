@@ -249,13 +249,4 @@ public class TutorTest {
 		assertEquals(resultadoEsperado, t.getNotaAvaliacao());
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void testAvaliaTutorComNotaNegativa(){
-		t.alteraNotaAvaliacao(-1);
-	}
-	
-	@Test(expected = IllegalArgumentException.class)
-	public void testAvaliaTutorComNotaMaiorQueCinco(){
-		t.alteraNotaAvaliacao(6);
-	}
 }

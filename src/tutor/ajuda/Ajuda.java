@@ -2,6 +2,7 @@ package tutor.ajuda;
 
 import tutor.Tutor;
 import util.Validador;
+import util.ajuda.AjudaValidator;
 import util.controller.ErroController;
 import util.tutor.MensagemTutor;
 import util.tutor.TutorValidador;
@@ -29,12 +30,14 @@ public abstract class Ajuda {
 	protected Tutor tutor;
 	
 	public Ajuda(int id, String disciplina, Tutor tutor){
-		if(Validador.validaMaiorIgualZero(id, ErroController.ID_INVALIDO.toString()) && 
-				TutorValidador.validaDisciplina(disciplina) && Validador.
-					validaObjeto(tutor, ErroController.OBJETO_NULO.toString())){
+		if(AjudaValidator.validaIdAjuda(id) &&
+				AjudaValidator.validaDisciplina(disciplina) && 
+				AjudaValidator.validaTutor(tutor)){
+			
 			this.id = id;
 			this.disciplina = disciplina;
 			this.tutor = tutor;
+		
 		}
 		
 	}
