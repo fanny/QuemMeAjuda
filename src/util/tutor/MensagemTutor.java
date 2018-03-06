@@ -17,7 +17,8 @@ public enum MensagemTutor {
 	ID_NAO_ENCONTRADO("id nao encontrado"),
 	NOTA_NAO_PODE_SER_MENOR_QUE_ZERO("nota nao pode ser menor que 0"),
 	NOTA_NAO_PODE_SER_MAIOR_QUE_CINCO("nota nao pode ser maior que 5"),
-	AJUDA_NAO_ATRIBUIDA_A_TUTOR("Ajuda nao atribuida a tutor");
+	AJUDA_NAO_ATRIBUIDA_A_TUTOR("Ajuda nao atribuida a tutor"),
+	DOACAO_MENOR_QUE_ZERO("totalCentavos nao pode ser menor que zero");
 	
 	private String descricao;
 	

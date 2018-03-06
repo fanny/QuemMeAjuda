@@ -119,4 +119,15 @@ public class TutorValidador {
 				&& Validador.validaMenorQueCinco(notaAvaliacao,
 						MensagemTutor.NOTA_NAO_PODE_SER_MAIOR_QUE_CINCO.toString());
 	}
+
+	/**
+	 * Método que avalia se uma doação a um tutor apresenta valor menor que zero
+	 * lançando um IllegalArgumentException caso seja
+	 * 
+	 * @param totalCentavos		Valor doado
+	 */
+	public static void validaDoacao(int totalCentavos) {
+		
+		Validador.validaMaiorIgualZero(totalCentavos, MensagemTutor.DOACAO_MENOR_QUE_ZERO.toString());
+	}
 }

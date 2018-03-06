@@ -51,7 +51,12 @@ public class Tutor implements Comparable<Tutor> {
 	 * Disciplinas as quais o tutor tutora e suas respectivas proficiencias.
 	 */
 	private Map<String, Integer> disciplinas;
-
+	
+	/**
+	 * Atributo que guarda o valor das doações destinadas ao tutor
+	 */
+	private int doacoes;
+	
 	/**
 	 * Constutor usado para inicializar a disciplina e a proficiência do mentor
 	 * 
@@ -71,12 +76,12 @@ public class Tutor implements Comparable<Tutor> {
 			this.locaisDeAtendimento = new HashSet<>();
 			this.horariosDeAtendimento = new HashSet<>();
 			this.aluno = aluno;
-
+			this.doacoes = 0;
 		}
 	}
 
-	public String getNotaAvaliacao() {
-		return String.format("%.2f", this.notaAvaliacao);
+	public double getNotaAvaliacao() {
+		return this.notaAvaliacao;
 	}
 
 	/**
@@ -93,7 +98,12 @@ public class Tutor implements Comparable<Tutor> {
 	public double getSalario() {
 		return salario;
 	}
-
+	
+	public void receberDoacao(int doacoes) {
+		
+		this.doacoes += doacoes;
+	}
+	
 	public void setSalario(double salario) {
 		this.salario = salario;
 	}
@@ -218,13 +228,16 @@ public class Tutor implements Comparable<Tutor> {
 	public int getCodCurso() {
 		return this.aluno.getCodCurso();
 	}
+	public int getDoacao() {
+		return this.doacoes;
+	}
 
 	public int getNotaAvaliacaoAluno() {
 		return this.aluno.getNotaAvaliacao();
 	}
-
+	
 	public void setNotaAvaliacaoAluno(int notaAvaliacao) {
-		aluno.setNotaAvaliacao(notaAvaliacao);
+		this.aluno.setNotaAvaliacao(notaAvaliacao);
 	}
 
 	@Override
@@ -285,5 +298,6 @@ public class Tutor implements Comparable<Tutor> {
 		// TODO Auto-generated method stub
 		return this.getNome().compareTo(o2.getNome());
 	}
+
 
 }

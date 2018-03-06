@@ -117,7 +117,7 @@ public class Facade {
 	/**
 	 * @see Sistema#pegaNota(String)
 	 */
-	public String pegarNota(String matriculaTutor) {
+	public double pegarNota(String matriculaTutor) {
 		return sistema.pegaNota(matriculaTutor);
 	}
 
@@ -155,5 +155,23 @@ public class Facade {
 	 */
 	public String getInfoAjuda(int idAjuda, String atributo) {
 		return sistema.getInfoAjuda(idAjuda, atributo);
+	}
+	
+	/**
+	 * @see Sistema#doar(String, int)
+	 */
+	public void doar(String matriculaTutor, int totalCentavos) {
+		sistema.doar(matriculaTutor, totalCentavos);
+	}
+	
+	/**
+	 * @see Sistema#totalDinheiroTutor(String)
+	 */
+	public int totalDinheiroTutor(String emailTutor) {
+		return sistema.totalDinheiroTutor(emailTutor);
+	}
+
+	public int totalDinheiroSistema() {
+		return sistema.totalDinheiroSistema();
 	}
 }

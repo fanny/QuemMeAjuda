@@ -23,7 +23,8 @@ public class Sistema {
 	private TutorController tutorController;
 	private AlunoController alunoController;
 	private AjudaController ajudaController;
-
+	private int doacoes;
+	
 	/**
 	 * Construtor da classe
 	 */
@@ -31,6 +32,7 @@ public class Sistema {
 		this.tutorController = new TutorController();
 		this.alunoController = new AlunoController();
 		this.ajudaController = new AjudaController();
+		this.doacoes = 0;
 	}
 
 	/**
@@ -248,7 +250,7 @@ public class Sistema {
 	/**
 	 * @see TutorController#retornaNotaAvaliacao(String)
 	 */
-	public String pegaNota(String matriculaTutor) {
+	public double pegaNota(String matriculaTutor) {
 		return tutorController.retornaNotaAvaliacao(getInfoAluno(matriculaTutor, 
 				OpcoesController.EMAIL.toString()));
 	}
@@ -259,5 +261,45 @@ public class Sistema {
 	public String pegaNivel(String matriculaTutor) {
 		return tutorController.retornaNivel(getInfoAluno(matriculaTutor, OpcoesController.EMAIL.toString()));
 	}
+	
+	/**
+	 * Avalia se os atributos são válidos e os repassa para
+	 * @param matriculaTutor
+	 * @param totalCentavos
+	 */
+	public void doar(String matriculaTutor, int totalCentavos) {
+		
+		String emailAluno = "";
+		try {
+			emailAluno = getInfoAluno(matriculaTutor, OpcoesController.EMAIL.toString());
+			tutorController.validaDoacao(totalCentavos);
+			
+		}catch(IllegalArgumentException e) {
+			throw new IllegalArgumentException(ErroController.DOACAO_INVALIDA.toString() + 
+												MensagemAluno.MATRICULA_INVALIDA.toString());
+		
+		}catch(NoSuchElementException e) {
+			throw new NoSuchElementException(ErroController.DOACAO_INVALIDA.toString() + 
+												ErroController.BUSCA_TUTOR_INVALIDA.toString());
+		}
+		
+		tutorController.doar(emailAluno, totalCentavos - this.calculoDoacao(emailAluno, totalCentavos));
+	}
 
+	public int totalDinheiroTutor(String emailTutor) {
+		return tutorController.totalDinheiroTutor(emailTutor);
+	}
+
+	private int calculoDoacao(String emailTutor, int totalCentavos) {
+		
+		double taxaTutor = tutorController.avaliaTaxaDoacaoTutor(emailTutor);
+		int valorAoSistema =  (int)((1 - taxaTutor) * totalCentavos);
+		this.doacoes += valorAoSistema;
+		
+		return valorAoSistema;
+	}
+
+	public int totalDinheiroSistema() {
+		return this.doacoes;
+	}
 }

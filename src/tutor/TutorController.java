@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import aluno.Aluno;
 import util.controller.ErroController;
 import util.tutor.MensagemTutor;
+import util.tutor.TaxaDoacaoValores;
 import util.tutor.TutorValidador;
 
 /**
@@ -337,7 +338,7 @@ public class TutorController {
 	 * @param email
 	 * @return
 	 */
-	public String retornaNotaAvaliacao(String email) {
+	public double retornaNotaAvaliacao(String email) {
 		return tutores.get(email).getNotaAvaliacao();
 	}
 
@@ -359,5 +360,62 @@ public class TutorController {
 		if (validaTutor(email) && TutorValidador.validaNotaAvaliacao(nota)) {
 			tutores.get(email).alteraNotaAvaliacao(nota);
 		}
+	}
+	
+	/**
+	 * Método que avalia se uma doação a um tutor apresenta valor menor que zero
+	 * lançando um IllegalArgumentException caso seja
+	 * 
+	 * @param totalCentavos		Valor doado
+	 */
+	public void validaDoacao(int totalCentavos) {
+		
+		TutorValidador.validaDoacao(totalCentavos);
+	}
+	
+	/**
+	 * 
+	 * @param emailTutor
+	 * @param totalCentavos
+	 */
+	public void doar(String emailTutor, int totalCentavos) {
+		
+		this.tutores.get(emailTutor).receberDoacao(totalCentavos);
+	}
+	
+	public double avaliaTaxaDoacaoTutor(String emailTutor) {
+		
+		double taxa = 0;
+		double nota =  this.tutores.get(emailTutor).getNotaAvaliacao();
+		
+		if(nota > 4.5) {	
+			taxa = TaxaDoacaoValores.TOP_TAXA_DOACAO.getValor();
+			taxa += (nota - 4.5) / 10;
+			
+		}else if (nota >= 3) {
+			
+			taxa = TaxaDoacaoValores.TUTOR_TAXA_DOACAO.getValor();
+			
+		}else {
+			
+			taxa = TaxaDoacaoValores.APRENDIZ_TAXA_DOACAO.getValor();
+			taxa -= (3 - nota) / 10; 
+		}
+		return taxa;
+	}
+	
+	public int totalDinheiroTutor(String emailTutor) {
+		try {
+			TutorValidador.validaEmail(emailTutor);
+			this.validaTutor(emailTutor);
+		
+		}catch(IllegalArgumentException e) {
+			throw new IllegalArgumentException(ErroController.DOACAO_INVALIDA + e.getMessage());
+		
+		}catch(NoSuchElementException e) {
+			throw new NoSuchElementException(ErroController.DOACAO_INVALIDA + e.getMessage());
+		}
+		
+		return this.tutores.get(emailTutor).getDoacao();
 	}
 }
