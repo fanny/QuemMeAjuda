@@ -263,7 +263,7 @@ public class Sistema {
 	/**
 	 * @see TutorController#retornaNotaAvaliacao(String)
 	 */
-	public double pegaNota(String matriculaTutor) {
+	public String pegaNota(String matriculaTutor) {
 		return tutorController.retornaNotaAvaliacao(getInfoAluno(matriculaTutor, 
 				OpcoesController.EMAIL.toString()));
 	}
