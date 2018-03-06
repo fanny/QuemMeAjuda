@@ -85,8 +85,9 @@ public class Tutor implements Comparable<Tutor> {
 	}
 
 	/**
+	 * Altera a avaliação geral do tutor a partir de uma nova nota.
 	 * 
-	 * @param notaAvaliacao
+	 * @param notaAvaliacao a nota da avaliação
 	 */
 	public void alteraNotaAvaliacao(int notaAvaliacao) {
 		if (TutorValidador.validaNotaAvaliacao(notaAvaliacao)) {
@@ -175,8 +176,8 @@ public class Tutor implements Comparable<Tutor> {
 	/**
 	 * Adiciona uma disciplina ao tutor
 	 * 
-	 * @param nome
-	 * @param proficiencia
+	 * @param nome o nome da disciplina
+	 * @param proficiencia a proficiencia do tutor na disciplina
 	 */
 	public void addDisciplina(String nome, Integer proficiencia) {
 		if (TutorValidador.validaDisciplina(nome) && TutorValidador.validaProficiencia(proficiencia)) {
@@ -188,7 +189,7 @@ public class Tutor implements Comparable<Tutor> {
 	}
 
 	/**
-	 * 
+	 * Define o nível do tutor com base na sua avaliação geral
 	 */
 	private void defineNivel() {
 		if (this.notaAvaliacao <= 3) {
@@ -201,9 +202,9 @@ public class Tutor implements Comparable<Tutor> {
 	}
 
 	/**
+	 * Verifica se o tutor já possui a disciplina
 	 * 
-	 * @param nome
-	 * @return
+	 * @param nome o nome da disciplina
 	 */
 	public boolean disciplinaExiste(String nome) {
 		return this.disciplinas.containsKey(nome);

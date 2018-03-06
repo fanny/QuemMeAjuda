@@ -26,7 +26,7 @@ public class AjudaController {
 	private Map<Integer, Ajuda> ajudas;
 	
 	/**
-	 * 
+	 * Conjunto de ajudas que já foram avaliadas.
 	 */
 	private Set<Integer> ajudasAvaliadas;
 
@@ -74,9 +74,9 @@ public class AjudaController {
 	 * Registra um pedido de ajuda online.
 	 * 
 	 * @param matrAluno
-	 *            matricula di tutor da ajuda
+	 *            matricula do tutor da ajuda
 	 * @param disciplina
-	 *            disiciplina tema da ajuda
+	 *            disciplina tema da ajuda
 	 * @return um <code>int</code> que representa o identificador da ajuda.
 	 */
 	public int cadastraAjudaOnline(Tutor tutor, String disciplina) {
@@ -196,6 +196,11 @@ public class AjudaController {
 		return this.ajudas.containsKey(idAjuda);
 	}
 	
+	/**
+	 * Adiciona a ajuda ao conjunto de ajudas avaliadas.
+	 * 
+	 * @param idAjuda a ajuda avaliada
+	 */
 	public void setAjudasAvaliadas(int idAjuda) {
 		if(ajudasAvaliadas.contains(idAjuda)) {
 			throw new IllegalArgumentException(MensagemAjuda.AJUDA_JA_AVALIADA.toString());

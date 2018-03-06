@@ -25,6 +25,16 @@ public abstract class Ajuda {
 	 */
 	protected Tutor tutor;
 	
+	/**
+	 * Construtor da classe.
+	 * 
+	 * @param id
+	 *            identificador da ajuda
+	 * @param disciplina
+	 *            disciplina tema da ajuda
+	 * @param tutor
+	 *            o tutor que realizará a ajuda
+	 */
 	public Ajuda(int id, String disciplina, Tutor tutor){
 		if(AjudaValidator.validaIdAjuda(id) &&
 				AjudaValidator.validaDisciplina(disciplina) && 

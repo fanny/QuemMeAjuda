@@ -236,10 +236,10 @@ public class Sistema {
 	}
 
 	/**
+	 * Avalia a ajuda de um tutor.
 	 * 
-	 * @param idAjuda
-	 * @param nota
-	 * @return
+	 * @param idAjuda o identificador da ajuda
+	 * @param nota a nota da avaliação
 	 */
 	public String avaliaTutor(int idAjuda, int nota) {
 		try{
@@ -316,7 +316,13 @@ public class Sistema {
 		return this.doacoes;
 	}
 	
+	/**
+	 * Define como será a ordenação da lista de tutores e alunos.
+	 * 
+	 * @param atributo o atributo que define a ordenação
+	 */
 	public void configuraOrdem(String atributo) {
 		tutorController.configuraOrdem(atributo);
+		alunoController.configuraOrdem(atributo);
 	}
 }

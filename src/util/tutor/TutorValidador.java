@@ -27,8 +27,9 @@ public class TutorValidador {
 	}
 
 	/**
+	 * Verifica se o aluno é válido
 	 * 
-	 * @param aluno
+	 * @param aluno o aluno a ser avaliado
 	 * @return
 	 */
 	public static boolean validaAluno(Aluno aluno) {
@@ -47,28 +48,26 @@ public class TutorValidador {
 	}
 
 	/**
-	 * 
-	 * @param local
-	 * @return
+	 * @see Validador#validaTexto(String, String)
 	 */
 	public static boolean validaLocalAtendimento(String local) {
 		return Validador.validaTexto(local, MensagemTutor.LOCAL_INVALIDO.toString());
 	}
 
 	/**
+	 * Verifica se o horario e o dia são válidos
 	 * 
-	 * @param horario
-	 * @param dia
-	 * @return
+	 * @param horario o horario a ser verificado
+	 * @param dia o dia a ser verificado
 	 */
 	public static boolean validaHorarioDeAtendimento(String horario, String dia) {
 		return validaHorario(horario) && validaDia(dia);
 	}
 
 	/**
+	 * Verifica se o horario é válido
 	 * 
-	 * @param horario
-	 * @return
+	 * @param horario o horario a ser verificado
 	 */
 	public static boolean validaHorario(String horario) {
 		if (Validador.validaTexto(horario, MensagemTutor.HORARIO_ATENDIMENTO_INVALIDO.toString())) {
@@ -82,18 +81,14 @@ public class TutorValidador {
 	}
 
 	/**
-	 * 
-	 * @param dia
-	 * @return
+	 * @see Validador#validaTexto(String, String)
 	 */
 	public static boolean validaDia(String dia) {
 		return Validador.validaTexto(dia, MensagemTutor.DIA_ATENDIMENTO_INVALIDO.toString());
 	}
 
 	/**
-	 * 
-	 * @param email
-	 * @return
+	 * @see Validador#validaEmail(String, String)
 	 */
 	public static boolean validaEmail(String email) {
 		return Validador.validaEmail(email, MensagemTutor.EMAIL_INVALIDO.toString());
@@ -113,6 +108,11 @@ public class TutorValidador {
 				&& Validador.validaMenorQue6(proficiencia, MensagemTutor.PROFICIENCIA_INVALIDA.toString());
 	}
 
+	/**
+	 * Verifica se a nota é maior ou igual a zero e menor ou igual a cinco
+	 * 
+	 * @param notaAvaliacao a nota a ser avaliada
+	 */
 	public static boolean validaNotaAvaliacao(int notaAvaliacao) {
 		return Validador.validaMaiorOuIgualAZero(notaAvaliacao,
 				MensagemTutor.NOTA_NAO_PODE_SER_MENOR_QUE_ZERO.toString())

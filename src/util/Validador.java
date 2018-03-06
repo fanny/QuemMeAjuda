@@ -70,10 +70,10 @@ public class Validador {
 	}
 
 	/**
+	 * Verifica se o email é válido
 	 * 
-	 * @param email
-	 * @param mensagem
-	 * @return
+	 * @param email o email a ser avaliado
+	 * @param mensagem a mensagem de erro
 	 */
 	public static boolean validaEmail(String email, String mensagem) {
 		if (validaTexto(email, mensagem)) {
@@ -88,10 +88,10 @@ public class Validador {
 	}
 
 	/**
+	 * Verifica se o valor é maior ou igual a zero
 	 * 
-	 * @param valor
-	 * @param mensagem
-	 * @return
+	 * @param valor o valor a ser avaliado
+	 * @param mensagem a mensagem de erro
 	 */
 	public static boolean validaMaiorOuIgualAZero(double valor, String mensagem) {
 		if (valor < 0.0) {
@@ -100,6 +100,12 @@ public class Validador {
 		return true;
 	}
 	
+	/**
+	 * Verifica se o valor é menor ou igual a cinco
+	 * 
+	 * @param valor o valor a ser avaliado
+	 * @param mensagem a mensagem de erro
+	 */
 	public static boolean validaMenorQueCinco(double valor, String mensagem) {
 		if (valor > 5.0) {
 			throw new IllegalArgumentException(mensagem);
@@ -107,6 +113,12 @@ public class Validador {
 		return true;
 	}
 	
+	/**
+	 * Verifica se o objeto é nulo
+	 * 
+	 * @param object o objeto a ser avaliado
+	 * @param mensagem a mensagem de erro
+	 */
 	public static boolean validaObjeto(Object object, String mensagem){
 		if(object == null){
 			throw new NullPointerException(mensagem);
