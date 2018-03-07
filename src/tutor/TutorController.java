@@ -383,12 +383,24 @@ public class TutorController {
 	public void validaDoacao(int totalCentavos) {
 		TutorValidador.validaDoacao(totalCentavos);
 	}
-
+	
+	/**
+	 * @see Tutor#receberDoacao(int)
+	 * 
+	 * @param emailTutor
+	 * @param totalCentavos
+	 */
 	public void doar(String emailTutor, int totalCentavos) {
 
 		this.tutores.get(emailTutor).receberDoacao(totalCentavos);
 	}
-
+	
+	/**
+	 * Método que avalia qual a taxa que será usada para o calculo das doação para um tutor
+	 * 
+	 * @param emailTutor
+	 * @return
+	 */
 	public int avaliaTaxaDoacaoTutor(String emailTutor) {
 
 		int taxa = 0;
@@ -396,7 +408,7 @@ public class TutorController {
 
 		if (nota > 4.5) {
 			taxa = TaxaDoacaoValores.TOP_TAXA_DOACAO.getValor();
-			taxa += (int)((4.52 - 4.5) * 10);
+			taxa += (int)((nota - 4.5) * 10);
 
 		} else if (nota >= 3) {
 
@@ -409,7 +421,13 @@ public class TutorController {
 		}
 		return taxa;
 	}
-
+	
+	/**
+	 * Método que retorna o total do dinheiro de doações arrecadado por um tutor
+	 * 
+	 * @param emailTutor
+	 * @return
+	 */
 	public int totalDinheiroTutor(String emailTutor) {
 		try {
 			TutorValidador.validaEmail(emailTutor);

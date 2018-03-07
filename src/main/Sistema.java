@@ -302,7 +302,13 @@ public class Sistema {
 	public int totalDinheiroTutor(String emailTutor) {
 		return tutorController.totalDinheiroTutor(emailTutor);
 	}
-
+	
+	/** Calcula a parte da doação que será acumulada pelo sistema
+	 * 
+	 * @param emailTutor
+	 * @param totalCentavos
+	 * @return
+	 */
 	private int calculoDoacao(String emailTutor, int totalCentavos) {
 		
 		int taxaTutor = tutorController.avaliaTaxaDoacaoTutor(emailTutor);
@@ -311,7 +317,12 @@ public class Sistema {
 		
 		return valorAoSistema;
 	}
-
+	
+	/**
+	 * Método que retorna o total arrecadado pelas doações
+	 * 
+	 * @return
+	 */
 	public int totalDinheiroSistema() {
 		return this.doacoes;
 	}
