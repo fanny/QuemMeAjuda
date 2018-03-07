@@ -1,5 +1,6 @@
 package tutor;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -80,9 +81,6 @@ public class Tutor implements Comparable<Tutor> {
 		}
 	}
 
-	public double getNotaAvaliacao() {
-		return this.notaAvaliacao;
-	}
 
 	/**
 	 * Altera a avaliação geral do tutor a partir de uma nova nota.
@@ -96,6 +94,10 @@ public class Tutor implements Comparable<Tutor> {
 		}
 	}
 
+	public double getNotaAvaliacao() {
+		return this.notaAvaliacao;
+	}
+	
 	public double getSalario() {
 		return salario;
 	}
@@ -233,8 +235,8 @@ public class Tutor implements Comparable<Tutor> {
 		return this.doacoes;
 	}
 
-	public int getNotaAvaliacaoAluno() {
-		return this.aluno.getNotaAvaliacao();
+	public double getNotaAvaliacaoAluno() {
+		return this.notaAvaliacao;
 	}
 	
 	public void setNotaAvaliacaoAluno(int notaAvaliacao) {
@@ -299,6 +301,4 @@ public class Tutor implements Comparable<Tutor> {
 		// TODO Auto-generated method stub
 		return this.getNome().compareTo(o2.getNome());
 	}
-
-
 }

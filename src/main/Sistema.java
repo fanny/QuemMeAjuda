@@ -305,8 +305,8 @@ public class Sistema {
 
 	private int calculoDoacao(String emailTutor, int totalCentavos) {
 		
-		double taxaTutor = tutorController.avaliaTaxaDoacaoTutor(emailTutor);
-		int valorAoSistema =  (int)((1 - taxaTutor) * totalCentavos);
+		int taxaTutor = tutorController.avaliaTaxaDoacaoTutor(emailTutor);
+		int valorAoSistema =  (int)((1 - (taxaTutor/100)) * totalCentavos);
 		this.doacoes += valorAoSistema;
 		
 		return valorAoSistema;

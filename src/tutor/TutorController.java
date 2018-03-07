@@ -389,14 +389,14 @@ public class TutorController {
 		this.tutores.get(emailTutor).receberDoacao(totalCentavos);
 	}
 
-	public double avaliaTaxaDoacaoTutor(String emailTutor) {
+	public int avaliaTaxaDoacaoTutor(String emailTutor) {
 
-		double taxa = 0;
+		int taxa = 0;
 		double nota = this.tutores.get(emailTutor).getNotaAvaliacao();
 
 		if (nota > 4.5) {
 			taxa = TaxaDoacaoValores.TOP_TAXA_DOACAO.getValor();
-			taxa += (nota - 4.5) / 10;
+			taxa += (int)((4.52 - 4.5) * 10);
 
 		} else if (nota >= 3) {
 
@@ -405,7 +405,7 @@ public class TutorController {
 		} else {
 
 			taxa = TaxaDoacaoValores.APRENDIZ_TAXA_DOACAO.getValor();
-			taxa -= (3 - nota) / 10;
+			taxa -= (int)((3 - nota) * 10);
 		}
 		return taxa;
 	}

@@ -187,8 +187,7 @@ public class TutorTest {
 	public void testAvaliaTutor(){
 		t.alteraNotaAvaliacao(5);
 		//O 4 se deve ao fato de que é a primeira invocação
-		String resultadoEsperado = String.format("%.2f", ((4 * 5) + 5)/ 6.0);
-		assertEquals(resultadoEsperado, t.getNotaAvaliacao());
+		assertEquals(4.17, t.getNotaAvaliacao(), 0.1);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -199,8 +198,7 @@ public class TutorTest {
 	@Test
 	public void testAvaliaTutorZero(){
 		t.alteraNotaAvaliacao(0);
-		String resultadoEsperado = String.format("%.2f", (4 * 5) / 6.0);
-		assertEquals(resultadoEsperado, t.getNotaAvaliacao());
+		assertEquals(3.33, t.getNotaAvaliacao(), 0.1);
 		
 	}
 	
@@ -246,7 +244,7 @@ public class TutorTest {
 		t.alteraNotaAvaliacao(5);
 		t.alteraNotaAvaliacao(5);
 		String resultadoEsperado = String.format("%.2f", 4.31);
-		assertEquals(resultadoEsperado, t.getNotaAvaliacao());
+		assertEquals(4.31, t.getNotaAvaliacao(), 0.1);
 	}
 	
 }
