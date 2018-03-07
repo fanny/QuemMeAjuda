@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import aluno.Aluno;
 import util.controller.ErroController;
+import util.tutor.MensagemTutor;
 import util.tutor.TaxaDoacaoValores;
 import util.tutor.TutorValidador;
 
@@ -434,10 +435,10 @@ public class TutorController {
 			this.validaTutor(emailTutor);
 
 		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException(ErroController.DOACAO_INVALIDA + e.getMessage());
+			throw new IllegalArgumentException(MensagemTutor.CONSULTA_DINHEIRO_TUTOR.toString() + MensagemTutor.EMAIL_TUTOR_INVALIDO.toString());
 
 		} catch (NoSuchElementException e) {
-			throw new NoSuchElementException(ErroController.DOACAO_INVALIDA + e.getMessage());
+			throw new NoSuchElementException(MensagemTutor.CONSULTA_DINHEIRO_TUTOR.toString() + MensagemTutor.ERRO_BUSCA_TUTOR.toString());
 		}
 
 		return this.tutores.get(emailTutor).getDoacao();

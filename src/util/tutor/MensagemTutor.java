@@ -17,7 +17,11 @@ public enum MensagemTutor {
 	NOTA_NAO_PODE_SER_MENOR_QUE_ZERO("nota nao pode ser menor que 0"),
 	NOTA_NAO_PODE_SER_MAIOR_QUE_CINCO("nota nao pode ser maior que 5"),
 	AJUDA_NAO_ATRIBUIDA_A_TUTOR("Ajuda nao atribuida a tutor"),
-	DOACAO_MENOR_QUE_ZERO("totalCentavos nao pode ser menor que zero");
+	DOACAO_MENOR_QUE_ZERO("totalCentavos nao pode ser menor que zero"),
+	CONSULTA_DINHEIRO_TUTOR("Erro na consulta de total de dinheiro do tutor: "),
+	ERRO_BUSCA_TUTOR("Tutor nao encontrado"),
+	EMAIL_TUTOR_INVALIDO("emailTutor nao pode ser vazio ou nulo");
+	
 	
 	private String descricao;
 	

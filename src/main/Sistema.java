@@ -7,6 +7,7 @@ import util.ajuda.AjudaValidator;
 import util.aluno.MensagemAluno;
 import util.controller.ErroController;
 import util.controller.OpcoesController;
+import util.tutor.MensagemTutor;
 import util.tutor.TutorValidador;
 
 import java.util.NoSuchElementException;
@@ -289,11 +290,11 @@ public class Sistema {
 			
 		}catch(IllegalArgumentException e) {
 			throw new IllegalArgumentException(ErroController.DOACAO_INVALIDA.toString() + 
-												MensagemAluno.MATRICULA_INVALIDA.toString());
+												MensagemTutor.EMAIL_INVALIDO.toString());
 		
 		}catch(NoSuchElementException e) {
 			throw new NoSuchElementException(ErroController.DOACAO_INVALIDA.toString() + 
-												ErroController.BUSCA_TUTOR_INVALIDA.toString());
+												ErroController.TUTOR_NAO_ENCONTRADO.toString());
 		}
 		
 		tutorController.doar(emailAluno, totalCentavos - this.calculoDoacao(emailAluno, totalCentavos));
