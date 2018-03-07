@@ -1,10 +1,7 @@
 package tutor.ajuda;
 
 import tutor.Tutor;
-import util.Validador;
-import util.controller.ErroController;
-import util.tutor.MensagemTutor;
-import util.tutor.TutorValidador;
+import util.ajuda.AjudaValidator;
 
 /**
  * Classe que representa uma ajuda.
@@ -28,13 +25,25 @@ public abstract class Ajuda {
 	 */
 	protected Tutor tutor;
 	
+	/**
+	 * Construtor da classe.
+	 * 
+	 * @param id
+	 *            identificador da ajuda
+	 * @param disciplina
+	 *            disciplina tema da ajuda
+	 * @param tutor
+	 *            o tutor que realizará a ajuda
+	 */
 	public Ajuda(int id, String disciplina, Tutor tutor){
-		if(Validador.validaMaiorIgualZero(id, ErroController.ID_INVALIDO.toString()) && 
-				TutorValidador.validaDisciplina(disciplina) && Validador.
-					validaObjeto(tutor, ErroController.OBJETO_NULO.toString())){
+		if(AjudaValidator.validaIdAjuda(id) &&
+				AjudaValidator.validaDisciplina(disciplina) && 
+				AjudaValidator.validaTutor(tutor)){
+			
 			this.id = id;
 			this.disciplina = disciplina;
 			this.tutor = tutor;
+		
 		}
 		
 	}

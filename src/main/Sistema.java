@@ -7,6 +7,7 @@ import util.ajuda.AjudaValidator;
 import util.aluno.MensagemAluno;
 import util.controller.ErroController;
 import util.controller.OpcoesController;
+import util.tutor.MensagemTutor;
 import util.tutor.TutorValidador;
 
 import java.util.NoSuchElementException;
@@ -184,9 +185,9 @@ public class Sistema {
 			String localInteresse) {
 
 		try {
-			if (AjudaValidator.validaAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse)) {
 				Tutor tutor = this.tutorController.recuperaTutorParaAjudaPresencial(disciplina, horario, dia,
 						localInteresse);
+			if (AjudaValidator.validaAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse, tutor)) {
 
 				return this.ajudaController.cadastrarAjudaPresencial(tutor, disciplina, horario, dia, localInteresse);
 			}
@@ -236,10 +237,10 @@ public class Sistema {
 	}
 
 	/**
+	 * Avalia a ajuda de um tutor.
 	 * 
-	 * @param idAjuda
-	 * @param nota
-	 * @return
+	 * @param idAjuda o identificador da ajuda
+	 * @param nota a nota da avaliação
 	 */
 	public String avaliaTutor(int idAjuda, int nota) {
 		try{
@@ -289,11 +290,11 @@ public class Sistema {
 			
 		}catch(IllegalArgumentException e) {
 			throw new IllegalArgumentException(ErroController.DOACAO_INVALIDA.toString() + 
-												MensagemAluno.MATRICULA_INVALIDA.toString());
+												MensagemTutor.EMAIL_INVALIDO.toString());
 		
 		}catch(NoSuchElementException e) {
 			throw new NoSuchElementException(ErroController.DOACAO_INVALIDA.toString() + 
-												ErroController.BUSCA_TUTOR_INVALIDA.toString());
+												ErroController.TUTOR_NAO_ENCONTRADO.toString());
 		}
 		
 		tutorController.doar(emailAluno, totalCentavos - this.calculoDoacao(emailAluno, totalCentavos));
@@ -302,17 +303,38 @@ public class Sistema {
 	public int totalDinheiroTutor(String emailTutor) {
 		return tutorController.totalDinheiroTutor(emailTutor);
 	}
-
+	
+	/** Calcula a parte da doação que será acumulada pelo sistema
+	 * 
+	 * @param emailTutor
+	 * @param totalCentavos
+	 * @return
+	 */
 	private int calculoDoacao(String emailTutor, int totalCentavos) {
 		
-		double taxaTutor = tutorController.avaliaTaxaDoacaoTutor(emailTutor);
-		int valorAoSistema =  (int)((1 - taxaTutor) * totalCentavos);
+		int taxaTutor = tutorController.avaliaTaxaDoacaoTutor(emailTutor);
+		int valorAoSistema =  (int)((1 - (taxaTutor/100)) * totalCentavos);
 		this.doacoes += valorAoSistema;
 		
 		return valorAoSistema;
 	}
-
+	
+	/**
+	 * Método que retorna o total arrecadado pelas doações
+	 * 
+	 * @return
+	 */
 	public int totalDinheiroSistema() {
 		return this.doacoes;
+	}
+	
+	/**
+	 * Define como será a ordenação da lista de tutores e alunos.
+	 * 
+	 * @param atributo o atributo que define a ordenação
+	 */
+	public void configuraOrdem(String atributo) {
+		tutorController.configuraOrdem(atributo);
+		alunoController.configuraOrdem(atributo);
 	}
 }

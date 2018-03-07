@@ -27,8 +27,16 @@ public class AlunoValidador {
 	 * @see Validador#validaTexto(String, String)
 	 */
 	public static boolean validaMatricula(String matricula){
-		return Validador.validaTexto(matricula, 
-				MensagemAluno.MATRICULA_INVALIDA.toString());
+		if (Validador.validaTexto(matricula, MensagemAluno.MATRICULA_INVALIDA.toString())) {
+			
+			String formaMatricula = "^([0-9]+)$";
+			
+			if (!matricula.matches(formaMatricula)) {
+				throw new IllegalArgumentException(MensagemAluno.MATRICULA_INVALIDA.toString());
+			}
+		}
+
+		return true;
 	}
 	
 	/**

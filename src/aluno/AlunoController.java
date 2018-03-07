@@ -2,6 +2,7 @@ package aluno;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,10 +26,16 @@ public class AlunoController {
 	private Map<String, Aluno> alunos;
 
 	/**
+	 * O tipo da ordenação de aluno.
+	 */
+	private Comparator<Aluno> ordem;
+
+	/**
 	 * Construtor da classe.
 	 */
 	public AlunoController() {
 		this.alunos = new HashMap<String, Aluno>();
+		this.ordem = new NomeComparator();
 	}
 
 	/**
@@ -46,20 +53,18 @@ public class AlunoController {
 	 *            o email do aluno
 	 */
 	public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
-		try{
-			if(AlunoValidador.validaAluno(nome, matricula, 
-							telefone, email, codigoCurso) && this.validaAlunoExistente(matricula)){
-				
+		try {
+			if (AlunoValidador.validaAluno(nome, matricula, telefone, email, codigoCurso)
+					&& this.validaAlunoExistente(matricula)) {
+
 				Aluno aluno = new Aluno(matricula, nome, telefone, email, codigoCurso);
 				this.alunos.put(matricula, aluno);
-			
+
 			}
-		}catch(IllegalArgumentException e){
-			throw new IllegalArgumentException(ErroController.
-					CADASTRO_ALUNO_INVALIDO.toString() + e.getMessage());
-		}catch(IllegalStateException e){
-			throw new IllegalArgumentException(ErroController.
-					CADASTRO_ALUNO_INVALIDO.toString() + e.getMessage());
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(ErroController.CADASTRO_ALUNO_INVALIDO.toString() + e.getMessage());
+		} catch (IllegalStateException e) {
+			throw new IllegalArgumentException(ErroController.CADASTRO_ALUNO_INVALIDO.toString() + e.getMessage());
 		}
 
 	}
@@ -74,19 +79,16 @@ public class AlunoController {
 	public String recuperaAluno(String matricula) {
 		String resultado = "";
 		try {
-			if(this.validaAluno(matricula)){
+			if (this.validaAluno(matricula)) {
 				resultado = this.alunos.get(matricula).toString();
 			}
-		}catch(IllegalArgumentException e){
-			throw new IllegalArgumentException(ErroController.
-					BUSCA_ALUNO_INVALIDA.toString() + e.getMessage());
-		}catch(NoSuchElementException e){
-			throw new NoSuchElementException(ErroController.
-					BUSCA_ALUNO_INVALIDA.toString() + e.getMessage());
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(ErroController.BUSCA_ALUNO_INVALIDA.toString() + e.getMessage());
+		} catch (NoSuchElementException e) {
+			throw new NoSuchElementException(ErroController.BUSCA_ALUNO_INVALIDA.toString() + e.getMessage());
 		}
-		
+
 		return resultado;
-	 
 
 	}
 
@@ -99,8 +101,8 @@ public class AlunoController {
 	 */
 	public Aluno getAlunoPelaMatricula(String matricula) {
 		Aluno aluno = null;
-		if(this.validaAluno(matricula)) {
-				aluno = this.alunos.get(matricula);
+		if (this.validaAluno(matricula)) {
+			aluno = this.alunos.get(matricula);
 		}
 		return aluno;
 	}
@@ -114,15 +116,15 @@ public class AlunoController {
 		String resultado = "";
 
 		List<Aluno> listaAlunos = new ArrayList<Aluno>(this.alunos.values());
-		Collections.sort(listaAlunos);	
-		
+		Collections.sort(listaAlunos, this.ordem);
+
 		for (int i = 0; i < listaAlunos.size(); i++) {
 			Aluno aluno = listaAlunos.get(i);
-			
-			if(i != 0){
+
+			if (i != 0) {
 				resultado += ", ";
 			}
-			
+
 			resultado += aluno.toString();
 		}
 
@@ -139,57 +141,99 @@ public class AlunoController {
 	 * @return uma <code>string</code> que representa o atributo desejado
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
-		
-		try{
-			if(this.validaAluno(matricula)){
-				
+
+		try {
+			if (this.validaAluno(matricula)) {
+
 				OpcoesController op = OpcoesController.getEnumByString(atributo);
-				
+
 				switch (op) {
-					case NOME:
-						return this.alunos.get(matricula).getNome();
-					case TELEFONE:
-						return this.alunos.get(matricula).getTelefone();
-					case EMAIL:
-						return this.alunos.get(matricula).getEmail();
-					default:
-						break;
+				case NOME:
+					return this.alunos.get(matricula).getNome();
+				case TELEFONE:
+					return this.alunos.get(matricula).getTelefone();
+				case EMAIL:
+					return this.alunos.get(matricula).getEmail();
+				default:
+					break;
 				}
 			}
-		}catch(IllegalArgumentException e){
-			throw new IllegalArgumentException(ErroController.
-					GET_INFO_ALUNO_INVALIDA.toString() + e.getMessage());
-		}catch(NoSuchElementException e){
-			throw new NoSuchElementException(ErroController.
-					GET_INFO_ALUNO_INVALIDA.toString() + e.getMessage());
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(ErroController.GET_INFO_ALUNO_INVALIDA.toString() + e.getMessage());
+		} catch (NoSuchElementException e) {
+			throw new NoSuchElementException(ErroController.GET_INFO_ALUNO_INVALIDA.toString() + e.getMessage());
 		}
 
 		return "";
 	}
 
-	public boolean existeAluno(String matricula){
+	/**
+	 * Verifica se existe um aluno com a matrícula passada
+	 * 
+	 * @param matricula
+	 *            a matrícula do aluno
+	 * @return boolean true, caso a matrícula exista, false, caso contrário.
+	 */
+	public boolean existeAluno(String matricula) {
 		return this.alunos.containsKey(matricula);
 	}
-	
-	private boolean validaAlunoExistente(String matricula){
-		if(AlunoValidador.validaMatricula(matricula)){
-			if(this.existeAluno(matricula)){
-				throw new IllegalStateException(MensagemAluno.
-						ALUNO_JA_CADASTRADO.toString());
+
+	/**
+	 * Verifica se a matrícula do aluno não foi cadastrada no sistema.
+	 * 
+	 * @param matricula
+	 *            a matricula do aluno
+	 * @return boolean true, caso o aluno não tenha sido cadastrado
+	 * @throws IllegalStateException
+	 *             caso o aluno já tenha sido cadastrado
+	 */
+	private boolean validaAlunoExistente(String matricula) {
+		if (AlunoValidador.validaMatricula(matricula)) {
+			if (this.existeAluno(matricula)) {
+				throw new IllegalStateException(MensagemAluno.ALUNO_JA_CADASTRADO.toString());
 			}
 		}
 		return true;
-		
+
 	}
-	
-	public boolean validaAluno(String matricula){
-		if(AlunoValidador.validaMatricula(matricula)){
-			if(!this.existeAluno(matricula)){
-				throw new NoSuchElementException(MensagemAluno.
-						ALUNO_NAO_ENCONTRADO.toString());
+
+	/**
+	 * Verifica se o aluno da matricula passada foi cadastrado no sistema
+	 * 
+	 * @param matricula
+	 *            a matricula do aluno
+	 * @return true caso a matricula sido cadastrada
+	 * @throws NoSuchElementException
+	 *             caso a matrícula não tenha sido cadastrada.
+	 */
+	public boolean validaAluno(String matricula) {
+		if (AlunoValidador.validaMatricula(matricula)) {
+			if (!this.existeAluno(matricula)) {
+				throw new NoSuchElementException(MensagemAluno.ALUNO_NAO_ENCONTRADO.toString());
 			}
 		}
 		return true;
-		
+	}
+
+	/**
+	 * Define como será a ordenação da lista de alunos
+	 * 
+	 * @param ordem
+	 *            o atributo que define a ordenação
+	 */
+	public void configuraOrdem(String ordem) {
+		switch (ordem) {
+		case "matricula":
+			this.ordem = new MatriculaComparator();
+			break;
+		case "nome":
+			this.ordem = new NomeComparator();
+			break;
+		case "email":
+			this.ordem = new EmailComparator();
+			break;
+		default:
+			throw new IllegalArgumentException("Erro ao alterar ordem: Ordem invalida");
+		}
 	}
 }

@@ -16,8 +16,8 @@ public class AjudaOnline extends Ajuda {
 	 *            identificador da ajuda
 	 * @param disciplina
 	 *            disciplina tema da ajuda
-	 * @param tutorMatricula
-	 *            matricula do tutor que realizará a ajuda
+	 * @param tutor
+	 *            o tutor que realizará a ajuda
 	 */
 	public AjudaOnline(Integer id, String disciplina, Tutor tutor) {
 

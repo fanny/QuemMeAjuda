@@ -1,5 +1,6 @@
 package tutor;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -80,13 +81,11 @@ public class Tutor implements Comparable<Tutor> {
 		}
 	}
 
-	public double getNotaAvaliacao() {
-		return this.notaAvaliacao;
-	}
 
 	/**
+	 * Altera a avaliação geral do tutor a partir de uma nova nota.
 	 * 
-	 * @param notaAvaliacao
+	 * @param notaAvaliacao a nota da avaliação
 	 */
 	public void alteraNotaAvaliacao(int notaAvaliacao) {
 		if (TutorValidador.validaNotaAvaliacao(notaAvaliacao)) {
@@ -95,6 +94,10 @@ public class Tutor implements Comparable<Tutor> {
 		}
 	}
 
+	public double getNotaAvaliacao() {
+		return this.notaAvaliacao;
+	}
+	
 	public double getSalario() {
 		return salario;
 	}
@@ -175,8 +178,8 @@ public class Tutor implements Comparable<Tutor> {
 	/**
 	 * Adiciona uma disciplina ao tutor
 	 * 
-	 * @param nome
-	 * @param proficiencia
+	 * @param nome o nome da disciplina
+	 * @param proficiencia a proficiencia do tutor na disciplina
 	 */
 	public void addDisciplina(String nome, Integer proficiencia) {
 		if (TutorValidador.validaDisciplina(nome) && TutorValidador.validaProficiencia(proficiencia)) {
@@ -188,7 +191,7 @@ public class Tutor implements Comparable<Tutor> {
 	}
 
 	/**
-	 * 
+	 * Define o nível do tutor com base na sua avaliação geral
 	 */
 	private void defineNivel() {
 		if (this.notaAvaliacao <= 3) {
@@ -201,9 +204,9 @@ public class Tutor implements Comparable<Tutor> {
 	}
 
 	/**
+	 * Verifica se o tutor já possui a disciplina
 	 * 
-	 * @param nome
-	 * @return
+	 * @param nome o nome da disciplina
 	 */
 	public boolean disciplinaExiste(String nome) {
 		return this.disciplinas.containsKey(nome);
@@ -232,8 +235,8 @@ public class Tutor implements Comparable<Tutor> {
 		return this.doacoes;
 	}
 
-	public int getNotaAvaliacaoAluno() {
-		return this.aluno.getNotaAvaliacao();
+	public double getNotaAvaliacaoAluno() {
+		return this.notaAvaliacao;
 	}
 	
 	public void setNotaAvaliacaoAluno(int notaAvaliacao) {
@@ -298,6 +301,4 @@ public class Tutor implements Comparable<Tutor> {
 		// TODO Auto-generated method stub
 		return this.getNome().compareTo(o2.getNome());
 	}
-
-
 }

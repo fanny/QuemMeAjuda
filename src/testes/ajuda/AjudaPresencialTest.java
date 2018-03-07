@@ -1,4 +1,4 @@
-package testes;
+package testes.ajuda;
 
 import static org.junit.Assert.*;
 
@@ -25,9 +25,23 @@ public class AjudaPresencialTest {
 		ajudaPresencial = new AjudaPresencial(-1, "POO",  new Tutor("POO", 5, new Aluno("87575", "rayla", "9883-3456",
 				"fannyJoke@hotmail.com", 2)), "18:00", "segunda", "ufcg");
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCadastroAjudaPresencialIdZero() {
+		ajudaPresencial = new AjudaPresencial(0, "POO",  new Tutor("POO", 5, new Aluno("87575", "rayla", "9883-3456",
+				"fannyJoke@hotmail.com", 2)), "18:00", "segunda", "ufcg");
+	}
+	
 	@Test(expected=IllegalArgumentException.class)
 	public void testCadastroAjudaPresencialDisciplinaNula() {
 		ajudaPresencial = new AjudaPresencial(1, null,  new Tutor("POO", 5, new Aluno("87575", "rayla", "9883-3456",
+				"fannyJoke@hotmail.com", 2)), "18:00", "segunda", "ufcg");
+	}
+	
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testCadastroAjudaPresencialDisciplinaVazia() {
+		ajudaPresencial = new AjudaPresencial(1, "",  new Tutor("POO", 5, new Aluno("87575", "rayla", "9883-3456",
 				"fannyJoke@hotmail.com", 2)), "18:00", "segunda", "ufcg");
 	}
 	

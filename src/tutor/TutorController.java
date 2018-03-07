@@ -2,6 +2,7 @@ package tutor;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,11 +28,14 @@ public class TutorController {
 	 */
 	private Map<String, Tutor> tutores;
 
+	private Comparator<Tutor> ordem;
+
 	/**
 	 * Construtor da classe.
 	 */
 	public TutorController() {
 		this.tutores = new HashMap<String, Tutor>();
+		this.ordem = new NomeComparator();
 	}
 
 	/**
@@ -64,7 +68,8 @@ public class TutorController {
 	public String listarTutores() {
 
 		List<Tutor> listaTutores = new ArrayList<Tutor>(this.tutores.values());
-		Collections.sort(listaTutores);
+
+		Collections.sort(listaTutores, this.ordem);
 
 		String resultado = "";
 
@@ -259,7 +264,8 @@ public class TutorController {
 	 * @param localInteresse
 	 *            local de atendimento do tutor
 	 */
-	public Tutor recuperaTutorParaAjudaPresencial(String disciplina, String horario, String dia, String localInteresse) {
+	public Tutor recuperaTutorParaAjudaPresencial(String disciplina, String horario, String dia,
+			String localInteresse) {
 
 		List<Tutor> tutoresParaAjuda = new ArrayList<>();
 		tutoresParaAjuda.addAll(this.tutores.values());
@@ -298,8 +304,7 @@ public class TutorController {
 				List<Tutor> tutoresParaAjuda = new ArrayList<>();
 				tutoresParaAjuda.addAll(this.tutores.values());
 
-				tutoresParaAjuda = tutoresParaAjuda.stream()
-						.filter(t -> t.disciplinaExiste(disciplina) == true)
+				tutoresParaAjuda = tutoresParaAjuda.stream().filter(t -> t.disciplinaExiste(disciplina) == true)
 						.collect(Collectors.toList());
 
 				PontuacaoComparator pontuacaoComparator = new PontuacaoComparator();
@@ -319,9 +324,9 @@ public class TutorController {
 	}
 
 	/**
+	 * Valida o email do tutor e verifica se o mesmo existe no sistema
 	 * 
-	 * @param email
-	 * @return
+	 * @param email o email do tutor
 	 */
 	private boolean validaTutor(String email) {
 		if (TutorValidador.validaEmail(email)) {
@@ -334,8 +339,10 @@ public class TutorController {
 	}
 
 	/**
+	 * Retorna a nota geral da avaliação de determinado tutor
 	 * 
 	 * @param email
+	 *            o email do tutor
 	 * @return
 	 */
 	public String retornaNotaAvaliacao(String email) {
@@ -343,8 +350,10 @@ public class TutorController {
 	}
 
 	/**
+	 * Retorna o nível de determinado tutor
 	 * 
 	 * @param email
+	 *            o email do tutor
 	 * @return
 	 */
 	public String retornaNivel(String email) {
@@ -352,70 +361,108 @@ public class TutorController {
 	}
 
 	/**
+	 * Avalia a ajuda de um determinado tutor
 	 * 
 	 * @param email
+	 *            o email do tutor a ser avaliado
 	 * @param nota
+	 *            a nota da avaliação
 	 */
-	public void avaliaTutor(String email, int nota) {		
+	public void avaliaTutor(String email, int nota) {
 		if (validaTutor(email) && TutorValidador.validaNotaAvaliacao(nota)) {
 			tutores.get(email).alteraNotaAvaliacao(nota);
 		}
 	}
-	
+
 	/**
 	 * Método que avalia se uma doação a um tutor apresenta valor menor que zero
 	 * lançando um IllegalArgumentException caso seja
 	 * 
-	 * @param totalCentavos		Valor doado
+	 * @param totalCentavos
+	 *            Valor doado
 	 */
 	public void validaDoacao(int totalCentavos) {
-		
 		TutorValidador.validaDoacao(totalCentavos);
 	}
 	
 	/**
+	 * @see Tutor#receberDoacao(int)
 	 * 
 	 * @param emailTutor
 	 * @param totalCentavos
 	 */
 	public void doar(String emailTutor, int totalCentavos) {
-		
+
 		this.tutores.get(emailTutor).receberDoacao(totalCentavos);
 	}
 	
-	public double avaliaTaxaDoacaoTutor(String emailTutor) {
-		
-		double taxa = 0;
-		double nota =  this.tutores.get(emailTutor).getNotaAvaliacao();
-		
-		if(nota > 4.5) {	
+	/**
+	 * Método que avalia qual a taxa que será usada para o calculo das doação para um tutor
+	 * 
+	 * @param emailTutor
+	 * @return
+	 */
+	public int avaliaTaxaDoacaoTutor(String emailTutor) {
+
+		int taxa = 0;
+		double nota = this.tutores.get(emailTutor).getNotaAvaliacao();
+
+		if (nota > 4.5) {
 			taxa = TaxaDoacaoValores.TOP_TAXA_DOACAO.getValor();
-			taxa += (nota - 4.5) / 10;
-			
-		}else if (nota >= 3) {
-			
+			taxa += (int)((nota - 4.5) * 10);
+
+		} else if (nota >= 3) {
+
 			taxa = TaxaDoacaoValores.TUTOR_TAXA_DOACAO.getValor();
-			
-		}else {
-			
+
+		} else {
+
 			taxa = TaxaDoacaoValores.APRENDIZ_TAXA_DOACAO.getValor();
-			taxa -= (3 - nota) / 10; 
+			taxa -= (int)((3 - nota) * 10);
 		}
 		return taxa;
 	}
 	
+	/**
+	 * Método que retorna o total do dinheiro de doações arrecadado por um tutor
+	 * 
+	 * @param emailTutor
+	 * @return
+	 */
 	public int totalDinheiroTutor(String emailTutor) {
 		try {
 			TutorValidador.validaEmail(emailTutor);
 			this.validaTutor(emailTutor);
-		
-		}catch(IllegalArgumentException e) {
-			throw new IllegalArgumentException(ErroController.DOACAO_INVALIDA + e.getMessage());
-		
-		}catch(NoSuchElementException e) {
-			throw new NoSuchElementException(ErroController.DOACAO_INVALIDA + e.getMessage());
+
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(MensagemTutor.CONSULTA_DINHEIRO_TUTOR.toString() + MensagemTutor.EMAIL_TUTOR_INVALIDO.toString());
+
+		} catch (NoSuchElementException e) {
+			throw new NoSuchElementException(MensagemTutor.CONSULTA_DINHEIRO_TUTOR.toString() + MensagemTutor.ERRO_BUSCA_TUTOR.toString());
 		}
-		
+
 		return this.tutores.get(emailTutor).getDoacao();
+	}
+
+	/**
+	 * Define como será a ordenação da lista de tutores
+	 * 
+	 * @param ordem
+	 *            o atributo que define a ordenação
+	 */
+	public void configuraOrdem(String ordem) {
+		switch (ordem) {
+		case "matricula":
+			this.ordem = new MatriculaComparator();
+			break;
+		case "nome":
+			this.ordem = new NomeComparator();
+			break;
+		case "email":
+			this.ordem = new EmailComparator();
+			break;
+		default:
+			throw new IllegalArgumentException("Erro ao alterar ordem: Ordem invalida");
+		}
 	}
 }

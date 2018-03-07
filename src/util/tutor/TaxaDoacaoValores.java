@@ -2,18 +2,18 @@ package util.tutor;
 
 public enum TaxaDoacaoValores {
 
-	TOP_TAXA_DOACAO(0.9),
-	TUTOR_TAXA_DOACAO(0.8),
-	APRENDIZ_TAXA_DOACAO(0.4);
+	TOP_TAXA_DOACAO(90),
+	TUTOR_TAXA_DOACAO(80),
+	APRENDIZ_TAXA_DOACAO(40);
 	
-	private double valor;
+	private int valor;
 	
-	private TaxaDoacaoValores(double valor) {
+	private TaxaDoacaoValores(int valor) {
 		
 		this.valor = valor;
 	}
 
-	public double getValor() {
+	public int getValor() {
 		return this.valor;
 	}
 }

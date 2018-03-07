@@ -2,7 +2,7 @@ package tutor.ajuda;
 
 import tutor.HorarioAtendimento;
 import tutor.Tutor;
-import util.tutor.TutorValidador;
+import util.ajuda.AjudaValidator;
 
 /**
  * Classe que representa uma ajuda presencial.
@@ -28,8 +28,8 @@ public class AjudaPresencial extends Ajuda {
 	 *            identificador da ajuda
 	 * @param disciplina
 	 *            disciplina tema da ajuda
-	 * @param tutorMatricula
-	 *            matricula do tutor que realizará a ajuda
+	 * @param tutor
+	 *            o tutor que realizará a ajuda
 	 * @param horario
 	 *            horario em que será dada a ajuda
 	 * @param dia
@@ -39,8 +39,10 @@ public class AjudaPresencial extends Ajuda {
 	 */
 	public AjudaPresencial(Integer id, String disciplina, Tutor tutor, String horario, String dia, String local) {
 		super(id, disciplina, tutor);
-		if(TutorValidador.validaHorarioDeAtendimento(horario, dia) && 
-				TutorValidador.validaLocalAtendimento(local)){
+		
+		if(AjudaValidator.validaHorario(horario) &&
+				AjudaValidator.validaDia(dia) &&
+				AjudaValidator.validaLocal(local)){
 			
 			this.horario = new HorarioAtendimento(dia, horario);
 			this.local = local;
