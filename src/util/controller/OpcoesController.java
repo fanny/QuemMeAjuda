@@ -4,6 +4,7 @@ public enum OpcoesController {
 	NOME("Nome"),
 	EMAIL("Email"),
 	TELEFONE("Telefone"),
+	MATRICULA("Matricula"),
 	OPCAO_INVALIDA("Opção inválida"),
 	DISCIPLINA("disciplina"),
 	LOCAL_INTERESSE("localInteresse"),
