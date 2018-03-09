@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import aluno.Aluno;
 import util.controller.ErroController;
+import util.controller.OpcoesController;
 import util.tutor.MensagemTutor;
 import util.tutor.TaxaDoacaoValores;
 import util.tutor.TutorValidador;
@@ -451,14 +452,17 @@ public class TutorController {
 	 *            o atributo que define a ordenação
 	 */
 	public void configuraOrdem(String ordem) {
-		switch (ordem) {
-		case "matricula":
+		
+		OpcoesController op = OpcoesController.getEnumByString(ordem);
+		
+		switch (op) {
+		case MATRICULA:
 			this.ordem = new MatriculaComparator();
 			break;
-		case "nome":
+		case NOME:
 			this.ordem = new NomeComparator();
 			break;
-		case "email":
+		case EMAIL:
 			this.ordem = new EmailComparator();
 			break;
 		default:
