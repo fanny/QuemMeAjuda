@@ -120,7 +120,7 @@ public class AlunoController {
 
 		StringJoiner joiner = new StringJoiner(", ");
 		
-		for (Aluno aluno: this.alunos.values()) {
+		for (Aluno aluno: listaAlunos) {
 			joiner.add(aluno.toString());
 		}
 

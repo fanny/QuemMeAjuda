@@ -75,7 +75,7 @@ public class TutorController {
 
 		StringJoiner joiner = new StringJoiner(", ");
 
-		for (Tutor tutor: this.tutores.values()) {
+		for (Tutor tutor: listaTutores) {
 			joiner.add(tutor.toString());
 		}
 
