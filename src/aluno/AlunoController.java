@@ -218,18 +218,22 @@ public class AlunoController {
 	 *            o atributo que define a ordenação
 	 */
 	public void configuraOrdem(String ordem) {
-		switch (ordem) {
-		case "matricula":
-			this.ordem = new MatriculaComparator();
-			break;
-		case "nome":
-			this.ordem = new NomeComparator();
-			break;
-		case "email":
-			this.ordem = new EmailComparator();
-			break;
+		
+		OpcoesController op = OpcoesController.getEnumByString(ordem);
+		
+		switch (op) {
+			case MATRICULA:
+				this.ordem = new MatriculaComparator();
+				break;
+			case NOME:
+				this.ordem = new NomeComparator();
+				break;
+			case EMAIL:
+				this.ordem = new EmailComparator();
+				break;
 		default:
-			throw new IllegalArgumentException("Erro ao alterar ordem: Ordem invalida");
+			throw new IllegalArgumentException(ErroController.
+					CONFIGURA_ORDEM_INVALIDA.toString());
 		}
 	}
 }

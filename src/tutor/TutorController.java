@@ -452,7 +452,8 @@ public class TutorController {
 			this.ordem = new EmailComparator();
 			break;
 		default:
-			throw new IllegalArgumentException("Erro ao alterar ordem: Ordem invalida");
+			throw new IllegalArgumentException(ErroController.
+					CONFIGURA_ORDEM_INVALIDA.toString());
 		}
 	}
 }

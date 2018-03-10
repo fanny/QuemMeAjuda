@@ -21,7 +21,8 @@ public enum ErroController {
 	GET_INFO_AJUDA_INVALIDA("Erro ao tentar recuperar info da ajuda : "),
 	PEGAR_TUTOR_INVALIDO("Erro ao tentar recuperar tutor : "),
 	DOACAO_INVALIDA("Erro na doacao para tutor: "),
-	ERRO_AVALIACAO_TUTOR("Erro na avaliacao de tutor: ");
+	ERRO_AVALIACAO_TUTOR("Erro na avaliacao de tutor: "),
+	CONFIGURA_ORDEM_INVALIDA("Erro ao alterar ordem: Ordem invalida");
 
 	private String descricao;
 	
