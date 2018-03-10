@@ -38,7 +38,7 @@ public class AlunoController {
 	 */
 	public AlunoController() {
 		this.alunos = new HashMap<String, Aluno>();
-		this.ordem = new NomeComparator();
+		this.ordem = new NomeComparator<Aluno>();
 	}
 
 	/**
@@ -227,13 +227,13 @@ public class AlunoController {
 	public void configuraOrdem(String ordem) {
 		switch (ordem) {
 		case "matricula":
-			this.ordem = new MatriculaComparator();
+			this.ordem = new MatriculaComparator<Aluno>();
 			break;
 		case "nome":
-			this.ordem = new NomeComparator();
+			this.ordem = new NomeComparator<Aluno>();
 			break;
 		case "email":
-			this.ordem = new EmailComparator();
+			this.ordem = new EmailComparator<Aluno>();
 			break;
 		default:
 			throw new IllegalArgumentException("Erro ao alterar ordem: Ordem invalida");
