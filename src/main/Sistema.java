@@ -286,9 +286,11 @@ public class Sistema {
 		String emailAluno = "";
 		try {
 			
-			emailAluno = getInfoAluno(matriculaTutor, OpcoesController.EMAIL.toString());
-			if(TutorValidador.validaDoacao(totalCentavos)){
+			if(this.alunoController.validaAluno(matriculaTutor)){
+				
+				emailAluno = getInfoAluno(matriculaTutor, OpcoesController.EMAIL.toString());
 				tutorController.doar(emailAluno, totalCentavos - this.calculoDoacao(emailAluno, totalCentavos));
+			
 			}
 			
 			
@@ -313,10 +315,15 @@ public class Sistema {
 	 * @return
 	 */
 	private int calculoDoacao(String emailTutor, int totalCentavos) {
-			
-		double taxaTutor = tutorController.getTaxaDoacaoTutor(emailTutor);
-		int valorAoSistema =  (int)Math.ceil((1 - taxaTutor) * totalCentavos);
-		this.doacoes += valorAoSistema;
+		
+		double taxaTutor = 0;
+		int valorAoSistema = 0;
+		
+		if(tutorController.existeTutor(emailTutor) && TutorValidador.validaDoacao(totalCentavos)){
+			taxaTutor = tutorController.getTaxaDoacaoTutor(emailTutor);
+			valorAoSistema =  (int)Math.ceil((1 - taxaTutor) * totalCentavos);
+			this.doacoes += valorAoSistema;
+		}
 		
 		return valorAoSistema;
 	}

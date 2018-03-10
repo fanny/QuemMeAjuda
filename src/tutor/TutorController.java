@@ -374,7 +374,7 @@ public class TutorController {
 			tutores.get(email).alteraNotaAvaliacao(nota);
 		}
 	}
-
+	
 	/**
 	 * @see Tutor#receberDoacao(int)
 	 * 
@@ -382,8 +382,14 @@ public class TutorController {
 	 * @param totalCentavos
 	 */
 	public void doar(String emailTutor, int totalCentavos) {
-
-		this.tutores.get(emailTutor).receberDoacao(totalCentavos);
+		
+		//A exceção é pega na classe acima
+		if(this.validaTutor(emailTutor) && TutorValidador.validaDoacao(totalCentavos)){
+			
+			this.tutores.get(emailTutor).receberDoacao(totalCentavos);
+			
+		}
+		
 	}
 	
 	/**
@@ -393,8 +399,13 @@ public class TutorController {
 	 * @return
 	 */
 	public double getTaxaDoacaoTutor(String emailTutor) {
-
-		return this.tutores.get(emailTutor).calculaTaxaDoacaoTutor();
+		double taxa = 0;
+		
+		if(this.validaTutor(emailTutor)){
+			taxa = this.tutores.get(emailTutor).calculaTaxaDoacaoTutor();
+		}
+		
+		return taxa;
 		
 	}
 	
@@ -405,18 +416,24 @@ public class TutorController {
 	 * @return
 	 */
 	public int totalDinheiroTutor(String emailTutor) {
+		
+		int total = 0;
+		
 		try {
-			TutorValidador.validaEmail(emailTutor);
-			this.validaTutor(emailTutor);
+			if(this.validaTutor(emailTutor)){
+				total = this.tutores.get(emailTutor).getDoacao();
+			}
 
 		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException(MensagemTutor.CONSULTA_DINHEIRO_TUTOR.toString() + MensagemTutor.EMAIL_TUTOR_INVALIDO.toString());
+			throw new IllegalArgumentException(MensagemTutor.CONSULTA_DINHEIRO_TUTOR.toString() + 
+					MensagemTutor.EMAIL_TUTOR_INVALIDO.toString());
 
 		} catch (NoSuchElementException e) {
-			throw new NoSuchElementException(MensagemTutor.CONSULTA_DINHEIRO_TUTOR.toString() + MensagemTutor.ERRO_BUSCA_TUTOR.toString());
+			throw new NoSuchElementException(MensagemTutor.CONSULTA_DINHEIRO_TUTOR.toString() + 
+					MensagemTutor.ERRO_BUSCA_TUTOR.toString());
 		}
 
-		return this.tutores.get(emailTutor).getDoacao();
+		return total;
 	}
 
 	/**
