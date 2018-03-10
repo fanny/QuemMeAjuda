@@ -285,19 +285,21 @@ public class Sistema {
 		
 		String emailAluno = "";
 		try {
+			
 			emailAluno = getInfoAluno(matriculaTutor, OpcoesController.EMAIL.toString());
-			tutorController.validaDoacao(totalCentavos);
+			if(TutorValidador.validaDoacao(totalCentavos)){
+				tutorController.doar(emailAluno, totalCentavos - this.calculoDoacao(emailAluno, totalCentavos));
+			}
+			
 			
 		}catch(IllegalArgumentException e) {
-			throw new IllegalArgumentException(ErroController.DOACAO_INVALIDA.toString() + 
-												MensagemTutor.EMAIL_INVALIDO.toString());
+			throw new IllegalArgumentException(ErroController.DOACAO_INVALIDA.toString() +
+					e.getMessage());
 		
 		}catch(NoSuchElementException e) {
 			throw new NoSuchElementException(ErroController.DOACAO_INVALIDA.toString() + 
 												ErroController.TUTOR_NAO_ENCONTRADO.toString());
 		}
-		
-		tutorController.doar(emailAluno, totalCentavos - this.calculoDoacao(emailAluno, totalCentavos));
 	}
 
 	public int totalDinheiroTutor(String emailTutor) {
@@ -311,9 +313,9 @@ public class Sistema {
 	 * @return
 	 */
 	private int calculoDoacao(String emailTutor, int totalCentavos) {
-		
-		int taxaTutor = tutorController.avaliaTaxaDoacaoTutor(emailTutor);
-		int valorAoSistema =  (int)((1 - (taxaTutor/100)) * totalCentavos);
+			
+		double taxaTutor = tutorController.getTaxaDoacaoTutor(emailTutor);
+		int valorAoSistema =  (int)Math.ceil((1 - taxaTutor) * totalCentavos);
 		this.doacoes += valorAoSistema;
 		
 		return valorAoSistema;
