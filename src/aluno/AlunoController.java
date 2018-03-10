@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.StringJoiner;
 
 import util.aluno.AlunoValidador;
 import util.aluno.MensagemAluno;
@@ -113,22 +114,17 @@ public class AlunoController {
 	 * @return String uma representação textual dos alunos cadastrados no sistema.
 	 */
 	public String listarAlunos() {
-		String resultado = "";
 
 		List<Aluno> listaAlunos = new ArrayList<Aluno>(this.alunos.values());
 		Collections.sort(listaAlunos, this.ordem);
 
-		for (int i = 0; i < listaAlunos.size(); i++) {
-			Aluno aluno = listaAlunos.get(i);
-
-			if (i != 0) {
-				resultado += ", ";
-			}
-
-			resultado += aluno.toString();
+		StringJoiner joiner = new StringJoiner(", ");
+		
+		for (Aluno aluno: this.alunos.values()) {
+			joiner.add(aluno.toString());
 		}
 
-		return resultado;
+		return joiner.toString();
 	}
 
 	/**
