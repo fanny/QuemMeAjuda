@@ -8,6 +8,7 @@ import java.util.Set;
 import aluno.Aluno;
 import util.controller.ErroController;
 import util.tutor.MensagemTutor;
+import util.tutor.TaxaDoacaoValores;
 import util.tutor.TutorValidador;
 
 /**
@@ -96,6 +97,31 @@ public class Tutor implements Comparable<Tutor> {
 	public double getNotaAvaliacao() {
 		return this.notaAvaliacao;
 	}
+	
+	
+
+	public double calculaTaxaDoacaoTutor() {
+
+		double taxa = 0;
+		
+
+		if (this.nivel.equals(MensagemTutor.TOP.toString())) {
+	
+			taxa = (0.9 + ((this.notaAvaliacao - 4.5) * 0.01));
+	
+
+		} else if (this.nivel.equals(MensagemTutor.TUTOR.toString())) {
+
+			taxa = 0.8;
+
+		} else {
+			
+			taxa = (0.4 - ((3 - this.notaAvaliacao) * 0.1));
+		
+		}
+		return taxa;
+	}
+	
 	
 	public double getSalario() {
 		return salario;
