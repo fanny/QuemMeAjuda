@@ -9,7 +9,6 @@ import aluno.Aluno;
 import util.comparators.Pessoa;
 import util.controller.ErroController;
 import util.tutor.MensagemTutor;
-import util.tutor.TaxaDoacaoValores;
 import util.tutor.TutorValidador;
 
 /**
@@ -17,7 +16,7 @@ import util.tutor.TutorValidador;
  * 
  * @author fanny
  */
-public class Tutor implements Comparable<Tutor>, Pessoa {
+public class Tutor implements Pessoa {
 
 	/**
 	 * Nota de avaliação do tutor
@@ -323,11 +322,5 @@ public class Tutor implements Comparable<Tutor>, Pessoa {
 		if (Double.doubleToLongBits(salario) != Double.doubleToLongBits(other.salario))
 			return false;
 		return true;
-	}
-
-	@Override
-	public int compareTo(Tutor o2) {
-		// TODO Auto-generated method stub
-		return this.getNome().compareTo(o2.getNome());
 	}
 }

@@ -9,7 +9,7 @@ import util.comparators.Pessoa;
  * @author Rayla Medeiros Araújo
  *
  */
-public class Aluno implements Comparable<Aluno>, Pessoa{
+public class Aluno implements Pessoa{
 
 	/**
 	 * A matricula do aluno
@@ -113,15 +113,6 @@ public class Aluno implements Comparable<Aluno>, Pessoa{
 
 		return retorno;
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int compareTo(Aluno a) {
-		return this.nome.compareTo(a.nome);
-	}
-	
 	/**
 	 * {@inheritDoc}
 	 */
