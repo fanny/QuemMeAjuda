@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.StringJoiner;
 
 import util.aluno.AlunoValidador;
 import util.aluno.MensagemAluno;
@@ -116,22 +117,17 @@ public class AlunoController {
 	 * @return String uma representação textual dos alunos cadastrados no sistema.
 	 */
 	public String listarAlunos() {
-		String resultado = "";
 
 		List<Aluno> listaAlunos = new ArrayList<Aluno>(this.alunos.values());
 		Collections.sort(listaAlunos, this.ordem);
 
-		for (int i = 0; i < listaAlunos.size(); i++) {
-			Aluno aluno = listaAlunos.get(i);
-
-			if (i != 0) {
-				resultado += ", ";
-			}
-
-			resultado += aluno.toString();
+		StringJoiner joiner = new StringJoiner(", ");
+		
+		for (Aluno aluno: this.alunos.values()) {
+			joiner.add(aluno.toString());
 		}
 
-		return resultado;
+		return joiner.toString();
 	}
 
 	/**
@@ -225,18 +221,22 @@ public class AlunoController {
 	 *            o atributo que define a ordenação
 	 */
 	public void configuraOrdem(String ordem) {
-		switch (ordem) {
-		case "matricula":
-			this.ordem = new MatriculaComparator<Aluno>();
-			break;
-		case "nome":
-			this.ordem = new NomeComparator<Aluno>();
-			break;
-		case "email":
-			this.ordem = new EmailComparator<Aluno>();
-			break;
-		default:
-			throw new IllegalArgumentException("Erro ao alterar ordem: Ordem invalida");
+    
+		OpcoesController op = OpcoesController.getEnumByString(ordem);
+		
+		switch (op) {
+			case MATRICULA:
+				this.ordem = new MatriculaComparator();
+				break;
+			case NOME:
+				this.ordem = new NomeComparator();
+				break;
+			case EMAIL:
+				this.ordem = new EmailComparator();
+				break;
+      default:
+        throw new IllegalArgumentException(ErroController.
+            CONFIGURA_ORDEM_INVALIDA.toString());
 		}
 	}
 }

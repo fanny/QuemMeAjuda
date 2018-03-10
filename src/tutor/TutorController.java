@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 import aluno.Aluno;
@@ -75,19 +76,13 @@ public class TutorController {
 
 		Collections.sort(listaTutores, this.ordem);
 
-		String resultado = "";
+		StringJoiner joiner = new StringJoiner(", ");
 
-		for (int i = 0; i < listaTutores.size(); i++) {
-			Tutor tutor = listaTutores.get(i);
-
-			if (i != 0) {
-				resultado += ", ";
-			}
-
-			resultado += tutor.toString();
+		for (Tutor tutor: this.tutores.values()) {
+			joiner.add(tutor.toString());
 		}
 
-		return resultado;
+		return joiner.toString();
 	}
 
 	/**
@@ -460,7 +455,8 @@ public class TutorController {
 			this.ordem = new EmailComparator<Tutor>();
 			break;
 		default:
-			throw new IllegalArgumentException("Erro ao alterar ordem: Ordem invalida");
+			throw new IllegalArgumentException(ErroController.
+					CONFIGURA_ORDEM_INVALIDA.toString());
 		}
 	}
 }
