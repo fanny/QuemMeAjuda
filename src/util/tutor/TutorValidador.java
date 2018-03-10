@@ -126,8 +126,8 @@ public class TutorValidador {
 	 * 
 	 * @param totalCentavos		Valor doado
 	 */
-	public static void validaDoacao(int totalCentavos) {
+	public static boolean validaDoacao(int totalCentavos) {
 		
-		Validador.validaMaiorIgualZero(totalCentavos, MensagemTutor.DOACAO_MENOR_QUE_ZERO.toString());
+		return Validador.validaMaiorIgualZero(totalCentavos, MensagemTutor.DOACAO_MENOR_QUE_ZERO.toString());
 	}
 }
