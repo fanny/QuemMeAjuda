@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import aluno.Aluno;
+import util.Pessoa;
 import util.controller.ErroController;
 import util.tutor.MensagemTutor;
 import util.tutor.TaxaDoacaoValores;
@@ -16,7 +17,7 @@ import util.tutor.TutorValidador;
  * 
  * @author fanny
  */
-public class Tutor implements Comparable<Tutor> {
+public class Tutor implements Comparable<Tutor>, Pessoa {
 
 	/**
 	 * Nota de avaliação do tutor
@@ -237,10 +238,12 @@ public class Tutor implements Comparable<Tutor> {
 		return this.disciplinas.containsKey(nome);
 	}
 
+	@Override
 	public String getMatricula() {
 		return this.aluno.getMatricula();
 	}
 
+	@Override
 	public String getNome() {
 		return this.aluno.getNome();
 	}
@@ -249,6 +252,7 @@ public class Tutor implements Comparable<Tutor> {
 		return this.aluno.getTelefone();
 	}
 
+	@Override
 	public String getEmail() {
 		return this.aluno.getEmail();
 	}
