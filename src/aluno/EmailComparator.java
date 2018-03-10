@@ -2,14 +2,13 @@ package aluno;
 
 import java.util.Comparator;
 
-public class EmailComparator implements Comparator<Aluno>{
+import util.Pessoa;
 
+public class EmailComparator<T extends Pessoa> implements Comparator<T>{
+	
 	@Override
-	public int compare(Aluno a1, Aluno a2) {
-		if(a1.getEmail().compareTo(a2.getEmail()) == 0) {
-			a1.getMatricula().compareTo(a2.getMatricula());
-		}
-		
-		return a1.getEmail().compareTo(a2.getEmail());
+	public int compare(T o1, T o2) {
+		// TODO Auto-generated method stub
+		return o1.getNome().compareTo(o2.getNome());
 	}
 }

@@ -2,14 +2,15 @@ package aluno;
 
 import java.util.Comparator;
 
-public class NomeComparator implements Comparator<Aluno>{
+import util.Pessoa;
+
+public class NomeComparator<T extends Pessoa> implements Comparator<T>{
 
 	@Override
-	public int compare(Aluno a1, Aluno a2) {
-		if(a1.getNome().compareTo(a2.getNome()) == 0) {
-			a1.getMatricula().compareTo(a2.getMatricula());
-		}
-		
-		return a1.getNome().compareTo(a2.getNome());
+	public int compare(T o1, T o2) {
+		// TODO Auto-generated method stub
+		return o1.getNome().compareTo(o2.getNome());
 	}
+
+	
 }

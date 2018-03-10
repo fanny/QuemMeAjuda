@@ -1,5 +1,6 @@
 package aluno;
 
+import util.Pessoa;
 import util.aluno.AlunoValidador;
 
 /**
@@ -8,7 +9,7 @@ import util.aluno.AlunoValidador;
  * @author Rayla Medeiros Araújo
  *
  */
-public class Aluno implements Comparable<Aluno>{
+public class Aluno implements Comparable<Aluno>, Pessoa{
 
 	/**
 	 * A matricula do aluno
@@ -66,10 +67,12 @@ public class Aluno implements Comparable<Aluno>{
 		this.notaAvaliacao = 5;
 	}
 
+	@Override
 	public String getMatricula() {
 		return matricula;
 	}
 
+	@Override
 	public String getNome() {
 		return nome;
 	}
@@ -78,6 +81,7 @@ public class Aluno implements Comparable<Aluno>{
 		return telefone;
 	}
 
+	@Override
 	public String getEmail() {
 		return email;
 	}
