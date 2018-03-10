@@ -376,17 +376,6 @@ public class TutorController {
 	}
 
 	/**
-	 * Método que avalia se uma doação a um tutor apresenta valor menor que zero
-	 * lançando um IllegalArgumentException caso seja
-	 * 
-	 * @param totalCentavos
-	 *            Valor doado
-	 */
-	public void validaDoacao(int totalCentavos) {
-		TutorValidador.validaDoacao(totalCentavos);
-	}
-	
-	/**
 	 * @see Tutor#receberDoacao(int)
 	 * 
 	 * @param emailTutor
@@ -403,25 +392,10 @@ public class TutorController {
 	 * @param emailTutor
 	 * @return
 	 */
-	public int avaliaTaxaDoacaoTutor(String emailTutor) {
+	public double getTaxaDoacaoTutor(String emailTutor) {
 
-		int taxa = 0;
-		double nota = this.tutores.get(emailTutor).getNotaAvaliacao();
-
-		if (nota > 4.5) {
-			taxa = TaxaDoacaoValores.TOP_TAXA_DOACAO.getValor();
-			taxa += (int)((nota - 4.5) * 10);
-
-		} else if (nota >= 3) {
-
-			taxa = TaxaDoacaoValores.TUTOR_TAXA_DOACAO.getValor();
-
-		} else {
-
-			taxa = TaxaDoacaoValores.APRENDIZ_TAXA_DOACAO.getValor();
-			taxa -= (int)((3 - nota) * 10);
-		}
-		return taxa;
+		return this.tutores.get(emailTutor).calculaTaxaDoacaoTutor();
+		
 	}
 	
 	/**
