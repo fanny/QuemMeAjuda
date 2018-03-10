@@ -10,6 +10,9 @@ import java.util.NoSuchElementException;
 
 import util.aluno.AlunoValidador;
 import util.aluno.MensagemAluno;
+import util.comparators.EmailComparator;
+import util.comparators.MatriculaComparator;
+import util.comparators.NomeComparator;
 import util.controller.ErroController;
 import util.controller.OpcoesController;
 

@@ -1,4 +1,4 @@
-package util;
+package util.comparators;
 
 public interface Pessoa {
 	

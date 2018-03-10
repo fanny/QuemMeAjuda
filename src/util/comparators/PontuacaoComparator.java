@@ -1,6 +1,8 @@
-package tutor;
+package util.comparators;
 
 import java.util.Comparator;
+
+import tutor.Tutor;
 
 public class PontuacaoComparator implements Comparator<Tutor>{
 

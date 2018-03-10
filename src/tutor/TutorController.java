@@ -10,9 +10,10 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import aluno.Aluno;
-import aluno.EmailComparator;
-import aluno.MatriculaComparator;
-import aluno.NomeComparator;
+import util.comparators.EmailComparator;
+import util.comparators.MatriculaComparator;
+import util.comparators.NomeComparator;
+import util.comparators.PontuacaoComparator;
 import util.controller.ErroController;
 import util.controller.OpcoesController;
 import util.tutor.MensagemTutor;

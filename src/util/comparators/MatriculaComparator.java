@@ -1,8 +1,6 @@
-package aluno;
+package util.comparators;
 
 import java.util.Comparator;
-
-import util.Pessoa;
 
 public class MatriculaComparator<T extends Pessoa> implements Comparator<T>{
 

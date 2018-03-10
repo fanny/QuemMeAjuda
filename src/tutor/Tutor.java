@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import aluno.Aluno;
-import util.Pessoa;
+import util.comparators.Pessoa;
 import util.controller.ErroController;
 import util.tutor.MensagemTutor;
 import util.tutor.TaxaDoacaoValores;
