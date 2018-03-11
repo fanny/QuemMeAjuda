@@ -11,10 +11,13 @@ import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 import aluno.Aluno;
+import util.comparators.EmailComparator;
+import util.comparators.MatriculaComparator;
+import util.comparators.NomeComparator;
+import util.comparators.PontuacaoComparator;
 import util.controller.ErroController;
 import util.controller.OpcoesController;
 import util.tutor.MensagemTutor;
-import util.tutor.TaxaDoacaoValores;
 import util.tutor.TutorValidador;
 
 /**
@@ -37,7 +40,7 @@ public class TutorController {
 	 */
 	public TutorController() {
 		this.tutores = new HashMap<String, Tutor>();
-		this.ordem = new NomeComparator();
+		this.ordem = new NomeComparator<Tutor>();
 	}
 
 	/**
@@ -443,13 +446,13 @@ public class TutorController {
 		
 		switch (op) {
 		case MATRICULA:
-			this.ordem = new MatriculaComparator();
+			this.ordem = new MatriculaComparator<Tutor>();
 			break;
 		case NOME:
-			this.ordem = new NomeComparator();
+			this.ordem = new NomeComparator<Tutor>();
 			break;
 		case EMAIL:
-			this.ordem = new EmailComparator();
+			this.ordem = new EmailComparator<Tutor>();
 			break;
 		default:
 			throw new IllegalArgumentException(ErroController.

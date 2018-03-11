@@ -11,6 +11,9 @@ import java.util.StringJoiner;
 
 import util.aluno.AlunoValidador;
 import util.aluno.MensagemAluno;
+import util.comparators.EmailComparator;
+import util.comparators.MatriculaComparator;
+import util.comparators.NomeComparator;
 import util.controller.ErroController;
 import util.controller.OpcoesController;
 
@@ -36,7 +39,7 @@ public class AlunoController {
 	 */
 	public AlunoController() {
 		this.alunos = new HashMap<String, Aluno>();
-		this.ordem = new NomeComparator();
+		this.ordem = new NomeComparator<Aluno>();
 	}
 
 	/**
@@ -218,7 +221,7 @@ public class AlunoController {
 	 *            o atributo que define a ordenação
 	 */
 	public void configuraOrdem(String ordem) {
-		
+    
 		OpcoesController op = OpcoesController.getEnumByString(ordem);
 		
 		switch (op) {
@@ -231,9 +234,9 @@ public class AlunoController {
 			case EMAIL:
 				this.ordem = new EmailComparator();
 				break;
-		default:
-			throw new IllegalArgumentException(ErroController.
-					CONFIGURA_ORDEM_INVALIDA.toString());
+      default:
+        throw new IllegalArgumentException(ErroController.
+            CONFIGURA_ORDEM_INVALIDA.toString());
 		}
 	}
 }

@@ -1,6 +1,7 @@
 package aluno;
 
 import util.aluno.AlunoValidador;
+import util.comparators.Pessoa;
 
 /**
  * Representacao de um aluno
@@ -8,7 +9,7 @@ import util.aluno.AlunoValidador;
  * @author Rayla Medeiros Araújo
  *
  */
-public class Aluno implements Comparable<Aluno>{
+public class Aluno implements Pessoa{
 
 	/**
 	 * A matricula do aluno
@@ -66,10 +67,12 @@ public class Aluno implements Comparable<Aluno>{
 		this.notaAvaliacao = 5;
 	}
 
+	@Override
 	public String getMatricula() {
 		return matricula;
 	}
 
+	@Override
 	public String getNome() {
 		return nome;
 	}
@@ -78,6 +81,7 @@ public class Aluno implements Comparable<Aluno>{
 		return telefone;
 	}
 
+	@Override
 	public String getEmail() {
 		return email;
 	}
@@ -109,15 +113,6 @@ public class Aluno implements Comparable<Aluno>{
 
 		return retorno;
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int compareTo(Aluno a) {
-		return this.nome.compareTo(a.nome);
-	}
-	
 	/**
 	 * {@inheritDoc}
 	 */
