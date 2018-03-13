@@ -89,5 +89,14 @@ public class Persistencia {
 		bw.close();
 		fw.close();
 	}
+	
+	/**
+	 * Método usado para apagar todos os arquivos cadastrados no sistema.
+	 */
+	public void limpar(){
+		for(File file: this.rootPath.listFiles()) 
+		    if (!file.isDirectory()) 
+		        file.delete();
+	}
 
 }

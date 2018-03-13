@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import aluno.Aluno;
 import aluno.AlunoController;
+import persistencia.Persistencia;
 import tutor.Tutor;
 import tutor.TutorController;
 import tutor.ajuda.AjudaController;
@@ -36,6 +37,9 @@ public class TestesArquivos {
 		ajudaController.cadastraAjudaOnline(new Tutor("Programação 4", 4, new Aluno("117115383", "uioeioeao", "99881-7692", "vinii.araujo@ccc.ufcg.edu.br", 1)), "quaua3");
 	
 		ajudaController.salvaAjudas();
+		
+//		Persistencia persistencia = new Persistencia();
+//		persistencia.limpar();
 		
 	}
 

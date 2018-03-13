@@ -260,4 +260,9 @@ public class AjudaController {
 	public void salvaAjudas() throws IOException{
 		this.persistencia.salvarAjudas(this.listaAjudas());
 	}
+	
+	public void limpar(){
+		this.ajudas.clear();
+		this.ajudasAvaliadas.clear();
+	}
 }

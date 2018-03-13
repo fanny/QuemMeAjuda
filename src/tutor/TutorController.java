@@ -470,4 +470,8 @@ public class TutorController {
 		this.persistencia.salvarTutores(this.listarTutores());
 		
 	}
+	
+	public void limpar(){
+		this.tutores.clear();
+	}
 }

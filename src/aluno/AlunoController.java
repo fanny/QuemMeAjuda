@@ -248,4 +248,8 @@ public class AlunoController {
 	public void salvaAlunos() throws IOException{
 		persistencia.salvaAlunos(this.listarAlunos());
 	}
+	
+	public void limpar(){
+		this.alunos.clear();
+	}
 }

@@ -360,6 +360,11 @@ public class Sistema {
 		ajudaController.salvaAjudas();
 	}
 	
+	public void limpar(){
+		this.tutorController.limpar();
+		this.ajudaController.limpar();
+		this.alunoController.limpar();
+	}
 	
 	
 }
