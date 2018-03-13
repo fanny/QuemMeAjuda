@@ -1,5 +1,6 @@
 package aluno;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -9,6 +10,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.StringJoiner;
 
+import persistencia.Persistencia;
 import util.aluno.AlunoValidador;
 import util.aluno.MensagemAluno;
 import util.comparators.EmailComparator;
@@ -33,6 +35,8 @@ public class AlunoController {
 	 * O tipo da ordenação de aluno.
 	 */
 	private Comparator<Aluno> ordem;
+	
+	private Persistencia persistencia;
 
 	/**
 	 * Construtor da classe.
@@ -40,6 +44,7 @@ public class AlunoController {
 	public AlunoController() {
 		this.alunos = new HashMap<String, Aluno>();
 		this.ordem = new NomeComparator<Aluno>();
+		persistencia = new Persistencia();
 	}
 
 	/**
@@ -226,17 +231,21 @@ public class AlunoController {
 		
 		switch (op) {
 			case MATRICULA:
-				this.ordem = new MatriculaComparator();
+				this.ordem = new MatriculaComparator<Aluno>();
 				break;
 			case NOME:
-				this.ordem = new NomeComparator();
+				this.ordem = new NomeComparator<Aluno>();
 				break;
 			case EMAIL:
-				this.ordem = new EmailComparator();
+				this.ordem = new EmailComparator<Aluno>();
 				break;
       default:
         throw new IllegalArgumentException(ErroController.
             CONFIGURA_ORDEM_INVALIDA.toString());
 		}
+	}
+	
+	public void salvaAlunos() throws IOException{
+		persistencia.salvaAlunos(this.listarAlunos());
 	}
 }

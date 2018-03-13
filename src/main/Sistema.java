@@ -10,6 +10,7 @@ import util.controller.OpcoesController;
 import util.tutor.MensagemTutor;
 import util.tutor.TutorValidador;
 
+import java.io.IOException;
 import java.util.NoSuchElementException;
 
 import aluno.Aluno;
@@ -346,4 +347,19 @@ public class Sistema {
 		tutorController.configuraOrdem(atributo);
 		alunoController.configuraOrdem(atributo);
 	}
+
+	public void salvaTutores() throws IOException {
+		tutorController.salvaTutores();
+	}
+
+	public void salvaAlunos() throws IOException {
+		alunoController.salvaAlunos();
+	}
+
+	public void salvaAjudas() throws IOException {
+		ajudaController.salvaAjudas();
+	}
+	
+	
+	
 }

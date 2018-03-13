@@ -1,11 +1,17 @@
 package tutor.ajuda;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
+import java.util.StringJoiner;
 
+import persistencia.Persistencia;
 import tutor.Tutor;
 import util.ajuda.AjudaValidator;
 import util.ajuda.MensagemAjuda;
@@ -31,6 +37,8 @@ public class AjudaController {
 	 * 
 	 */
 	private Set<Integer> ajudasAvaliadas;
+	
+	private Persistencia persistencia;
 
 	/**
 	 * Construtor da classe.
@@ -38,6 +46,7 @@ public class AjudaController {
 	public AjudaController() {
 		this.ajudas = new HashMap<>();
 		ajudasAvaliadas = new HashSet<>();
+		this.persistencia = new Persistencia();
 	}
 
 	/**
@@ -235,5 +244,20 @@ public class AjudaController {
 			throw new IllegalArgumentException(MensagemAjuda.ATRIBUTO_INVALIDO.toString());
 		}
 		return true;
+	}
+	
+	public String listaAjudas(){
+
+		StringJoiner joiner = new StringJoiner(", ");
+
+		for (Ajuda ajuda: this.ajudas.values()) {
+			joiner.add(ajuda.toString());
+		}
+
+		return joiner.toString();
+	}
+	
+	public void salvaAjudas() throws IOException{
+		this.persistencia.salvarAjudas(this.listaAjudas());
 	}
 }

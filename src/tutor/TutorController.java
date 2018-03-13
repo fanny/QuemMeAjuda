@@ -1,5 +1,6 @@
 package tutor;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -11,6 +12,7 @@ import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 import aluno.Aluno;
+import persistencia.Persistencia;
 import util.comparators.EmailComparator;
 import util.comparators.MatriculaComparator;
 import util.comparators.NomeComparator;
@@ -34,6 +36,8 @@ public class TutorController {
 	private Map<String, Tutor> tutores;
 
 	private Comparator<Tutor> ordem;
+	
+	private Persistencia persistencia;
 
 	/**
 	 * Construtor da classe.
@@ -41,6 +45,7 @@ public class TutorController {
 	public TutorController() {
 		this.tutores = new HashMap<String, Tutor>();
 		this.ordem = new NomeComparator<Tutor>();
+		this.persistencia = new Persistencia();
 	}
 
 	/**
@@ -458,5 +463,11 @@ public class TutorController {
 			throw new IllegalArgumentException(ErroController.
 					CONFIGURA_ORDEM_INVALIDA.toString());
 		}
+	}
+	
+	public void salvaTutores() throws IOException{
+		
+		this.persistencia.salvarTutores(this.listarTutores());
+		
 	}
 }
