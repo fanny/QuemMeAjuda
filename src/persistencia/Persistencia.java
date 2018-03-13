@@ -1,9 +1,12 @@
 package persistencia;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.StringJoiner;
 
 /**
  * Classe utilizada para armazenar os dados cadastrados no 
@@ -69,6 +72,33 @@ public class Persistencia {
 	public void salvaAlunos(String texto) throws IOException{ 
 		this.salvar(this.arquivoAlunos, texto);
 	}
+
+	
+
+	/**
+	 * Faz a letura do arquivo de ajudas do sistema
+	 * @throws IOException caso ocorra algum problema na leitura
+	 */
+	public void carregarAjudas() throws IOException{
+		this.carregar(this.arquivoAjudas);
+	}
+	
+	/**
+	 * Faz a letura do arquivo de tutores do sistema
+	 * @throws IOException caso ocorra algum problema na leitura
+	 */
+	public void carregarTutores() throws IOException{
+		this.carregar(this.arquivoTutores);
+	}
+	
+	/**
+	 * Faz a letura do arquivo de alunos do sistema
+	 * @throws IOException caso ocorra algum problema na leitura
+	 */
+	public void carregarAlunos() throws IOException{ 
+		this.carregar(this.arquivoAlunos);
+	}
+	
 	
 	/**
 	 * Salva um arquivo no sistema
@@ -89,6 +119,37 @@ public class Persistencia {
 		bw.close();
 		fw.close();
 	}
+	
+	/**
+	 * Faz a leitura do arquivo passado como parametro
+	 * 
+	 * @param arquivo
+	 *            o arquvo a ser lido
+	 * @return string uma string representando o conteúdo do arquivo
+	 * @throws IOException
+	 *             caso ocorra algum problema na leitura
+	 */
+	private String carregar(File arquivo) throws IOException{
+		
+		FileReader fr = new FileReader(arquivo);
+		BufferedReader br = new BufferedReader(fr);
+		
+		StringJoiner joiner = new StringJoiner(System.lineSeparator());
+		
+		String line = br.readLine();
+		while(line != null){
+			joiner.add(line);
+			line = br.readLine();
+		}
+		
+		br.close();
+		fr.close();
+		
+		return joiner.toString();
+		
+	}
+	
+	
 	
 	/**
 	 * Método usado para apagar todos os arquivos cadastrados no sistema.
