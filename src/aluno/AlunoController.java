@@ -244,12 +244,28 @@ public class AlunoController {
             CONFIGURA_ORDEM_INVALIDA.toString());
 		}
 	}
-	
+	/**
+	 * @see Persistencia#salvaAlunos(String)
+	 */
 	public void salvaAlunos() throws IOException{
-		persistencia.salvaAlunos(this.listarAlunos());
+		this.persistencia.salvaAlunos(this.listarAlunos());
 	}
 	
+	/**
+	 * @see Persistencia#limparAlunos()
+	 */
 	public void limpar(){
 		this.alunos.clear();
+		this.persistencia.limparAlunos();
 	}
+	
+	/**
+	 * @see Persistencia#carregaAlunos()
+	 */
+	public String carregaAlunos() throws IOException{
+		return this.persistencia.carregaAlunos();
+	}
+
+	
+	
 }

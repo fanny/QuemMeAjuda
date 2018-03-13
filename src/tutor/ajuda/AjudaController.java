@@ -1,11 +1,8 @@
 package tutor.ajuda;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -15,8 +12,6 @@ import persistencia.Persistencia;
 import tutor.Tutor;
 import util.ajuda.AjudaValidator;
 import util.ajuda.MensagemAjuda;
-import util.aluno.AlunoValidador;
-import util.aluno.MensagemAluno;
 import util.controller.ErroController;
 import util.controller.OpcoesController;
 
@@ -246,6 +241,13 @@ public class AjudaController {
 		return true;
 	}
 	
+	
+	/**
+	 * Lista todas as ajudas cadastradas no sistema, 
+	 * separadas por vírgula
+	 * @return String Uma representação textual de todas as 
+	 * ajudas cadastradas no sistema.
+	 */
 	public String listaAjudas(){
 
 		StringJoiner joiner = new StringJoiner(", ");
@@ -257,12 +259,30 @@ public class AjudaController {
 		return joiner.toString();
 	}
 	
+	/**
+	 * @see Persistencia#salvaAjudas(String)
+	 */
 	public void salvaAjudas() throws IOException{
-		this.persistencia.salvarAjudas(this.listaAjudas());
+		this.persistencia.salvaAjudas(this.listaAjudas());
 	}
 	
+	/**
+	 * @see Persistencia#limparAjudas()
+	 */
 	public void limpar(){
 		this.ajudas.clear();
 		this.ajudasAvaliadas.clear();
+		this.persistencia.limparAjudas();
 	}
+	
+	/**
+	 * @see Persistencia#carregaAjudas()
+	 */
+	public String carregaAjudas() throws IOException{
+		return this.persistencia.carregaAjudas();
+	}
+	
+	
+	
+	
 }

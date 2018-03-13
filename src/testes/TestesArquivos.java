@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import aluno.Aluno;
 import aluno.AlunoController;
+import main.Sistema;
 import persistencia.Persistencia;
 import tutor.Tutor;
 import tutor.TutorController;
@@ -12,6 +13,9 @@ import tutor.ajuda.AjudaController;
 public class TestesArquivos {
 	
 	public static void main(String[] args) throws IOException {
+		
+		Sistema sistema = new Sistema();
+		
 		AlunoController alunoController = new AlunoController();
 	
 		alunoController.cadastrarAluno("Fanny", "11715963", 2, "99984-1347", "fannyvieira082@gmail.com");
@@ -38,8 +42,9 @@ public class TestesArquivos {
 	
 		ajudaController.salvaAjudas();
 		
-//		Persistencia persistencia = new Persistencia();
-//		persistencia.limpar();
+		sistema.carregar();
+		
+	
 		
 	}
 

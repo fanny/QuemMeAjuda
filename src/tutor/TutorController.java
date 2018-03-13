@@ -470,16 +470,28 @@ public class TutorController {
 		}
 	}
 	
+	/**
+	 * @see Persistencia#salvaTutores(String)
+	 */
 	public void salvaTutores() throws IOException{
 		
-		this.persistencia.salvarTutores(this.listarTutores());
+		this.persistencia.salvaTutores(this.listarTutores());
 		
 	}
 	
+	/**
+	 * @see Persistencia#limparTutores()
+	 */
 	public void limpar(){
 		this.tutores.clear();
+		this.persistencia.limparTutores();
 	}
 
-	
+	/**
+	 * @see Persistencia#carregaTutores()
+	 */
+	public String carregaTutores() throws IOException{
+		return this.persistencia.carregaTutores();
+	}
 	
 }

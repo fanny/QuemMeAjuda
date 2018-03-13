@@ -7,7 +7,6 @@ import util.ajuda.AjudaValidator;
 import util.aluno.MensagemAluno;
 import util.controller.ErroController;
 import util.controller.OpcoesController;
-import util.tutor.MensagemTutor;
 import util.tutor.TutorValidador;
 
 import java.io.IOException;
@@ -15,6 +14,7 @@ import java.util.NoSuchElementException;
 
 import aluno.Aluno;
 import aluno.AlunoController;
+import persistencia.Persistencia;
 
 /**
  * Classe controller do sistema.
@@ -348,22 +348,50 @@ public class Sistema {
 		alunoController.configuraOrdem(atributo);
 	}
 
+	/**
+	 * @see Persistencia#salvarTutores(String) 
+	 *
+	 */
 	public void salvaTutores() throws IOException {
 		tutorController.salvaTutores();
 	}
 
+	/**
+	 * @see Persistencia#salvarAlunos(String) 
+	 *
+	 */
 	public void salvaAlunos() throws IOException {
 		alunoController.salvaAlunos();
 	}
 
+	/**
+	 * @see Persistencia#salvaAjudas(String)
+	 */
 	public void salvaAjudas() throws IOException {
 		ajudaController.salvaAjudas();
 	}
 	
+	/**
+	 * Limpa todos os dados cadastrados no sistema
+	 */
 	public void limpar(){
 		this.tutorController.limpar();
 		this.ajudaController.limpar();
 		this.alunoController.limpar();
+	}
+	
+	/**
+	 * Carrega todos os dados cadastrados no sistema
+	 * @throws IOException caso ocorra um erro ao carregar o contéudo dos arquivos.
+	 */
+	public void carregar() throws IOException{
+		String resultado = this.alunoController.carregaAlunos().
+					concat(System.lineSeparator() + 
+							System.lineSeparator() + this.tutorController.carregaTutores()).
+					concat(System.lineSeparator() + 
+							System.lineSeparator()+ this.ajudaController.carregaAjudas());
+		
+		System.out.println(resultado);
 	}
 	
 	

@@ -43,7 +43,7 @@ public class Persistencia {
 	 * @throws IOException
 	 *             caso ocorra algum erro na escrita do arquivo
 	 */
-	public void salvarAjudas(String texto) throws IOException{
+	public void salvaAjudas(String texto) throws IOException{
 		this.salvar(this.arquivoAjudas, texto);
 	}
 	
@@ -56,7 +56,7 @@ public class Persistencia {
 	 * @throws IOException
 	 *             caso ocorra algum erro na escrita do arquivo
 	 */
-	public void salvarTutores(String texto) throws IOException{
+	public void salvaTutores(String texto) throws IOException{
 		this.salvar(this.arquivoTutores, texto);
 	}
 	
@@ -73,30 +73,29 @@ public class Persistencia {
 		this.salvar(this.arquivoAlunos, texto);
 	}
 
-	
 
 	/**
 	 * Faz a letura do arquivo de ajudas do sistema
 	 * @throws IOException caso ocorra algum problema na leitura
 	 */
-	public void carregarAjudas() throws IOException{
-		this.carregar(this.arquivoAjudas);
+	public String carregaAjudas() throws IOException{
+		return this.carregar(this.arquivoAjudas);
 	}
 	
 	/**
 	 * Faz a letura do arquivo de tutores do sistema
 	 * @throws IOException caso ocorra algum problema na leitura
 	 */
-	public void carregarTutores() throws IOException{
-		this.carregar(this.arquivoTutores);
+	public String carregaTutores() throws IOException{
+		return this.carregar(this.arquivoTutores);
 	}
 	
 	/**
 	 * Faz a letura do arquivo de alunos do sistema
 	 * @throws IOException caso ocorra algum problema na leitura
 	 */
-	public void carregarAlunos() throws IOException{ 
-		this.carregar(this.arquivoAlunos);
+	public String carregaAlunos() throws IOException{ 
+		return this.carregar(this.arquivoAlunos);
 	}
 	
 	
@@ -149,15 +148,16 @@ public class Persistencia {
 		
 	}
 	
+	public void limparAjudas(){
+		this.arquivoAjudas.delete();
+	}
 	
+	public void limparTutores(){
+		this.arquivoTutores.delete();
+	}
 	
-	/**
-	 * Método usado para apagar todos os arquivos cadastrados no sistema.
-	 */
-	public void limpar(){
-		for(File file: this.rootPath.listFiles()) 
-		    if (!file.isDirectory()) 
-		        file.delete();
+	public void limparAlunos(){
+		this.arquivoAlunos.delete();
 	}
 
 }
