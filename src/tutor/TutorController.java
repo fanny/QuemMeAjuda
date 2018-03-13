@@ -355,7 +355,12 @@ public class TutorController {
 	 * @return
 	 */
 	public String retornaNotaAvaliacao(String email) {
-		return String.format("%.2f", tutores.get(email).getNotaAvaliacao());
+		
+		if(validaTutor(email)) {
+			return String.format("%.2f", tutores.get(email).getNotaAvaliacao());			
+		}
+		
+		return "";
 	}
 
 	/**
@@ -366,7 +371,12 @@ public class TutorController {
 	 * @return
 	 */
 	public String retornaNivel(String email) {
-		return tutores.get(email).getNivel();
+		
+		if(validaTutor(email)) {
+			return tutores.get(email).getNivel();			
+		}
+		
+		return "";
 	}
 
 	/**
