@@ -1,5 +1,7 @@
 package main;
 
+import java.io.IOException;
+
 /**
  * Classe Facade do sistema.
  * 
@@ -179,4 +181,41 @@ public class Facade {
 	public void configurarOrdem(String atributo) {
 		sistema.configuraOrdem(atributo);
 	}
+
+	/**
+	 * @see Sistema#salvaTutores()
+	 */
+	public void salvaTutores() throws IOException {
+		sistema.salvaTutores();
+	}
+
+	/**
+	 * @see Sistema#salvaAlunos()
+	 */
+	public void salvaAlunos() throws IOException {
+		sistema.salvaAlunos();
+	}
+
+	/**
+	 * @see Sistema#salvaAjudas()
+	 */
+	public void salvaAjudas() throws IOException {
+		sistema.salvaAjudas();
+	}
+
+	/**
+	 * @see Sistema#limpar()
+	 */
+	public void limpar() {
+		sistema.limpar();
+	}
+
+	/**
+	 * @see Sistema#carregar()
+	 */
+	public void carregar() throws IOException {
+		sistema.carregar();
+	}
+	
+	
 }
