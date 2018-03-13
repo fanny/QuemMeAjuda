@@ -390,4 +390,262 @@ public class TutorControllerTest {
 		
 		tutorController.consultaLocal("gaudslindo99@gmail.com", "LCC2");
 	}
+	
+	/*---------------------- TESTES RECUPERA TUTOR ----------------------*/
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testRecuperaTutorEmailVazio() {
+
+		tutorController.recuperaTutor("");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testRecuperaTutorEmailComEspacosEmBranco() {
+		
+		tutorController.recuperaTutor("     ");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testRecuperaTutorEmailNulo() {
+		
+		tutorController.recuperaTutor(null);
+	}
+	
+	@Test(expected=NoSuchElementException.class)
+	public void testRecuperaTutorEmailInexistente() {
+		
+		tutorController.recuperaTutor("lerigou@frozen.com");
+	}
+	
+	@Test
+	public void testRecuperaTutorValido() {
+		
+		String actual = tutorController.recuperaTutor("gaudslindo99@gmail.com");
+		String expected = "11715963 - Gauds Lindo - 2 - 99984-1347 - gaudslindo99@gmail.com";
+		
+		assertEquals("Esperando resposta igual", expected, actual);
+	}
+	
+	/*---------------------- TESTES RETORNA NOTA AVALIACAO ----------------------*/
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testRetornaNotaAvaliacaoEmailVazio() {
+
+		tutorController.retornaNotaAvaliacao("");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testRetornaNotaAvaliacaoEmailComEspacosEmBranco() {
+		
+		tutorController.retornaNotaAvaliacao("     ");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testRetornaNotaAvaliacaoEmailNulo() {
+		
+		tutorController.retornaNotaAvaliacao(null);
+	}
+	
+	@Test(expected=NoSuchElementException.class)
+	public void testRetornaNotaAvaliacaoEmailInexistente() {
+		
+		tutorController.retornaNotaAvaliacao("lerigou@frozen.com");
+	}
+	
+	@Test
+	public void testRetornaNotaAvaliacaoValido() {
+		
+		String actual = tutorController.retornaNotaAvaliacao("gaudslindo99@gmail.com");
+		String expected = "4,00";
+		
+		assertEquals("Esperando resposta igual", expected, actual);
+	}
+	
+	/*---------------------- TESTES RETORNA NIVEL ----------------------*/
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testRetornaNivelEmailVazio() {
+
+		tutorController.retornaNivel("");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testRetornaNivelEmailComEspacosEmBranco() {
+		
+		tutorController.retornaNivel("      ");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testRetornaNivelEmailNulo() {
+		
+		tutorController.retornaNivel(null);
+	}
+	
+	@Test(expected=NoSuchElementException.class)
+	public void testRetornaNivelEmailInexistente() {
+		
+		tutorController.retornaNivel("lerigou@frozen.com");
+	}
+	
+	@Test
+	public void testRetornaNivelTutorValido() {
+		
+		String actual = tutorController.retornaNivel("gaudslindo99@gmail.com");
+		String expected = "Tutor";
+		
+		assertEquals("Esperando resposta igual", expected, actual);
+	}
+	
+	@Test
+	public void testRetornaNivelTopValido() {
+		
+		for(int i = 0; i < 5; i ++) {	
+			tutorController.avaliaTutor("gaudslindo99@gmail.com", 5);
+		}
+
+		String actual = tutorController.retornaNivel("gaudslindo99@gmail.com");
+		String expected = "TOP";
+		
+		assertEquals("Esperando resposta igual", expected, actual);
+	}
+	
+	@Test
+	public void testRetornaNivelAprendizValido() {
+		
+		for(int i = 0; i < 5; i ++) {	
+			tutorController.avaliaTutor("gaudslindo99@gmail.com", 1);
+		}
+
+		String actual = tutorController.retornaNivel("gaudslindo99@gmail.com");
+		String expected = "Aprendiz";
+		
+		assertEquals("Esperando resposta igual", expected, actual);
+	}
+	
+	/*---------------------- TESTES AVALIA TUTOR ----------------------*/
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAvaliaTutorEmailVazio() {
+
+		tutorController.avaliaTutor("", 2);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAvaliaTutorEmailComEspacosEmBranco() {
+		
+		tutorController.avaliaTutor("      ", 3);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAvaliaTutorEmailNulo() {
+		
+		tutorController.avaliaTutor(null, 2);
+	}
+	
+	@Test(expected=NoSuchElementException.class)
+	public void testAvaliaTutorEmailInexistente() {
+		
+		tutorController.avaliaTutor("lerigou@frozen.com", 2);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAvaliaTutorNotaMenorQueZero() {
+
+		tutorController.avaliaTutor("gaudslindo99@gmail.com", -1);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAvaliaTutorNotaMaiorQueCinco() {
+		
+		tutorController.avaliaTutor("gaudslindo99@gmail.com", 6);
+	}
+	
+	@Test
+	public void testAvaliaTutorValido() {
+		
+		tutorController.avaliaTutor("gaudslindo99@gmail.com", 3);
+	}
+	
+	/*---------------------- TESTES DOAR ----------------------*/
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testDoarEmailVazio() {
+
+		tutorController.doar("", 100);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testDoarEmailComEspacosEmBranco() {
+		
+		tutorController.doar("      ", 100);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testDoarEmailNulo() {
+		
+		tutorController.doar(null, 100);
+	}
+	
+	@Test(expected=NoSuchElementException.class)
+	public void testDoarEmailInexistente() {
+		
+		tutorController.doar("lerigou@frozen.br", 100);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testDoarValorMenorQueZero() {
+
+		tutorController.doar("gaudslindo99@gmail.com", -1);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testDoarValorIgualAZero() {
+		
+		tutorController.doar("gaudslindo99@gmail.com", 0);
+	}
+	
+	@Test
+	public void testDoarValido() {
+		
+		tutorController.doar("gaudslindo99@gmail.com", 1000);
+	}
+	
+	/*---------------------- TESTES TOTAL DINHEIRO ----------------------*/
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testTotalDinheiroTutorEmailVazio() {
+
+		tutorController.totalDinheiroTutor("");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testTotalDinheiroTutorEmailComEspacosEmBranco() {
+		
+		tutorController.totalDinheiroTutor("      ");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testTotalDinheiroTutorEmailNulo() {
+		
+		tutorController.totalDinheiroTutor(null);
+	}
+	
+	@Test(expected=NoSuchElementException.class)
+	public void testTotalDinheiroTutorEmailInexistente() {
+		
+		tutorController.totalDinheiroTutor("lerigou@frozen.br");
+	}
+	
+	@Test
+	public void testTotalDinheiroTutorValido() {
+		
+		tutorController.doar("gaudslindo99@gmail.com", 10000);
+		
+		int actual = tutorController.totalDinheiroTutor("gaudslindo99@gmail.com");
+		int expected = 10000;
+		
+		assertEquals(expected, actual);
+		
+	}
+	
 }
