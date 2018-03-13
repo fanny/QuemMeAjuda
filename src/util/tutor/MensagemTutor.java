@@ -1,5 +1,11 @@
 package util.tutor;
 
+/**
+ * Conjunto de enums que representam as mensagens e 
+ * opções relacionadas ao tutor
+ * @author fanny
+ *
+ */
 public enum MensagemTutor {
 	
 	DISCIPLINA_JA_EXISTE("Ja eh tutor dessa disciplina"),

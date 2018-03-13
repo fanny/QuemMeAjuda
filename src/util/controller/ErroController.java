@@ -1,5 +1,11 @@
 package util.controller;
 
+
+/**
+ * Classe que contém todos as possíveis mensagens de erro lançadas pelo controller.
+ * @author fanny
+ *
+ */
 public enum ErroController {
 	
 	TUTOR_NAO_ENCONTRADO("Tutor nao encontrado"),

@@ -13,7 +13,7 @@ import tutor.Tutor;
 import util.ajuda.AjudaValidator;
 import util.ajuda.MensagemAjuda;
 import util.controller.ErroController;
-import util.controller.OpcoesController;
+import util.controller.OpcaoController;
 
 /**
  * Controller das ajudas do sistema.
@@ -147,7 +147,7 @@ public class AjudaController {
 
 			if (this.validaAjuda(idAjuda) && this.validaAtributo(atributo)) {
 
-				OpcoesController op = OpcoesController.getEnumByString(atributo);
+				OpcaoController op = OpcaoController.getEnumByString(atributo);
 
 				switch (op) {
 				case LOCAL_INTERESSE: {

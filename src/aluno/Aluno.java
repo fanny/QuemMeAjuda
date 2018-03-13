@@ -1,7 +1,7 @@
 package aluno;
 
 import util.aluno.AlunoValidador;
-import util.comparators.Pessoa;
+import util.comparators.Discente;
 
 /**
  * Representacao de um aluno
@@ -9,7 +9,7 @@ import util.comparators.Pessoa;
  * @author Rayla Medeiros Araújo
  *
  */
-public class Aluno implements Pessoa{
+public class Aluno implements Discente{
 
 	/**
 	 * A matricula do aluno

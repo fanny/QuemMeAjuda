@@ -2,6 +2,11 @@ package util.aluno;
 
 import util.Validador;
 
+/**
+ * Classe utilizada para validar as informações de um aluno
+ * @author fanny
+ *
+ */
 public class AlunoValidador {
 	
 	/**

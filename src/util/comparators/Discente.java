@@ -1,6 +1,6 @@
 package util.comparators;
 
-public interface Pessoa {
+public interface Discente {
 	
 	public String getNome();
 	

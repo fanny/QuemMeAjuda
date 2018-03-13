@@ -18,7 +18,7 @@ import util.comparators.MatriculaComparator;
 import util.comparators.NomeComparator;
 import util.comparators.PontuacaoComparator;
 import util.controller.ErroController;
-import util.controller.OpcoesController;
+import util.controller.OpcaoController;
 import util.tutor.MensagemTutor;
 import util.tutor.TutorValidador;
 
@@ -452,7 +452,7 @@ public class TutorController {
 	 */
 	public void configuraOrdem(String ordem) {
 		
-		OpcoesController op = OpcoesController.getEnumByString(ordem);
+		OpcaoController op = OpcaoController.getEnumByString(ordem);
 		
 		switch (op) {
 		case MATRICULA:

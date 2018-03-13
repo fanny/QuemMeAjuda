@@ -124,7 +124,7 @@ public class TutorValidador {
 	 * Método que avalia se uma doação a um tutor apresenta valor menor que zero
 	 * lançando um IllegalArgumentException caso seja
 	 * 
-	 * @param totalCentavos		Valor doado
+	 * @param totalCentavos	valor a ser doado
 	 */
 	public static boolean validaDoacao(int totalCentavos) {
 		

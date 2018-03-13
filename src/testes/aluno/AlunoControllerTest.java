@@ -10,7 +10,7 @@ import org.junit.Test;
 import aluno.Aluno;
 import aluno.AlunoController;
 import testes.TestUtil;
-import util.controller.OpcoesController;
+import util.controller.OpcaoController;
 
 public class AlunoControllerTest {
 
@@ -177,29 +177,29 @@ public class AlunoControllerTest {
 
 	@Test(expected=IllegalArgumentException.class)
 	public void testGetInfoAlunoMatriculaVazia() {
-		alunoController.getInfoAluno(TestUtil.getStringEspacosEmBranco(), OpcoesController.EMAIL.toString());
+		alunoController.getInfoAluno(TestUtil.getStringEspacosEmBranco(), OpcaoController.EMAIL.toString());
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testGetInfoAlunoMatriculaComLetras() {
-		alunoController.getInfoAluno(TestUtil.getStringLetrasAleatorias(), OpcoesController.EMAIL.toString());
+		alunoController.getInfoAluno(TestUtil.getStringLetrasAleatorias(), OpcaoController.EMAIL.toString());
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testGetInfoAlunoMatriculaComCaracteresEspeciais() {
-		alunoController.getInfoAluno(TestUtil.getStringCaracteresEspeciais(), OpcoesController.EMAIL.toString());
+		alunoController.getInfoAluno(TestUtil.getStringCaracteresEspeciais(), OpcaoController.EMAIL.toString());
 	}
 	
 	@Test(expected=NoSuchElementException.class)
 	public void testGetInfoAlunoMatriculaNaoCadastrada() {
-		alunoController.getInfoAluno(TestUtil.getExemploMatricula(), OpcoesController.EMAIL.toString());
+		alunoController.getInfoAluno(TestUtil.getExemploMatricula(), OpcaoController.EMAIL.toString());
 	}
 	
 	@Test
 	public void testGetInfoAlunoMatriculaValida() {
 		alunoController.cadastrarAluno("Fanny", "11715963", 2, "99984-1347", "fannyvieira082@gmail.com");
 		assertEquals("fannyvieira082@gmail.com", alunoController.getInfoAluno
-				("11715963", OpcoesController.EMAIL.toString()));
+				("11715963", OpcaoController.EMAIL.toString()));
 	}
 	
 	/*--------------------- TESTES LISTAR ALUNOS ---------------*/

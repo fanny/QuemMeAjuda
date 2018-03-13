@@ -1,5 +1,10 @@
 package util.ajuda;
 
+/**
+ * Classe que contém as mensagens de erro lançadas pelo controller de ajuda
+ * @author fanny
+ *
+ */
 public enum MensagemAjuda {
 	
 	DISCIPLINA_INVALIDA("disciplina nao pode ser vazio ou em branco"),

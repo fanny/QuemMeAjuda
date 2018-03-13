@@ -1,5 +1,11 @@
 package util;
 
+
+/**
+ * Classe utilizada para validação de atributos mais genéricos
+ * @author fanny
+ *
+ */
 public class Validador {
 
 	/**

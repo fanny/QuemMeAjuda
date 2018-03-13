@@ -6,9 +6,10 @@ import java.util.Map;
 import java.util.Set;
 
 import aluno.Aluno;
-import util.comparators.Pessoa;
+import util.comparators.Discente;
 import util.controller.ErroController;
 import util.tutor.MensagemTutor;
+import util.tutor.TaxaDoacao;
 import util.tutor.TutorValidador;
 
 /**
@@ -16,7 +17,7 @@ import util.tutor.TutorValidador;
  * 
  * @author fanny
  */
-public class Tutor implements Pessoa {
+public class Tutor implements Discente {
 
 	/**
 	 * Nota de avaliação do tutor
@@ -99,7 +100,10 @@ public class Tutor implements Pessoa {
 	}
 	
 	
-
+	/**
+	 * Calcula a taxa que será aplicada ao dinheiro recebido pelo tutor
+	 * @return double a taxa que será aplicada a doação
+	 */
 	public double calculaTaxaDoacaoTutor() {
 
 		double taxa = 0;
@@ -107,16 +111,18 @@ public class Tutor implements Pessoa {
 
 		if (this.nivel.equals(MensagemTutor.TOP.toString())) {
 	
-			taxa = (0.9 + ((this.notaAvaliacao - 4.5) * 0.01));
+			taxa = (TaxaDoacao.TOP_TAXA_DOACAO.getValor() + 
+					((this.notaAvaliacao - 4.5) * 0.01));
 	
 
 		} else if (this.nivel.equals(MensagemTutor.TUTOR.toString())) {
 
-			taxa = 0.8;
+			taxa = TaxaDoacao.TUTOR_TAXA_DOACAO.getValor();
 
 		} else {
 			
-			taxa = (0.4 - ((3 - this.notaAvaliacao) * 0.1));
+			taxa = (TaxaDoacao.APRENDIZ_TAXA_DOACAO.getValor() - 
+					((3 - this.notaAvaliacao) * 0.1));
 		
 		}
 		return taxa;

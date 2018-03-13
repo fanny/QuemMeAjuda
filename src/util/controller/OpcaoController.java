@@ -1,6 +1,12 @@
 package util.controller;
 
-public enum OpcoesController {
+
+/**
+ * Classe que contém as opções de filtro usadas no controller
+ * @author fanny
+ *
+ */
+public enum OpcaoController {
 	NOME("Nome"),
 	EMAIL("Email"),
 	TELEFONE("Telefone"),
@@ -18,7 +24,7 @@ public enum OpcoesController {
 	 * Inicializa os valores de cada enum
 	 * @param descricao o valor do enum
 	 */
-	private OpcoesController(String descricao){
+	private OpcaoController(String descricao){
 		this.descricao = descricao;
 	}
 	
@@ -35,13 +41,13 @@ public enum OpcoesController {
 	 * @param descricao o valor do enum
 	 * @return OpcoesMenu o enum correspondente ao valor passado
 	 */
-	public static OpcoesController getEnumByString(String descricao){
-		for(OpcoesController op: OpcoesController.values()){
+	public static OpcaoController getEnumByString(String descricao){
+		for(OpcaoController op: OpcaoController.values()){
 			if(descricao.equals(op.toString())){
 				return op;
 			}
 		}
-		return OpcoesController.OPCAO_INVALIDA;
+		return OpcaoController.OPCAO_INVALIDA;
 		
 	}
 

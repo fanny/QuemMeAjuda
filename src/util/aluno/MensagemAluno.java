@@ -1,5 +1,10 @@
 package util.aluno;
 
+/**
+ * Classe que contém todas as mensagens de erro que podem ser lançadas pelo aluno
+ * @author fanny
+ *
+ */
 public enum MensagemAluno {
 	
 	EMAIL_INVALIDO("Email invalido"),

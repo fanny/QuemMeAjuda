@@ -17,7 +17,7 @@ import util.comparators.EmailComparator;
 import util.comparators.MatriculaComparator;
 import util.comparators.NomeComparator;
 import util.controller.ErroController;
-import util.controller.OpcoesController;
+import util.controller.OpcaoController;
 
 /**
  * Controller dos alunos do sistema.
@@ -149,7 +149,7 @@ public class AlunoController {
 		try {
 			if (this.validaAluno(matricula)) {
 
-				OpcoesController op = OpcoesController.getEnumByString(atributo);
+				OpcaoController op = OpcaoController.getEnumByString(atributo);
 
 				switch (op) {
 				case NOME:
@@ -227,7 +227,7 @@ public class AlunoController {
 	 */
 	public void configuraOrdem(String ordem) {
     
-		OpcoesController op = OpcoesController.getEnumByString(ordem);
+		OpcaoController op = OpcaoController.getEnumByString(ordem);
 		
 		switch (op) {
 			case MATRICULA:

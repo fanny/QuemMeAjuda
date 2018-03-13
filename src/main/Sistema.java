@@ -6,7 +6,7 @@ import tutor.ajuda.AjudaController;
 import util.ajuda.AjudaValidator;
 import util.aluno.MensagemAluno;
 import util.controller.ErroController;
-import util.controller.OpcoesController;
+import util.controller.OpcaoController;
 import util.tutor.TutorValidador;
 
 import java.io.IOException;
@@ -77,7 +77,7 @@ public class Sistema {
 
 		}
 
-		String emailTutor = alunoController.getInfoAluno(matricula, OpcoesController.EMAIL.toString());
+		String emailTutor = alunoController.getInfoAluno(matricula, OpcaoController.EMAIL.toString());
 
 		if (tutorController.existeTutor(emailTutor)) {
 			tutorController.cadastraDisciplina(emailTutor, disciplina, proficiencia);
@@ -156,7 +156,7 @@ public class Sistema {
 
 		}
 
-		String emailTutor = alunoController.getInfoAluno(matricula, OpcoesController.EMAIL.toString());
+		String emailTutor = alunoController.getInfoAluno(matricula, OpcaoController.EMAIL.toString());
 		String resultado = tutorController.recuperaTutor(emailTutor);
 
 		return resultado;
@@ -248,7 +248,7 @@ public class Sistema {
 			TutorValidador.validaNotaAvaliacao(nota);
 			ajudaController.validaAjuda(idAjuda);
 			String matriculaTutor = ajudaController.pegarMatriculaTutor(idAjuda);
-			String emailTutor = getInfoAluno(matriculaTutor, OpcoesController.EMAIL.toString());
+			String emailTutor = getInfoAluno(matriculaTutor, OpcaoController.EMAIL.toString());
 			tutorController.avaliaTutor(emailTutor, nota);
 			ajudaController.setAjudasAvaliadas(idAjuda);
 		}catch(IllegalArgumentException iae) {
@@ -267,14 +267,14 @@ public class Sistema {
 	 */
 	public String pegaNota(String matriculaTutor) {
 		return tutorController.retornaNotaAvaliacao(getInfoAluno(matriculaTutor, 
-				OpcoesController.EMAIL.toString()));
+				OpcaoController.EMAIL.toString()));
 	}
 
 	/**
 	 * @see TutorController#retornaNivel(String)
 	 */
 	public String pegaNivel(String matriculaTutor) {
-		return tutorController.retornaNivel(getInfoAluno(matriculaTutor, OpcoesController.EMAIL.toString()));
+		return tutorController.retornaNivel(getInfoAluno(matriculaTutor, OpcaoController.EMAIL.toString()));
 	}
 	
 	/**
@@ -289,7 +289,7 @@ public class Sistema {
 			
 			if(this.alunoController.validaAluno(matriculaTutor)){
 				
-				emailAluno = getInfoAluno(matriculaTutor, OpcoesController.EMAIL.toString());
+				emailAluno = getInfoAluno(matriculaTutor, OpcaoController.EMAIL.toString());
 				tutorController.doar(emailAluno, totalCentavos - this.calculoDoacao(emailAluno, totalCentavos));
 			
 			}
