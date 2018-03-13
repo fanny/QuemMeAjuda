@@ -178,12 +178,15 @@ public class TutorController {
 		boolean resultado = false;
 
 		try {
-			if (!this.existeTutor(email)) {
-				resultado = false;
-			} else if (TutorValidador.validaHorarioDeAtendimento(horario, dia)) {
+			
+			if(TutorValidador.validaEmail(email)) {
+				if (!this.existeTutor(email)) {
+					resultado = false;
+				} else if (TutorValidador.validaHorarioDeAtendimento(horario, dia)) {
 
-				resultado = this.tutores.get(email).consultaHorario(horario, dia);
+					resultado = this.tutores.get(email).consultaHorario(horario, dia);
 
+				}
 			}
 		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException(ErroController.CADASTRAR_HORARIO_INVALIDO.toString() + e.getMessage());
@@ -206,13 +209,15 @@ public class TutorController {
 
 		boolean resultado = false;
 		try {
+			
+			if(TutorValidador.validaEmail(email)) {
+				if (!this.existeTutor(email)) {
+					resultado = false;
+				} else if (TutorValidador.validaLocalAtendimento(local)) {
 
-			if (!this.existeTutor(email)) {
-				resultado = false;
-			} else if (TutorValidador.validaLocalAtendimento(local)) {
+					resultado = this.tutores.get(email).consultaLocal(local);
 
-				resultado = this.tutores.get(email).consultaLocal(local);
-
+				}
 			}
 		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException(ErroController.CADASTRAR_HORARIO_INVALIDO.toString() + e.getMessage());
@@ -225,7 +230,7 @@ public class TutorController {
 	}
 
 	/**
-	 * Veririca pelo email se um tutor esta cadastradado
+	 * Veririca pelo email se um tutor esta cadastradado.
 	 * 
 	 * @param email
 	 *            Email do aluno
