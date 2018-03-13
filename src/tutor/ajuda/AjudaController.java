@@ -150,24 +150,24 @@ public class AjudaController {
 				OpcaoController op = OpcaoController.getEnumByString(atributo);
 
 				switch (op) {
-				case LOCAL_INTERESSE: {
-					AjudaPresencial ajuda = (AjudaPresencial) this.ajudas.get(idAjuda);
-					return ajuda.getLocal();
-				}
-				case HORARIO: {
-					AjudaPresencial ajuda = (AjudaPresencial) this.ajudas.get(idAjuda);
-					return ajuda.getHorario().getHorario();
-				}
-				case DIA: {
-					AjudaPresencial ajuda = (AjudaPresencial) this.ajudas.get(idAjuda);
-					return ajuda.getHorario().getDia();
-				}
-				case DISCIPLINA:
-					return this.ajudas.get(idAjuda).getDisciplina();
-				case TUTOR_MATRICULA:
-					return this.pegarTutor(idAjuda);
-				default:
-					throw new IllegalArgumentException("atributo nao encontrado");
+					case LOCAL_INTERESSE: {
+						AjudaPresencial ajuda = (AjudaPresencial) this.ajudas.get(idAjuda);
+						return ajuda.getLocal();
+					}
+					case HORARIO: {
+						AjudaPresencial ajuda = (AjudaPresencial) this.ajudas.get(idAjuda);
+						return ajuda.getHorario().getHorario();
+					}
+					case DIA: {
+						AjudaPresencial ajuda = (AjudaPresencial) this.ajudas.get(idAjuda);
+						return ajuda.getHorario().getDia();
+					}
+					case DISCIPLINA:
+						return this.ajudas.get(idAjuda).getDisciplina();
+					case TUTOR_MATRICULA:
+						return this.pegarTutor(idAjuda);
+					default:
+						throw new IllegalArgumentException("atributo nao encontrado");
 				}
 			}
 

@@ -239,10 +239,10 @@ public class AlunoController {
 			case EMAIL:
 				this.ordem = new EmailComparator<Aluno>();
 				break;
-      default:
-        throw new IllegalArgumentException(ErroController.
-            CONFIGURA_ORDEM_INVALIDA.toString());
-		}
+			default:
+				throw new IllegalArgumentException(ErroController.
+						CONFIGURA_ORDEM_INVALIDA.toString());
+				}
 	}
 	/**
 	 * @see Persistencia#salvaAlunos(String)

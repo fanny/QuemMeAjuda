@@ -186,8 +186,10 @@ public class Sistema {
 			String localInteresse) {
 
 		try {
-				Tutor tutor = this.tutorController.recuperaTutorParaAjudaPresencial(disciplina, horario, dia,
+				
+			Tutor tutor = this.tutorController.recuperaTutorParaAjudaPresencial(disciplina, horario, dia,
 						localInteresse);
+			
 			if (AjudaValidator.validaAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse, tutor)) {
 
 				return this.ajudaController.cadastrarAjudaPresencial(tutor, disciplina, horario, dia, localInteresse);
@@ -245,12 +247,14 @@ public class Sistema {
 	 */
 	public String avaliaTutor(int idAjuda, int nota) {
 		try{
-			TutorValidador.validaNotaAvaliacao(nota);
-			ajudaController.validaAjuda(idAjuda);
-			String matriculaTutor = ajudaController.pegarMatriculaTutor(idAjuda);
-			String emailTutor = getInfoAluno(matriculaTutor, OpcaoController.EMAIL.toString());
-			tutorController.avaliaTutor(emailTutor, nota);
-			ajudaController.setAjudasAvaliadas(idAjuda);
+			if(TutorValidador.validaNotaAvaliacao(nota) && ajudaController.validaAjuda(idAjuda)){
+				
+				String matriculaTutor = ajudaController.pegarMatriculaTutor(idAjuda);
+				String emailTutor = getInfoAluno(matriculaTutor, OpcaoController.EMAIL.toString());
+				
+				tutorController.avaliaTutor(emailTutor, nota);
+				ajudaController.setAjudasAvaliadas(idAjuda);
+			}
 		}catch(IllegalArgumentException iae) {
 			throw new IllegalArgumentException(
 					ErroController.ERRO_AVALIACAO_TUTOR.toString() + iae.getMessage());

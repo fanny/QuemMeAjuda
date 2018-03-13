@@ -30,7 +30,7 @@ public class HorarioAtendimento {
 	 */
 	public HorarioAtendimento(String dia, String horario) {
 
-		if (HorarioAtendimentoValidador.validaHorarioAtedendimento(dia, horario)) {
+		if (HorarioAtendimentoValidador.validaHorarioAtendimento(dia, horario)) {
 
 			this.dia = dia;
 			this.horario = horario;
